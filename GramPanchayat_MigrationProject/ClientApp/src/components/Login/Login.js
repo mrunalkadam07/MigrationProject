@@ -12,7 +12,7 @@ export const Login = (props) => {
         console.log(email);
     }
     return (
-        <div className="auth-form-container">
+        <div style={{backgroundColor: 'rgb(100, 177, 215)'}} className="auth-form-container">
             <h3>Login</h3>
             <form className = "login-form" onSubmit = {handleSubmit}>
                 <label htmlFor="email">email</label>
