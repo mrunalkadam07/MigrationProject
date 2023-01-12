@@ -1,5 +1,7 @@
 using GramPanchayat_MigrationProject.API.Data;
+using GramPanchayat_MigrationProject.API.Repositories;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
     options.UseSqlServer(builder.Configuration.GetConnectionString("constring"));
 });
+
+builder.Services.AddScoped<ILoginRepository,LoginRepository>();
 
 var app = builder.Build();
 
