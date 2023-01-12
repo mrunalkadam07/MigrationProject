@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GramPanchayat_MigrationProject.API.Controllers
 {
     [ApiController]
-    [Route("logins")]
+    [Route("[controller]")]
 
     public class LoginsController : Controller
     {

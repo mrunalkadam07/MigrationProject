@@ -7,6 +7,7 @@ import { Home } from './components/Home';
 import { Layout } from './components/Layout';
 import { Login } from './components/Login/Login';
 import './custom.css';
+import './Login.css';
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
@@ -18,15 +19,17 @@ export default class App extends Component {
     return (
       <Layout>
         <Routes>
-           {AppRoutes.map((route, index) => {
+            {AppRoutes.map((route, index) => {
             const { element, ...rest } = route;
             return <Route key={index} {...rest} element={element} />;
-          })}
-          {/* {/* <Route exact path='/' Component={Home}/>
+          })} 
+          </Routes>
+         {/* <Route exact path='/' Component={Home}/>
          <Route path='/counter' Component={Counter}/>
       <Route path='/fetch-data' Component={FetchData}/>   
-        <Route path='/login' Component={Login}/>  */}
-        </Routes> 
+        <Route path='/login' Component={Login}/>  
+        </Routes>
+        </Router>  */}
       </Layout>
     );
   }
