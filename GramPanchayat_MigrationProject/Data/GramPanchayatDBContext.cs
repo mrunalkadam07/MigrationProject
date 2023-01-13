@@ -14,6 +14,7 @@ namespace GramPanchayat_MigrationProject.API.Data
         }
 
         public DbSet<LoginModel> Login1 { get; set; }
+        public DbSet<DeathReg> DeathRegs {get; set;}
 
          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -36,6 +37,26 @@ namespace GramPanchayat_MigrationProject.API.Data
             entity.Property(e => e.User)
                 .HasMaxLength(50)
                 .HasColumnName("user");
+        });
+
+        modelBuilder.Entity<DeathReg>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("DeathReg");
+
+            entity.Property(e => e.CityVillege).HasMaxLength(50);
+            entity.Property(e => e.DateOfDeath).HasColumnType("datetime");
+            entity.Property(e => e.Dist).HasMaxLength(50);
+            entity.Property(e => e.MotherFatherHusbandName).HasMaxLength(50);
+            entity.Property(e => e.NameAndAddressOfDeathSenderPerson).HasMaxLength(50);
+            entity.Property(e => e.NameOfDeathPerson).HasMaxLength(50);
+            entity.Property(e => e.NameOfRegistar).HasMaxLength(50);
+            entity.Property(e => e.PermentAddressOfDeathPerson).HasMaxLength(50);
+            entity.Property(e => e.PlaceOfDeath).HasMaxLength(50);
+            entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
+            entity.Property(e => e.Sex).HasMaxLength(50);
+            entity.Property(e => e.Taluko).HasMaxLength(50);
         });
 
         OnModelCreatingPartial(modelBuilder);
