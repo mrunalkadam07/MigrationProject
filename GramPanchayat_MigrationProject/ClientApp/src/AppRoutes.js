@@ -1,5 +1,6 @@
 import { Home } from "./components/Home";
 import { Login } from "./components/Login/Login";
+import MenuPage from "./components/MenuPage/MenuPage";
 
 const AppRoutes = [
   {
@@ -9,6 +10,10 @@ const AppRoutes = [
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/menu',
+    element: <MenuPage />
   }
 ];
 

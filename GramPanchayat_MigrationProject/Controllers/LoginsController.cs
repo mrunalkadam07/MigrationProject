@@ -1,4 +1,5 @@
 using System.Data;
+using GramPanchayat_MigrationProject.API.Data;
 using GramPanchayat_MigrationProject.API.Models;
 using GramPanchayat_MigrationProject.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -30,22 +31,10 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         }
 
         [HttpPost, Route("[action]", Name = "Login")]
-        public string login(LoginModel logindata)
+        public string Validate(LoginModel logindata)
         {
-            SqlConnection con = new SqlConnection(_configuration.GetConnectionString("constring").ToString());
-            SqlDataAdapter da = new SqlDataAdapter("Select * from login1 WHERE user = '"+logindata.user+"' AND pass = '"+logindata.pass+"'",con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);     
-
-            if(dt.Rows.Count > 0)
-            {
-                //return "Logged-in Successfully";
-                return "valid";
-            }
-            else{
-                //return "Invalid Username and Password"; 
-                return logindata.user;
-            }
+            string str = loginRepository.Validate(logindata);
+            return str;
 
         }
     }

@@ -8,6 +8,10 @@ namespace GramPanchayat_MigrationProject.API.Data
 {
     public partial class GramPanchayatDBContext : DbContext
     {
+        // public GramPanchayatDBContext()
+        // {
+        // }
+
         public GramPanchayatDBContext(DbContextOptions<GramPanchayatDBContext> options): base(options) 
         {
             
