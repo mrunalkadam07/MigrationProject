@@ -16,7 +16,7 @@ export const Login = (props) => {
             // if credentials match -> forward to menu page
             fetch("https://localhost:7277/api/Logins/Validate", {
                 method : 'POST',
-                header : {
+                headers : {
                     'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*' 

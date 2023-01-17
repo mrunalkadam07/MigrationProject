@@ -13,6 +13,7 @@ builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
 });
 
 builder.Services.AddScoped<ILoginRepository,LoginRepository>();
+builder.Services.AddScoped<IDeadBirthRepository,DeadBirthRepository>();
 builder.Services.AddScoped<IDeathRegRepository,DeathRegRepository>();
 
 var app = builder.Build();

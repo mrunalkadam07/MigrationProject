@@ -31,7 +31,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         }
 
         [HttpPost, Route("[action]", Name = "Login")]
-        public string Validate(LoginModel logindata)
+        public string Validate([FromBody]LoginModel logindata)
         {
             string str = loginRepository.Validate(logindata);
             return str;
