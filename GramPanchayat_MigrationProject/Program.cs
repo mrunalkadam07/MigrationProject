@@ -15,6 +15,7 @@ builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
 builder.Services.AddScoped<ILoginRepository,LoginRepository>();
 builder.Services.AddScoped<IDeadBirthRepository,DeadBirthRepository>();
 builder.Services.AddScoped<IDeathRegRepository,DeathRegRepository>();
+builder.Services.AddScoped<IPropertyTaxRepository,PropertyTaxRepository>();
 
 var app = builder.Build();
 

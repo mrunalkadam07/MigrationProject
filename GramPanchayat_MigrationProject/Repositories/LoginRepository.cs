@@ -20,7 +20,6 @@ namespace GramPanchayat_MigrationProject.API.Repositories
 
         public string Validate(LoginModel logindata)
         {
-            Console.Write("Hiiii");
             var rec = (from r in gramPanchayatDbContext.Login1 where r.user == logindata.user && r.pass == logindata.pass select r);
             if(rec.Count() > 0)
             {
