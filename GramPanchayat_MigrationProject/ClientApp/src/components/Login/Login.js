@@ -2,19 +2,20 @@ import React, {useState} from "react";
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState("");
     
     // const emailRegex = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(email);
         document.getElementById("error-message").innerHTML = ""
-
+        try{
         if(email && password){
             //submit
 
             // if credentials match -> forward to menu page
-            fetch("https://localhost:7277/api/Logins/Validate", {
+            let res = await fetch("https://localhost:7277/api/Logins/Validate", {
                 method : 'POST',
                 headers : {
                     'Accept': 'application/json',
@@ -26,19 +27,24 @@ export const Login = (props) => {
                 body : JSON.stringify({
                     'user' : email,
                     'pass' : password
-                })
-            })
-            .then((data) => {
-                console.log(data)
-            })
-
-            // else display error message
-        }
-
-        else{
-            // error 
-            document.getElementById("error-message").innerHTML = "Invalid Input"
-        }
+                }),
+            });
+            let resJson = await res.json();
+            if (res.status == 200) {
+            setPassword("");
+            setEmail("");
+            setMessage("User created successfully");
+            console.log("User created successfully");
+             } 
+             else {
+            setMessage("Some error occured");
+            console.log("Some error occured");
+            }
+        } 
+    }
+    catch (err) {
+    console.log(err);
+    }
     }
     return (
         <>

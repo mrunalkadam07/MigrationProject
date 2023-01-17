@@ -6,6 +6,6 @@ namespace GramPanchayat_MigrationProject.API.Repositories
     public interface ILoginRepository
     {
         IEnumerable<LoginModel> GetAll();
-        public string Validate(LoginModel logindata);
+        public int Validate(LoginModel logindata);
     }
 }

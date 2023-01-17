@@ -17,6 +17,7 @@ namespace GramPanchayat_MigrationProject.API.Data
         public DbSet<GramPanchayat_MigrationProject.API.Models.DeadBirth> DeadBirthReg {get; set;}
         public DbSet<GramPanchayat_MigrationProject.API.Models.DeathRegistration> DeathReg {get; set;}
 
+        public DbSet<GramPanchayat_MigrationProject.API.Models.Birth> BirthReg {get; set;}
         public DbSet<GramPanchayat_MigrationProject.API.Models.PropertyTaxPaid> TaxPaid {get; set;}
 
          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

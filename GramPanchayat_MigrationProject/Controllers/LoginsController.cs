@@ -31,10 +31,17 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         }
 
         [HttpPost, Route("[action]", Name = "Login")]
-        public string Validate([FromBody]LoginModel logindata)
+        public IActionResult Validate([FromBody]LoginModel logindata)
         {
-            string str = loginRepository.Validate(logindata);
-            return str;
+            int res = loginRepository.Validate(logindata);
+            if(res == 1)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NoContent();
+            }
 
         }
     }

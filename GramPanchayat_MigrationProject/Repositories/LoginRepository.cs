@@ -18,16 +18,16 @@ namespace GramPanchayat_MigrationProject.API.Repositories
             return gramPanchayatDbContext.Login1.ToList();
         }
 
-        public string Validate(LoginModel logindata)
+        public int Validate(LoginModel logindata)
         {
             var rec = (from r in gramPanchayatDbContext.Login1 where r.user == logindata.user && r.pass == logindata.pass select r);
             if(rec.Count() > 0)
             {
-                return "Login Successfully";
+                return 1;
             }
             else
             {
-                return "Invalid Login Credentials";
+                return 0;
             }
         }
     }
