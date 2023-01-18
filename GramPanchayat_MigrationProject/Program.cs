@@ -17,6 +17,8 @@ builder.Services.AddScoped<IDeadBirthRepository,DeadBirthRepository>();
 builder.Services.AddScoped<IDeathRegRepository,DeathRegRepository>();
 builder.Services.AddScoped<IPropertyTaxRepository,PropertyTaxRepository>();
 builder.Services.AddScoped<IBirthRegRepository,BirthRegRepository>();
+builder.Services.AddScoped<IAssasmenttaxRepository,AssasmenttaxRepository>();
+
 
 var app = builder.Build();
 
@@ -31,6 +33,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCors();
 app.UseCors(x => x
                     .AllowAnyMethod()
                     .AllowAnyHeader()

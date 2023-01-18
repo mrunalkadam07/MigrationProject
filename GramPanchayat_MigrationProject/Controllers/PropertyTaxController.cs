@@ -36,7 +36,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddDeath(PropertyTaxPaid propertytax){
+        public IActionResult AddProperty(PropertyTaxPaid propertytax){
            propertytaxRepository.Add(propertytax);
            return Ok();
         }

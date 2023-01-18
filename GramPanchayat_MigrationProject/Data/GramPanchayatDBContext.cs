@@ -19,6 +19,7 @@ namespace GramPanchayat_MigrationProject.API.Data
 
         public DbSet<GramPanchayat_MigrationProject.API.Models.Birth> BirthReg {get; set;}
         public DbSet<GramPanchayat_MigrationProject.API.Models.PropertyTaxPaid> TaxPaid {get; set;}
+        public DbSet<GramPanchayat_MigrationProject.API.Models.Assasment> Assasmenttax {get; set;}
 
          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
