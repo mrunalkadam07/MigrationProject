@@ -2,8 +2,17 @@ using GramPanchayat_MigrationProject.API.Data;
 using GramPanchayat_MigrationProject.API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+using Microsoft.IdentityModel.Tokens;
+
+using System.IdentityModel.Tokens.Jwt;
+
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
+var _authkey = builder.Configuration.GetValue<string>("JwtSettings:securitykey");
 
 // Add services to the container.
 
@@ -12,13 +21,31 @@ builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
     options.UseSqlServer(builder.Configuration.GetConnectionString("constring"));
 });
 
-builder.Services.AddScoped<ILoginRepository,LoginRepository>();
-builder.Services.AddScoped<IDeadBirthRepository,DeadBirthRepository>();
-builder.Services.AddScoped<IDeathRegRepository,DeathRegRepository>();
-builder.Services.AddScoped<IPropertyTaxRepository,PropertyTaxRepository>();
-builder.Services.AddScoped<IBirthRegRepository,BirthRegRepository>();
-builder.Services.AddScoped<IAssasmenttaxRepository,AssasmenttaxRepository>();
+builder.Services.AddScoped<ILoginRepository,LoginService>();
+builder.Services.AddScoped<IDeadBirthRepository,DeadBirthService>();
+builder.Services.AddScoped<IDeathRegRepository,DeathRegService>();
+builder.Services.AddScoped<IPropertyTaxRepository,PropertyTaxService>();
+builder.Services.AddScoped<IBirthRegRepository,BirthRegService>();
+builder.Services.AddScoped<IAssasmenttaxRepository,AssasmenttaxService>();
+builder.Services.AddScoped<IMarriageRegRepository,MarriageRegService>();
 
+builder.Services.AddAuthentication(item=>{
+item.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+item.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(item=>{
+    item.RequireHttpsMetadata = true;
+    item.SaveToken = true;
+    item.TokenValidationParameters = new TokenValidationParameters(){
+        ValidateIssuerSigningKey= true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authkey)),  
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+var _jwtsettings = builder.Configuration.GetSection("JwtSettings");
+builder.Services.Configure<JwtSettings>(_jwtsettings);
 
 var app = builder.Build();
 
@@ -29,10 +56,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 
+app.UseAuthorization();
 app.UseCors();
 app.UseCors(x => x
                     .AllowAnyMethod()

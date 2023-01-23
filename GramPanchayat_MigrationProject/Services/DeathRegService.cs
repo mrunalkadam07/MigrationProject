@@ -2,10 +2,10 @@ using GramPanchayat_MigrationProject.API.Models;
 using GramPanchayat_MigrationProject.API.Data;
 using Microsoft.EntityFrameworkCore;
 namespace GramPanchayat_MigrationProject.API.Repositories{
-    public class DeathRegRepository : IDeathRegRepository
+    public class DeathRegService : IDeathRegRepository
     {
         private readonly GramPanchayatDBContext gramPanchayatDBContext;
-        public DeathRegRepository(GramPanchayatDBContext gramPanchayatDBContext)
+        public DeathRegService(GramPanchayatDBContext gramPanchayatDBContext)
         {
             this.gramPanchayatDBContext = gramPanchayatDBContext;
         }

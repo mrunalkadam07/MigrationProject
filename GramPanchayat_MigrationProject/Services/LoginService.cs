@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GramPanchayat_MigrationProject.API.Repositories
 {
-    public class LoginRepository : ILoginRepository
+    public class LoginService : ILoginRepository
     {
         private readonly GramPanchayatDBContext gramPanchayatDbContext;
 
-        public LoginRepository(GramPanchayatDBContext gramPanchayatDbContext)
+        public LoginService(GramPanchayatDBContext gramPanchayatDbContext)
         {
             this.gramPanchayatDbContext = gramPanchayatDbContext;
         }

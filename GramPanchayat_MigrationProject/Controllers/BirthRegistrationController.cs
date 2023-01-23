@@ -1,8 +1,10 @@
 using GramPanchayat_MigrationProject.API.Models;
 using GramPanchayat_MigrationProject.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace GramPanchayat_MigrationProject.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class BirthRegistrationController : Controller

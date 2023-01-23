@@ -2,6 +2,7 @@ using System.Data;
 using GramPanchayat_MigrationProject.API.Data;
 using GramPanchayat_MigrationProject.API.Models;
 using GramPanchayat_MigrationProject.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,14 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             this.loginRepository = loginRepository;
             _configuration = configuration;
         }
+
+        // [AllowAnonymous]
+        // [HttpPost("authenticate")]
+        // public IActionResult Authenticate(AuthenticateRequest model)
+        // {
+        //     var response = _userService.Authenticate(model);
+        //     return Ok(response);
+        // }
 
         [HttpGet]
         public IActionResult GetAllLogins(){

@@ -1,8 +1,10 @@
 import { Home } from "./components/Home";
+import { DeathRegistrationForm } from "./components/Login/DeathRegistration";
+import Dreport from "./components/Login/Dreport";
 import { Login } from "./components/Login/Login";
 import { PropertyTaxPaidForm } from "./components/Login/PropertyTaxPaid";
 import MenuPage from "./components/MenuPage/MenuPage";
-import { PropertyTaxPaid } from "./Configuration/Configuration";
+import { DeathRegistration, PropertyTaxPaid } from "./Configuration/Configuration";
 
 const AppRoutes = [
   {
@@ -20,6 +22,14 @@ const AppRoutes = [
   {
     path : '/propertyTaxPaid',
     element : <PropertyTaxPaidForm />
+  },
+  {
+    path : '/deathRegistration',
+    element : <DeathRegistrationForm />
+  },
+  {
+    path : '/dreport',
+    element : <Dreport />
   }
 ];
 

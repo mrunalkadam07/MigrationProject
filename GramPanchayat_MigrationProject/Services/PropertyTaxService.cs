@@ -2,10 +2,10 @@ using GramPanchayat_MigrationProject.API.Models;
 using GramPanchayat_MigrationProject.API.Data;
 using Microsoft.EntityFrameworkCore;
 namespace GramPanchayat_MigrationProject.API.Repositories{
-    public class PropertyTaxRepository : IPropertyTaxRepository
+    public class PropertyTaxService : IPropertyTaxRepository
     {
         private readonly GramPanchayatDBContext gramPanchayatDBContext;
-        public PropertyTaxRepository(GramPanchayatDBContext gramPanchayatDBContext)
+        public PropertyTaxService(GramPanchayatDBContext gramPanchayatDBContext)
         {
             this.gramPanchayatDBContext = gramPanchayatDBContext;
         }

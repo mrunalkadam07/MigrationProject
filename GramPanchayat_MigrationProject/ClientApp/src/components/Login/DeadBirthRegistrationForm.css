@@ -1,0 +1,45 @@
+.App {
+    text-align: center;
+  }
+  .row{
+    line-height: 30px;
+  }
+  /* *{
+    background-color: blanchedalmond;
+    
+  } */
+  .form-control{
+    background-color: beige;
+  }
+  .form-label{
+    color: white;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  
+  }
+  
+  .rightdiv {
+    float: right;
+    width: 40%;
+  
+  }
+  
+  .leftdiv {
+    float: left;
+    width: 50%;
+    padding-left: 10%;
+  }
+  
+  label {
+    width: 240px;
+    display: inline-block;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }

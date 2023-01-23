@@ -47,6 +47,34 @@ export const PropertyTaxPaidForm = (props) => {
             console.log(error)
         })
     }
+    // const modifyPropertyTax = (e) =>{
+    //     e.preventDefault();
+    //     if(billNo === "")
+    //     {
+    //         alert("Enter the bill No to update the details.")
+    //         console.log("Input fields are Empty");
+    //         return
+    //     }
+    //     console.log("Data : ",billDate,year,name,address,propertyNo,homeTax,electricityTax,specialWaterTax,educationalsess,penaltyCharge,total);
+    //     const data = {
+    //         billdate : billDate,
+    //         year : year,
+    //         name : name,
+    //         address : address,
+    //         propertyNo : propertyNo,
+    //         homeTax : homeTax,
+    //         electrycityTax : electricityTax,
+    //         specialWaterTax : specialWaterTax,
+    //         educationalSess : educationalsess,
+    //         panaltyCharge : penaltyCharge,
+    //         total : total
+    //     }
+    //     services.PropertyTaxPaid(data).then((data)=>{
+    //         console.log(data)
+    //     }).catch((error)=>{
+    //         console.log(error)
+    //     })
+    // }
 
     return(
         <>

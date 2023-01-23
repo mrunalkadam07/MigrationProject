@@ -2,10 +2,10 @@ using GramPanchayat_MigrationProject.API.Models;
 using GramPanchayat_MigrationProject.API.Data;
 using Microsoft.EntityFrameworkCore;
 namespace GramPanchayat_MigrationProject.API.Repositories{
-    public class BirthRegRepository : IBirthRegRepository
+    public class BirthRegService : IBirthRegRepository
     {
         private readonly GramPanchayatDBContext gramPanchayatDBContext;
-        public BirthRegRepository(GramPanchayatDBContext gramPanchayatDBContext)
+        public BirthRegService(GramPanchayatDBContext gramPanchayatDBContext)
         {
             this.gramPanchayatDBContext = gramPanchayatDBContext;
         }

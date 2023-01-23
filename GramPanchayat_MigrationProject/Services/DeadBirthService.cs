@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GramPanchayat_MigrationProject.API.Repositories{
 
-    public class DeadBirthRepository : IDeadBirthRepository
+    public class DeadBirthService : IDeadBirthRepository
     {
         private readonly GramPanchayatDBContext gramPanchayatDBContext;
 
-        public DeadBirthRepository(GramPanchayatDBContext gramPanchayatDBContext)
+        public DeadBirthService(GramPanchayatDBContext gramPanchayatDBContext)
         {
             this.gramPanchayatDBContext = gramPanchayatDBContext;
         }
