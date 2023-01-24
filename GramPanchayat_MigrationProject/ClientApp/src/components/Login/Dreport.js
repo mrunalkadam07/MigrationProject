@@ -29,7 +29,18 @@ function Dreport(){
     fetchData();
   }, []);
 
-
+  const generatepdf =()=>{
+    fetch(`https://localhost:7277/DeathRegistration/GeneratePDF`)
+    .then((response) => response.json())
+    .then((actualData) => { 
+      console.log(actualData); 
+      setData(actualData); 
+      console.log(data); 
+    }) 
+    .catch((err) => { 
+      console.log(err.message); 
+    }); 
+  };
     return (
       <>
       <div className="header">
@@ -41,6 +52,7 @@ function Dreport(){
         <br/>
         <label for="inputDistrict" class="form-label">Time :- </label>
         <input class="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
+        <button onClick={generatepdf}>Download PDF</button>      
       </div>
         <div className="tableData">
           <table>

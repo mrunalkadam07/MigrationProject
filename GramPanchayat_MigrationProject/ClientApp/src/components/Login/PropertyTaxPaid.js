@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PropertyTaxServices from "../../Services/PropertyTaxService";
 
 const services = new PropertyTaxServices();
 
 export const PropertyTaxPaidForm = (props) => {
-    // const [billNo, setBillNo] = useState('');
+    const [billNo, setBillNo] = useState('');
     const [billDate, setBillDate] = useState('');
     const [year, setYear] = useState("");
     const [name, setName] = useState("");
@@ -19,7 +19,7 @@ export const PropertyTaxPaidForm = (props) => {
 
     const addPropertyTax = (e) =>{
         e.preventDefault();
-        if(billDate === "" && year==="" && name==="" && address==="" &&
+        if(billNo=== "" && billDate === "" && year==="" && name==="" && address==="" &&
          propertyNo==="" && homeTax==="" && electricityTax==="" && specialWaterTax==="" && 
          educationalsess==="" && penaltyCharge==="" && total==="")
         {
@@ -27,19 +27,20 @@ export const PropertyTaxPaidForm = (props) => {
             console.log("Input fields are Empty");
             return
         }
-        console.log("Data : ",billDate,year,name,address,propertyNo,homeTax,electricityTax,specialWaterTax,educationalsess,penaltyCharge,total);
+        console.log("Data : ",billNo,billDate,year,name,address,propertyNo,homeTax,electricityTax,specialWaterTax,educationalsess,penaltyCharge,total);
         const data = {
-            billdate : billDate,
-            year : year,
-            name : name,
-            address : address,
-            propertyNo : propertyNo,
-            homeTax : homeTax,
-            electrycityTax : electricityTax,
-            specialWaterTax : specialWaterTax,
-            educationalSess : educationalsess,
-            panaltyCharge : penaltyCharge,
-            total : total
+            'billNo' : billNo,
+            'billdate' : billDate,
+            'year' : year,
+            'name' : name,
+            'address' : address,
+            'propertyNo' : propertyNo,
+            'homeTax' : homeTax,
+            'electrycityTax' : electricityTax,
+            'specialWaterTax' : specialWaterTax,
+            'educationalSess' : educationalsess,
+            'panaltyCharge' : penaltyCharge,
+            'total' : total
         }
         services.PropertyTaxPaid(data).then((data)=>{
             console.log(data)
@@ -75,6 +76,100 @@ export const PropertyTaxPaidForm = (props) => {
     //         console.log(error)
     //     })
     // }
+
+    const modifyData = (e) => {
+        e.preventDefault();
+        let url = "https://localhost:7277/PropertyTax/" + billNo;
+        console.log(url);
+        const data = {
+            'billNo' : billNo,
+            'billdate' : billDate,
+            'year' : year,
+            'name' : name,
+            'address' : address,
+            'propertyNo' : propertyNo,
+            'homeTax' : homeTax,
+            'electrycityTax' : electricityTax,
+            'specialWaterTax' : specialWaterTax,
+            'educationalSess' : educationalsess,
+            'panaltyCharge' : penaltyCharge,
+            'total' : total
+        }
+        fetch(url , {
+            method : 'PUT',
+            headers : {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({data})
+            
+            
+        }).then(response => response.json())
+        .then((result) => { 
+            console.log(result); 
+             
+           // console.log(data); 
+          }) 
+          .catch((err) => { 
+            console.log(err.message); 
+          }); 
+
+    }
+
+    const deleteData = (e) => {
+        e.preventDefault();
+        let url = "https://localhost:7277/PropertyTax/" + billNo;
+        console.log(url);
+        fetch(url , {
+            method : 'DELETE',
+            headers : {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            }
+        }).then(response => response.json())
+        .then((result) => { 
+            console.log(result); 
+             
+           // console.log(data); 
+          }) 
+          .catch((err) => { 
+            console.log(err.message); 
+          }); 
+
+    }
+    
+    const [data, setData] = useState([])
+  const fetchData = () => { 
+    fetch(`https://localhost:7277/PropertyTax`)
+    .then((response) => response.json())
+    .then((actualData) => { 
+      console.log(actualData); 
+      setData(actualData); 
+      console.log(data); 
+    }) 
+    .catch((err) => { 
+      console.log(err.message); 
+    }); 
+  };
+
+  function prePopulate(id){
+        setBillNo(data[id-1].billNo)
+        setBillDate(data[id-1].billDate)
+        setYear(data[id-1].year)
+        setName(data[id-1].name)
+        setAddress(data[id-1].address)
+        setPropertyNo(data[id-1].propertyNo)
+        setHomeTax(data[id-1].homeTax)
+        setElectricityTax(data[id-1].electricityTax)
+        setSpecialWaterTax(data[id-1].specialWaterTax)
+        setEducationalsess(data[id-1].educationalSess)
+        setPenaltyCharge(data[id-1].penaltyCharge)
+        setTotal(data[id-1].total)
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
     return(
         <>
@@ -139,8 +234,8 @@ export const PropertyTaxPaidForm = (props) => {
                     <div className="col-12"><br/>
                         <button type="ADD" className="btn btn-primary" onClick={addPropertyTax}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" className="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
-                        <button type="MODIFY" className="btn btn-primary">MODIFY </button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-primary">DELETE </button> &nbsp;&nbsp;
+                        <button type="MODIFY" className="btn btn-primary" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                        <button type="DELETE" className="btn btn-primary" onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <button type="CANCEL" className="btn btn-primary">CANCEL </button> &nbsp;&nbsp;
                         {/* <button type="FIRST" className="btn btn-primary">FIRST </button> &nbsp;&nbsp;
                         <button type="LAST" className="btn btn-primary">LAST </button> &nbsp;&nbsp;

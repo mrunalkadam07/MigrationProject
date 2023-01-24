@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DeadBirthRegistrationForm.css';
+import './Assessment.list.css';
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 
 const services = new DeathRegistrationService();
@@ -187,42 +187,42 @@ export const DeathRegistrationForm = (props) => {
     return (
         <>
             <h1 align="center">Death Registration Form</h1>
-            <form className="row g-3">
+            <form className="form deathform">
                 <div className="leftdiv">
-                <div className="col-md-6">
-                        <label htmlFor="inputRegistrationNo" className="form-label">Registration No. :-&#62; </label>
+                <div className="mb-3">
+                        <label htmlFor="inputRegistrationNo" className="form-label">Registration No.  </label>
                         <input value = {registration_no} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="form-control" id="inputRegistrationNo" />
                     </div>
-                    <div className="col-md-6">
-                        <label htmlFor="inputTaluka" className="form-label">Taluka :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputTaluka" className="form-label">Taluka </label>
                         <input value = {taluka} onChange={(e) => setTaluka(e.target.value)} type="text" className="form-control" id="inputTaluka" />
                     </div>
-                    <div className="col-md-6">
-                        <label htmlFor="inputDistrict" className="form-label">District :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputDistrict" className="form-label">District </label>
                         <input value = {district} onChange={(e) => setDistrict(e.target.value)} type="text" className="form-control" id="inputDistrict" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputYear" className="form-label">Year :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputYear" className="form-label">Year </label>
                         <input value = {year} onChange={(e) => setYear(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="form-control" id="inputYear" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputCityorVillage" className="form-label">City/Village :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputCityorVillage" className="form-label">City/Village </label>
                         <input value = {city} onChange={(e) => setCity(e.target.value)} type="text" className="form-control" id="inputCityorVillage" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputRegistrationDtae" className="form-label">Registration Date :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputRegistrationDtae" className="form-label">Registration Date </label>
                         <input value = {registrationDate} onChange={(e) => setRegistrationDate(e.target.value)} type="date" className="form-control" id="inputRegistrationDate" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputDeathDate" className="form-label">Date of Death :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputDeathDate" className="form-label">Date of Death </label>
                         <input value = {deathDate} onChange={(e) => setDeathDate(e.target.value)} type="date" className="form-control" id="inputDeathDate" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputNameofDeadPerson" className="form-label">Name of Dead Person :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputNameofDeadPerson" className="form-label">Name of Dead Person </label>
                         <input value = {name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="inputNameofDeadPerson" />
                     </div>
-                    <div className="col-12">
-                            <label htmlFor="inputSex" className="form-label">Sex :-&#62;</label>
+                    <div className="mb-3">
+                            <label htmlFor="inputSex" className="form-label">Sex </label>
                             <select id="inputSex" className="form-select">
                                 <option defaultValue="select">Choose...</option>
                                 <option>Male</option>
@@ -231,42 +231,42 @@ export const DeathRegistrationForm = (props) => {
                             <input value = {sex} onChange={(e) => setSex(e.target.value)} type="text" className="form-control" id="inputSex" />
                         </div>
                     {/* </div> */}
-                    <div className="col-12">
-                        <label htmlFor="inputAge" className="form-label">Age of Dead Person :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputAge" className="form-label">Age of Dead Person </label>
                         <input value = {age} onChange={(e) => setAge(e.target.value)} type="number" className="form-control" id="inputAge" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputPlace" className="form-label">Place of Death :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputPlace" className="form-label">Place of Death </label>
                         <input value = {place} onChange={(e) => setPlace(e.target.value)} type="text" className="form-control" id="inputPlace" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputRelative" className="form-label">Mother/Father/Husband Name :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputRelative" className="form-label">Mother/Father/Husband Name </label>
                         <input value = {relative} onChange={(e) => setRelative(e.target.value)} type="text" className="form-control" id="inputRelative" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputAddress" className="form-label">Permanent Address of Dead Person :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputAddress" className="form-label">Permanent Address of Dead Person </label>
                         <input value = {addressOfDeadPerson} onChange={(e) => setAddressOfDeadPerson(e.target.value)} type="text" className="form-control" id="inputAddress" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputNameOfSenderPerson" className="form-label">Name and Address of Sender Person:-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputNameOfSenderPerson" className="form-label">Name and Address of Sender Person</label>
                         <input value = {addressOfSenderPerson} onChange={(e) => setAddressOfSenderPerson(e.target.value)} type="text" className="form-control" id="inputNameOfSenderPerson" />
                     </div>
-                    <div className="col-12">
-                        <label htmlFor="inputRegistrar" className="form-label">Name of Registrar :-&#62;</label>
+                    <div className="mb-3">
+                        <label htmlFor="inputRegistrar" className="form-label">Name of Registrar </label>
                         <input value = {registrar} onChange={(e) => setRegistrar(e.target.value)} type="text" className="form-control" id="inputRegistrar" />
                     </div>
                     
-                    <div className="col-12"><br />
-                        <button type="ADD" className="btn btn-primary" onClick={addData}>ADD </button> &nbsp;&nbsp;
-                        <button type="SAVE" className="btn btn-primary">SAVE </button> &nbsp;&nbsp;
-                        <button type="MODIFY" className="btn btn-primary" onClick={modifyData}>MODIFY</button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-primary" onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
-                        <button type="CANCEL" className="btn btn-primary">CANCEL </button> &nbsp;&nbsp;
-                        <button type="FIRST" className="btn btn-primary">FIRST </button> &nbsp;&nbsp;
-                        <button type="LAST" className="btn btn-primary">LAST </button> &nbsp;&nbsp;
-                        <button type="NEXT" className="btn btn-primary">NEXT </button> &nbsp;&nbsp;
-                        <button type="PREVIOUS" className="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp;
-                        <button type="EXIT" className="btn btn-primary">EXIT</button>
+                    <div className="mb-3"><br />
+                    <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
+                        {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
+                        <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                        <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
+                        <button type="CANCEL" className="btn btn-outline-warning">CANCEL </button> &nbsp;&nbsp;
+                        {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
+                        <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
+                        <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
+                        <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
+                        <button type="EXIT" className="btn btn-outline-dark">EXIT</button>
                     </div>
                     
                 </div>

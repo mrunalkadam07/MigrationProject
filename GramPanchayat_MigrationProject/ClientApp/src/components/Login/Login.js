@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Navigate } from "react-router-dom";
 import LoginServices from "../../Services/LoginServices";
 
 
@@ -27,6 +28,7 @@ export const Login = (props) => {
         }
         services.LoginModel(data).then((data)=>{
             console.log(data)
+            
         }).catch((error)=>{
             console.log(error)
         })
