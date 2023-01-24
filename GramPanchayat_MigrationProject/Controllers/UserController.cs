@@ -46,7 +46,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 Subject = new (
                     new Claim[] { new Claim(ClaimTypes.Name, person.user)}
             ),
-                Expires = DateTime.Now.AddSeconds(20),
+                Expires = DateTime.Now.AddMinutes(20),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenkey),SecurityAlgorithms.HmacSha256)
             };
             var token = tokenhandler.CreateToken(tokendesc);
