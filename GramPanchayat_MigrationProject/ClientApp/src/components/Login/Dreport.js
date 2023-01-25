@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import './tablestyle.css';
-
-// const data = [
-//     { registration_no: 1, name: "Anom", city: "abc", age: 19, sex: "Male", year:2012, taluka:"taluka1", registrationDate:"12-01-2012", deathDate:"08-01-2012", place:"place1"},
-//     { registration_no: 2, name: "Megha", city: "abc", age: 19, sex: "Female", year:2012, taluka:"taluka1", registrationDate:"12-01-2012", deathDate:"08-01-2012", place:"place1"},
-//     { registration_no: 3, name: "Subham", city: "abc", age: 25, sex: "Male", year:2012, taluka:"taluka1", registrationDate:"12-01-2012", deathDate:"08-01-2012", place:"place1"},
-//   ]
+import ReactToPrint from 'react-to-print';
 var date = new Date();
 
 function Dreport(){
+  const tableRef = useRef(null);
 
   const [data, setData] = useState([])
   const fetchData = () => { 
-    fetch(`https://localhost:7277/DeathRegistration`)
+    fetch(`https://localhost:7277/DeathRegistration`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
     .then((response) => response.json())
     .then((actualData) => { 
       console.log(actualData); 
@@ -30,7 +26,7 @@ function Dreport(){
   }, []);
 
   const generatepdf =()=>{
-    fetch(`https://localhost:7277/DeathRegistration/GeneratePDF`)
+    fetch(`https://localhost:7277/DeathRegistration/GeneratePDF`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
     .then((response) => response.json())
     .then((actualData) => { 
       console.log(actualData); 
@@ -52,10 +48,13 @@ function Dreport(){
         <br/>
         <label for="inputDistrict" class="form-label">Time :- </label>
         <input class="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
-        <button onClick={generatepdf}>Download PDF</button>      
+        <br/>
+        <ReactToPrint 
+          content={()=> tableRef.current}
+          trigger={()=><button className='btn'>Print</button>}/>    
       </div>
         <div className="tableData">
-          <table>
+          <table ref={tableRef}>
             <thead>
             <tr>
               <th>Registration no<br/>Year</th>

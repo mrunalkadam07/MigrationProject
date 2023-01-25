@@ -1,6 +1,8 @@
 import React, {useState} from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoginServices from "../../Services/LoginServices";
+import "./Login.css";
+import axios from "axios";
 
 
 const services = new LoginServices();
@@ -8,13 +10,14 @@ export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState("");
+    const navigate = new useNavigate();
     
     // const emailRegex = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
-        document.getElementById("error-message").innerHTML = ""
+        //document.getElementById("error-message").innerHTML = ""
         if(email === "" && password === "")
         {
             alert("Enter Username and Password");
@@ -26,28 +29,42 @@ export const Login = (props) => {
             user : email,
             pass : password
         }
-        services.LoginModel(data).then((data)=>{
-            console.log(data)
+        const url = "https://localhost:7277/User/Authenticate";
+        axios.post(url,data).then((result)=>{
+            localStorage.setItem("Token", result.data);
+            if(result.data!="Unautorized")
+            {
+                navigate('/Navbar')
+            }
+            else{
+            alert("Enter Valid Credentials");
+            setEmail("");
+            setPassword("");
+            }
+        
+        })
+        // services.LoginModel(data).then((res)=>{
+        //     console.log(res.data)
+        // }).then((res) =>{
+        //     // sessionStorage.setItem('jwtToken',res.data)
+        //     navigate("/Navbar")
+        // })
             
-        }).catch((error)=>{
+        .catch((error)=>{
             console.log(error)
         })
     }
+   
     return (
         <>
         <div className="auth-form-container">
             <h3>Login</h3>
-            <form className = "login-form" onSubmit = {handleSubmit}>
-                <label htmlFor="email">User</label>
+            <form className = " form login-form" onSubmit = {handleSubmit}>
                 <input value = {email} onChange={(e) => setEmail(e.target.value)} type = "text" placeholder="Enter User" id = "email" name = "email"></input>
-                <label htmlFor="password">password</label>
                 <input value = {password} onChange={(e) => setPassword(e.target.value)}type = "password" placeholder="********" id = "password" name = "password"></input>
-                <button type = "submit">Log in</button>
+                <button type="submit" className="btn btn-primary" href="">LOGIN </button> 
             </form>
             <br/>
-            <div id="error-message"></div>
-
-            <button className = "link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here!</button>
         </div>
         </> 
     )

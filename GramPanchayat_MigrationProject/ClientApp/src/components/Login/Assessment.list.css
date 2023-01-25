@@ -1,23 +1,37 @@
- .form {
-  width: 675px;
-  height: 900px;
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding: 20px 60px 40px 80px;
-  background-color: lightyellow;
-  margin: auto;
-  margin-bottom: 15px;
-  text-align: right;
-  display: block;
-  line-height: 6px;
+.header h1{
+  font-size: 2.5rem;
+  padding-top: 6em;
 }
-.deathform {
-  height: 1150px;
-}
+
 label {
   display: inline-block;
-  width: 1000px;
+  width: 350px;
   text-align: left;
 }
+
+.newStyle{
+  border: 0px;
+  border-bottom: 1px solid black;
+  background: transparent;
+ }
+
+ .newStyle:focus{
+  outline: none;
+ }
+
+ .diff{
+  margin-left: -151px
+ }
+
+ .btns{
+  margin-top: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 84px;
+    width: 640px;
+    margin-left: -175px;
+ }
+
 
  @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
  body {
@@ -29,12 +43,13 @@ label {
    align-items: center;
    height: 100vh;
    /* background: linear-gradient(45deg, rgb(121, 131, 222), grey); */
+   /* background: linear-gradient(45deg, greenyellow, dodgerblue); */
+   background: linear-gradient(45deg, #2feeffc7, dodgerblue);
    font-family: "Georgia";
-   /* font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif; */
    font-weight: bold;
 
  }
- .center {
+ /* .center {
    position: relative;
    padding: 50px 50px;
    background: #fff;
@@ -50,7 +65,96 @@ label {
    font-family: "Times New Roman";
    font-weight: bold;
    padding-left: 10px;
- } 
+ }  */
+
+
+ .div1{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+ }
+
+ .form {
+  /* width: 675px;
+  height: 690px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding: 20px 60px 40px 80px;
+  background-color: lightyellow;
+  margin: auto;
+  margin-bottom: 15px;
+  text-align: center;
+  display: block;
+  line-height: 6px; */
+
+    width: 700px;
+    height: 950px;
+    box-shadow: rgb(0 0 0 / 30%) 1px 1px 10px;
+    padding: 20px 60px 40px 80px;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 15px;
+    /* text-align: center; */
+    display: block;
+    line-height: 15px;
+    /* margin-left: 50px; */
+    padding-left: 12em;
+    padding-top: 2em;
+}
+
+ .form-birth{
+    width: 750px;
+    height: 1400px;
+    box-shadow: rgb(0 0 0 / 30%) 1px 1px 10px;
+    padding: 20px 60px 40px 80px;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 15px;
+    /* text-align: center; */
+    display: block;
+    line-height: 15px;
+    /* margin-left: 50px; */
+    padding-left: 10em;
+    padding-top: 2em;
+ }
+
+ .form-marriage{
+    width: 750px;
+    height: 1100px;
+    box-shadow: rgb(0 0 0 / 30%) 1px 1px 10px;
+    padding: 20px 60px 40px 80px;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 15px;
+    /* text-align: center; */
+    display: block;
+    line-height: 15px;
+    /* margin-left: 50px; */
+    padding-left: 10em;
+    padding-top: 2em;
+ }
+
+.header-marriage h1{
+  font-size: 2.5rem;
+  padding-top: 11em;
+}
+
+.form-property{
+    width: 750px;
+    height: 900px;
+    box-shadow: rgb(0 0 0 / 30%) 1px 1px 10px;
+    padding: 20px 60px 40px 80px;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 15px;
+    /* text-align: center; */
+    display: block;
+    line-height: 15px;
+    /* margin-left: 50px; */
+    padding-left: 10em;
+    padding-top: 2em;
+}
+
 
 
  /* .center .inputbox {
@@ -97,6 +201,9 @@ label {
    background: linear-gradient(45deg, greenyellow, dodgerblue);
  } */
  
+
+
+
 
 
 

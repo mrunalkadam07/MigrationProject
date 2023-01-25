@@ -11,9 +11,9 @@ var date = new Date();
 
 function AssesmentReport(){
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
   const fetchData = () => { 
-    fetch(`https://localhost:7277/Assasmenttax`)
+    fetch(`https://localhost:7277/Assasmenttax`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
     .then((response) => response.json())
     .then((actualData) => { 
       console.log(actualData); 

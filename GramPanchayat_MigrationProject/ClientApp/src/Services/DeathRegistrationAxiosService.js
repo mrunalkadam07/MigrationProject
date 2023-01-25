@@ -10,7 +10,7 @@ export default class DeathRegistrationAxiosService{
             alert("Data Added Successfully")
         }
         else{
-            alert("Invalid Credentials")
+            alert("Unable to add data")
         }
         })
     }

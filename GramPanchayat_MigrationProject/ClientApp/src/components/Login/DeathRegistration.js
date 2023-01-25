@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Assessment.list.css';
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
+import {Link} from "react-router-dom";
 
 const services = new DeathRegistrationService();
 
@@ -110,7 +111,8 @@ export const DeathRegistrationForm = (props) => {
             method : 'PUT',
             headers : {
                 'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             },
             body: JSON.stringify({data})
             
@@ -135,7 +137,8 @@ export const DeathRegistrationForm = (props) => {
             method : 'DELETE',
             headers : {
                 'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             }
         }).then(response => response.json())
         .then((result) => { 
@@ -151,7 +154,7 @@ export const DeathRegistrationForm = (props) => {
     
     const [data, setData] = useState([])
   const fetchData = () => { 
-    fetch(`https://localhost:7277/DeathRegistration`)
+    fetch(`https://localhost:7277/DeathRegistration`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
     .then((response) => response.json())
     .then((actualData) => { 
       console.log(actualData); 
@@ -257,16 +260,16 @@ export const DeathRegistrationForm = (props) => {
                     </div>
                     
                     <div className="mb-3"><br />
-                    <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
+                    <button type="ADD" className="btn btn-outline-primary" onClick={addData}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
-                        <button type="CANCEL" className="btn btn-outline-warning">CANCEL </button> &nbsp;&nbsp;
+                        <Link to="/Navbar"><button type="CANCEL" className="btn btn-outline-warning" >CANCEL </button></Link> &nbsp;&nbsp;
                         {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
                         <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
                         <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
                         <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
-                        <button type="EXIT" className="btn btn-outline-dark">EXIT</button>
+                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">EXIT</button></Link>
                     </div>
                     
                 </div>

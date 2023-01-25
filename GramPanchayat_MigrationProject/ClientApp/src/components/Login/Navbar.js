@@ -1,8 +1,10 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
+import "./Assessment.list.css";
 export const Navbar=()=>{
+    const navigate = new useNavigate();
     return (
-        <div>
+        <div className="styleofNav container">
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">
@@ -38,22 +40,22 @@ export const Navbar=()=>{
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/birthRegistration">
                                             BIRTH REG
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="">
                                             DEAD BIRTH REG
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/marriageRegistration">
                                             MARRIAGE REG
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/deathRegistration">
                                             DEATH REG
                                         </a>
                                     </li>
@@ -70,12 +72,12 @@ export const Navbar=()=>{
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/propertyTaxPaid">
                                             TAX PAID
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/assessmentlist">
                                             ASSESSMENT LIST
                                         </a>
                                     </li>
@@ -93,22 +95,22 @@ export const Navbar=()=>{
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/bReport">
                                             BIRTH REG REPORT
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/deadbReport">
                                             DEAD BIRTH REG REPORT
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/marriageReport">
                                             MARRIAGE REG REPORT
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/dreport">
                                             DEATH REG REPORT
                                         </a>
                                     </li>
@@ -126,24 +128,19 @@ export const Navbar=()=>{
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/taxPaidReport">
                                             TAX PAID REPORT
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="/">
+                                        <a className="dropdown-item" href="/assessmentReport">
                                             ASSESSMENT LIST REPORT
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="/">
-                                    ABOUT
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="/">
+                                <a className="nav-link" aria-current="page" href="/login">
                                     EXIT
                                 </a>
                             </li>
@@ -153,5 +150,6 @@ export const Navbar=()=>{
             </nav>
         </div>
     );
+   
 }
 export default Navbar;

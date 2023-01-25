@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
 import './Assessment.list.css';
 //import AssessmentListServices from "../Service/AssessmentListService";
 
@@ -103,7 +104,7 @@ import './Assessment.list.css';
 
                 const modifyData = (e) => {
                     e.preventDefault();
-                    let url = "https://localhost:7277/AssessmentList/" + formNo;
+                    let url = "https://localhost:7277/Assasmenttax/" + formNo;
                     console.log(url);
                     const data = {
 
@@ -127,7 +128,8 @@ import './Assessment.list.css';
                         method : 'PUT',
                         headers : {
                             'Accept' : 'application/json',
-                            'Content-Type' : 'application/json'
+                            'Content-Type' : 'application/json',
+                            'Authorization':'Bearer'+" "+localStorage.getItem("Token")
                         },
                         body: JSON.stringify({data})
                         
@@ -146,13 +148,14 @@ import './Assessment.list.css';
             
                 const deleteData = (e) => {
                     e.preventDefault();
-                    let url = "https://localhost:7277/AssessmentList/" + formNo;
+                    let url = "https://localhost:7277/Assasmenttax/" + formNo;
                     console.log(url);
                     fetch(url , {
                         method : 'DELETE',
                         headers : {
                             'Accept' : 'application/json',
-                            'Content-Type' : 'application/json'
+                            'Content-Type' : 'application/json',
+                            'Authorization':'Bearer'+" "+localStorage.getItem("Token")
                         }
                     }).then(response => response.json())
                     .then((result) => { 
@@ -165,10 +168,14 @@ import './Assessment.list.css';
                       }); 
             
                 }
+
+                const logout = () =>{
+                    localStorage.setItem("Token",null)
+                }
                 
                 const [data, setData] = useState([])
               const fetchData = () => { 
-                fetch(`https://localhost:7277/AssessmentList`)
+                fetch(`https://localhost:7277/Assasmenttax`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
                 .then((response) => response.json())
                 .then((actualData) => { 
                   console.log(actualData); 
@@ -206,80 +213,113 @@ import './Assessment.list.css';
             
     return(
         <>  
-            <h1 align="center">Assessment List</h1>
+           <h1 align="center">Assessment List</h1>
             <form className="form">
                 <div className="leftdiv">
+                    <div className="div1">
+                        <div className="mb-3">
+                            <label htmlFor="inputFormNo" className="input-text js-input">Form No.  </label>
+                            <input value = {formNo} onChange={(e) => setFormNo(e.target.value)} type="text" className="newStyle" id="inputFormNo"/>
+                        </div>                    
+                        <div className="mb-3">
+                            <label htmlFor="inputWardNo" className="form-label">Ward No.  </label>
+                            <input value = {wardNo} onChange={(e) => setWardNo(e.target.value)} type="text" className="newStyle" id="inputWardNo"/>
+                        </div>
+                    </div>
                     
-                    <div className="mb-3">
-                        <label htmlFor="inputFormNo" className="input-text js-input">Form No.  </label>
-                        <input value = {formNo} onChange={(e) => setFormNo(e.target.value)} type="text" className="Form-control" id="inputFormNo"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputWardNo" className="form-label">Ward No.  </label>
-                        <input value = {wardNo} onChange={(e) => setWardNo(e.target.value)} type="text" className="Form-control" id="inputWardNo"/>
-                    </div>
+                    <div className="div1">
                     <div className="mb-3">
                         <label htmlFor="inputDate" className="form-label">Date  </label>
-                        <input value = {date} onChange={(e) => setDate(e.target.value)} type="Date" className="Form-control" id="inputDate"/>
-                    </div>
+                        <input value = {date} onChange={(e) => setDate(e.target.value)} type="Date" className="newStyle" id="inputDate"/>
+                    </div>                    
                     <div className="mb-3">
                         <label htmlFor="inputOldAssessmentNo" className="form-label">Old Assessment No.  </label>
-                        <input value = {oldAssessmentNo} onChange={(e) => setOldAssessmentNo(e.target.value)} type="text" className="Form-control" id="inputOldAssessmentNo"/>
+                        <input value = {oldAssessmentNo} onChange={(e) => setOldAssessmentNo(e.target.value)} type="text" className="newStyle" id="inputOldAssessmentNo"/>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputOwnersName" className="form-label">Owner's Name  </label>
-                        <input value = {ownersName} onChange={(e) => setOwnersName(e.target.value)} type="text" className="Form-control" id="inputOwnersName"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputHoldersName" className="form-label">Holder's Name  </label>
-                        <input value = {holdersName} onChange={(e) => setHoldersName(e.target.value)} type="text" className="Form-control" id="inputHoldersName"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputPropertyAddress" className="form-label">Property Address  </label>
-                        <input value = {propertyAddress} onChange={(e) => setPropertyAddress(e.target.value)} type="text" className="Form-control" id="inputPropertyAddress"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputOccupiedBy" className="form-label">Occupied By  </label>
-                        <input value = {occupiedBy} onChange={(e) => setOccupiedBy(e.target.value)} type="text" className="Form-control" id="inputOccupiedBy"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputUseOfPropertyType" className="Form-label">Use of Property Type  </label>
-                        {/* <select id="inputUseOfPropertyType" className="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                        </select> */}
-                        <input value = {useOfPropertyType} onChange={(e) => setUseOfPropertType(e.target.value)} type="text" className="Form-control" id="inputUseOfPropertyType"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputLocationCode" className="form-label">Location Code  </label>
-                        <input value = {locationCode} onChange={(e) => setLocationCode(e.target.value)} type="text" className="Form-control" id="inputLocationCode"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputYearOfBuildup" className="form-label">Year Of Buildup </label>
-                        <input value = {yearOfBuildup} onChange={(e) => setYearOfBuildup(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="Form-control" id="inputYear"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputTotalAreaOfBuildingSqMeter" className="form-label">Total Area Of Building Sq Meter  </label>
-                        <input value = {totalAreaOfBuildupSqMeter} onChange={(e) => setTotalAreaOfBuildupSqMeter(e.target.value)} type="text" className="Form-control" id="inputTotalAreaOfBuildingSqMeter"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputOpenWhereNotBuildupSqMeter" className="form-label">Open Where Not Buildup Sq Meter  </label>
-                        <input value = {openAreaWhereNoBuildupSqMeter} onChange={(e) => setOpenAreaWhereNoBuildupSqMeter(e.target.value)} type="text" className="Form-control" id="inputOpenWhereNotBuildupSqMeter"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputOpenAreasPl0tSqMeter" className="form-label">Open Areas Plot Sq Meter  </label>
-                        <input value = {openAreaPlotSqMeter} onChange={(e) => setOpenAreaPlotSqMeter(e.target.value)} type="text" className="Form-control" id="inputOpenAreasPlotSqMeter"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputAssessedPropertTax" className="form-label">Input Assessed Propert Tax  </label>
-                        <input value = {assessedPropertyTax} onChange={(e) => setAssessedPropertyTax(e.target.value)} type="text" className="Form-control" id="inputAssessedPropertTax"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputWardTotal" className="form-label">Ward Total  </label>
-                        <input value = {wardTotal} onChange={(e) => setWardTotal(e.target.value)} type="text" className="Form-control" id="inputWardTotal"/>
                     </div>
 
-                    <div className="mb-3"><br/>
+                    <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputOwnersName" className="form-label">Owner's Name  </label>
+                        <input value = {ownersName} onChange={(e) => setOwnersName(e.target.value)} type="text" className="newStyle" id="inputOwnersName"/>
+                    
+                    </div>
+                    
+                    <div className="mb-3">
+                        <label htmlFor="inputHoldersName" className="form-label">Holder's Name  </label>
+                        <input value = {holdersName} onChange={(e) => setHoldersName(e.target.value)} type="text" className="newStyle" id="inputHoldersName"/>
+                    </div>
+                    </div>
+                    <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputPropertyAddress" className="form-label">Property Address  </label>
+                        <input value = {propertyAddress} onChange={(e) => setPropertyAddress(e.target.value)} type="text" className="newStyle" id="inputPropertyAddress"/>
+                    </div>
+                    
+                    
+                    <div className="mb-3">
+                        <label htmlFor="inputOccupiedBy" className="form-label">Occupied By  </label>
+                        <input value = {occupiedBy} onChange={(e) => setOccupiedBy(e.target.value)} type="text" className="newStyle" id="inputOccupiedBy"/>
+                    </div>
+                    </div>
+
+                    <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputUseOfPropertyType" className="Form-label">Use of Property Type  </label>
+                        {/* <select id="inputUseOfPropertyType" className="htmlForm-select">
+                        <option selected>C
+                        </div>hoose...</option>
+                        <option>...</option>
+                        </select> */}
+                        
+                        <input value = {useOfPropertyType} onChange={(e) => setUseOfPropertType(e.target.value)} type="text" className="newStyle" id="inputUseOfPropertyType"/>
+                    </div>
+                
+                    
+                    <div className="mb-3">
+                        <label htmlFor="inputLocationCode" className="form-label">Location Code  </label>
+                        <input value = {locationCode} onChange={(e) => setLocationCode(e.target.value)} type="text" className="newStyle" id="inputLocationCode"/>
+                    </div>
+                    </div>
+                    
+                    <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputYearOfBuildup" className="form-label">Year Of Buildup </label>
+                        <input value = {yearOfBuildup} onChange={(e) => setYearOfBuildup(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="newStyle" id="inputYear"/>
+                    
+                    </div>
+                    
+                    <div className="mb-3">
+                        <label htmlFor="inputTotalAreaOfBuildingSqMeter" className="form-label">Total Area Of Building Sq Meter  </label>
+                        <input value = {totalAreaOfBuildupSqMeter} onChange={(e) => setTotalAreaOfBuildupSqMeter(e.target.value)} type="text" className="newStyle" id="inputTotalAreaOfBuildingSqMeter"/>
+                    </div>
+                    </div>
+                    <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputOpenWhereNotBuildupSqMeter" className="form-label">Open Where Not Buildup Sq Meter  </label>
+                        <input value = {openAreaWhereNoBuildupSqMeter} onChange={(e) => setOpenAreaWhereNoBuildupSqMeter(e.target.value)} type="text" className="newStyle" id="inputOpenWhereNotBuildupSqMeter"/>
+                    </div>
+                    
+                    
+                    <div className="mb-3">
+                        <label htmlFor="inputOpenAreasPl0tSqMeter" className="form-label">Open Areas Plot Sq Meter  </label>
+                        <input value = {openAreaPlotSqMeter} onChange={(e) => setOpenAreaPlotSqMeter(e.target.value)} type="text" className="newStyle" id="inputOpenAreasPlotSqMeter"/>
+                    
+                    </div>
+                    </div>
+                    <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputAssessedPropertTax" className="form-label">Input Assessed Propert Tax  </label>
+                        <input value = {assessedPropertyTax} onChange={(e) => setAssessedPropertyTax(e.target.value)} type="text" className="newStyle" id="inputAssessedPropertTax"/>
+                    </div>
+                    
+                    <div className="mb-3">
+                        <label htmlFor="inputWardTotal" className="form-label">Ward Total  </label>
+                        <input value = {wardTotal} onChange={(e) => setWardTotal(e.target.value)} type="text" className="newStyle" id="inputWardTotal"/>
+                    </div>
+                    </div>
+
+                    <div className="mb-3 btns"><br/>
                         <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
@@ -294,7 +334,36 @@ import './Assessment.list.css';
 
                 </div>
             </form>
-            
+            <div className="tableData">
+          <table>
+            <thead>
+            <tr>
+              <th>Form No<br/>Ward No</th>
+              <th>Date<br/>Old Assessment Date</th>
+              <th>OwnersName<br/>Holders Name</th>
+              <th>Property Address<br/>Occupied By</th>
+              <th>Use Of Property Type<br/>Year of Buildup</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {data.map((val, key) => {
+              return (
+                <tr key={key}>
+                  <td>{val.formNo}<br/>{val.wardNo}</td>
+                  <td>{val.date}<br/>{val.oldAssessmentNo}</td>
+                  <td>{val.ownersName}<br/>{val.holdersName}</td>
+                  <td>{val.propertyAddress}<br/>{val.occupiedBy}</td>
+                  <td>{val.useOfPropertyType}<br/>{val.yearOfBuildup}</td>
+                  <td>
+                  <button className="btn btn-dark" onClick={()=>prePopulate(val.formNo)}>Update</button>
+                  </td>
+                </tr>
+              )
+            })}
+            </tbody>
+          </table>
+        </div>
         </>
     )
 }

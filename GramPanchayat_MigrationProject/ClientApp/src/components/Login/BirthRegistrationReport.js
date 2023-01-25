@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import './tablestyle.css'
 
-// const data = [
-//     { registration_no: 1, name: "Anom", city: "abc", age: 19, sex: "Male", year:2012, taluka:"taluka1", registrationDate:"12-01-2012", deathDate:"08-01-2012", place:"place1"},
-//     { registration_no: 2, name: "Megha", city: "abc", age: 19, sex: "Female", year:2012, taluka:"taluka1", registrationDate:"12-01-2012", deathDate:"08-01-2012", place:"place1"},
-//     { registration_no: 3, name: "Subham", city: "abc", age: 25, sex: "Male", year:2012, taluka:"taluka1", registrationDate:"12-01-2012", deathDate:"08-01-2012", place:"place1"},
-//   ]
+
 var date = new Date();
 
 function BirthRegistrationReport(){
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
   const fetchData = () => { 
-    fetch(`https://localhost:7277/BirthRegistration`)
+    fetch(`https://localhost:7277/BirthRegistration`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
     .then((response) => response.json())
     .then((actualData) => { 
       console.log(actualData); 
@@ -28,7 +24,18 @@ function BirthRegistrationReport(){
   useEffect(() => {
     fetchData();
   }, []);
-
+  // const generatepdf =()=>{
+  //   fetch(`https://localhost:7277/BirthRegistration/GeneratePDF`)
+  //   .then((response) => response.json())
+  //   .then((actualData) => { 
+  //     console.log(actualData); 
+  //     setData(actualData); 
+  //     console.log(data); 
+  //   }) 
+  //   .catch((err) => { 
+  //     console.log(err.message); 
+  //   }); 
+  // };
     return (
       <>
       <div className="header">
@@ -40,6 +47,7 @@ function BirthRegistrationReport(){
         <br/><br/>
         <label for="inputDistrict" class="form-label">Time :- </label>
         <input class="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
+        {/* <br/><button onClick={generatepdf}>Download PDF</button>       */}
       </div>
         <div className="tableData">
           <table>
@@ -72,4 +80,4 @@ function BirthRegistrationReport(){
       );
     }
       
-    export default BirthRegistrationReport;
+  export default BirthRegistrationReport;

@@ -16,7 +16,7 @@ namespace GramPanchayat_MigrationProject.API.Repositories
         
         public MarriageRegModel Add(MarriageRegModel merrageReg)
         {
-            gramPanchayatDBContext.MarriageReg.Add(merrageReg);
+            gramPanchayatDBContext.MerrageReg.Add(merrageReg);
             gramPanchayatDBContext.SaveChanges();
             return merrageReg;
         }
@@ -28,22 +28,22 @@ namespace GramPanchayat_MigrationProject.API.Repositories
 
         public void Delete(int RegistrationNo)
         {
-            var reg = gramPanchayatDBContext.MarriageReg.Find(RegistrationNo);
-            gramPanchayatDBContext.MarriageReg.Remove(reg);
+            var reg = gramPanchayatDBContext.MerrageReg.Find(RegistrationNo);
+            gramPanchayatDBContext.MerrageReg.Remove(reg);
             gramPanchayatDBContext.SaveChanges();
         }
         public MarriageRegModel Get(int Registation_No)
         {
-           return gramPanchayatDBContext.MarriageReg.FirstOrDefault(x => x.RegistrationNo == Registation_No );
+           return gramPanchayatDBContext.MerrageReg.FirstOrDefault(x => x.RegistrationNo == Registation_No );
         }
         public IEnumerable<MarriageRegModel> GetAll()
         {
-            return (IEnumerable<MarriageRegModel>)gramPanchayatDBContext.MarriageReg.ToList();
+            return (IEnumerable<MarriageRegModel>)gramPanchayatDBContext.MerrageReg.ToList();
         }
 
         public MarriageRegModel Update(int RegistrationNo, MarriageRegModel marriageRegModel)
         {
-           var existingRecord = gramPanchayatDBContext.MarriageReg.FirstOrDefault(x => x.RegistrationNo == RegistrationNo);
+           var existingRecord = gramPanchayatDBContext.MerrageReg.FirstOrDefault(x => x.RegistrationNo == RegistrationNo);
            if(existingRecord == null)
            {
             return null;

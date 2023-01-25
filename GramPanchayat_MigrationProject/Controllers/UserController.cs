@@ -32,12 +32,12 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         }
 
         [HttpPost("Authenticate")]
-        public IActionResult Authenticate([FromBody]LoginModel loginmodel)
+        public string Authenticate([FromBody]LoginModel loginmodel)
         {
             var person = this.gramPanchayatDBContext.Login1.FirstOrDefault(item=>item.user==loginmodel.user && item.pass==loginmodel.pass);
             if(person==null)
             {
-                return Unauthorized();
+                return "Unautorized";
             }
             //Generate Token
             var tokenhandler = new JwtSecurityTokenHandler();
@@ -51,7 +51,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             };
             var token = tokenhandler.CreateToken(tokendesc);
             string finaltoken = tokenhandler.WriteToken(token);
-            return Ok(finaltoken);
+            return finaltoken;
         }
     }
 }
