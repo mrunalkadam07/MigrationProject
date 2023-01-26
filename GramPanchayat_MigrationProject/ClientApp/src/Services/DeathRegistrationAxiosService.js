@@ -4,7 +4,7 @@ import axios from "axios"
 export default class DeathRegistrationAxiosService{
     post(url,data,Header){
         console.log("In Axios");
-        return axios.post(url,data,Header).then((response)=>{
+        return axios.post(url,data,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}}).then((response)=>{
         if(response.status===200)
         {
             alert("Data Added Successfully")
@@ -16,7 +16,7 @@ export default class DeathRegistrationAxiosService{
     }
     put(url,data,Header){
         console.log("In Axios");
-        return axios.put(url,data,Header).then((response)=>{
+        return axios.put(url,data,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}}).then((response)=>{
         if(response.status===200)
         {
             alert("Data Updadte Successfully")
@@ -29,7 +29,7 @@ export default class DeathRegistrationAxiosService{
 
     get(url,Header){
         console.log("In Axios");
-        return axios.post(url,Header).then((response)=>{
+        return axios.post(url,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}}).then((response)=>{
         if(response.status===200)
         {
             alert("Data Fetched Successfully")
@@ -42,7 +42,7 @@ export default class DeathRegistrationAxiosService{
 
     delete(url,data,Header){
         console.log("In Axios");
-        return axios.post(url,data,Header).then((response)=>{
+        return axios.post(url,data,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}}).then((response)=>{
         if(response.status===200)
         {
             alert("Data Deleted Successfully")

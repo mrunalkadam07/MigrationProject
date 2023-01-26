@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import './tablestyle.css'
+import './tablestyle.css';
+import Cookies from 'js-cookie';
 
 
 var date = new Date();
@@ -9,7 +10,9 @@ function BirthRegistrationReport(){
 
   const [data, setData] = useState([])
   const fetchData = () => { 
-    fetch(`https://localhost:7277/BirthRegistration`,{headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
+    fetch(`https://localhost:7277/BirthRegistration`,
+    {
+      headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")}})
     .then((response) => response.json())
     .then((actualData) => { 
       console.log(actualData); 
@@ -24,30 +27,30 @@ function BirthRegistrationReport(){
   useEffect(() => {
     fetchData();
   }, []);
-  // const generatepdf =()=>{
-  //   fetch(`https://localhost:7277/BirthRegistration/GeneratePDF`)
-  //   .then((response) => response.json())
-  //   .then((actualData) => { 
-  //     console.log(actualData); 
-  //     setData(actualData); 
-  //     console.log(data); 
-  //   }) 
-  //   .catch((err) => { 
-  //     console.log(err.message); 
-  //   }); 
-  // };
+  const generatepdf =()=>{
+    fetch(`https://localhost:7277/BirthRegistration/GeneratePDF`,
+    {headers:{'Authorization':'Bearer'+" "+localStorage.getItem("Token")},
+              'content-type': 'application/pdf',
+              'X-CSRF-TOKEN': getCookies("CSRF-TOKEN")},
+    ).then(response => response.blob())
+    .then((blob) => URL.createObjectURL(blob)
+    ).then((actualData) => { 
+        console.log(actualData); 
+      }) 
+     .catch((err) => console.error(err));
+  };
     return (
       <>
       <div className="header">
       <h1 align="center">Birth Registration Report</h1>
       </div>
-      <div class='col-md-6'>
-        <label class="form-label">Date :- </label>
-        <input class="form-control" value={date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()} readOnly={true}/>     
+      <div className='col-md-6'>
+        <label className="form-label">Date :- </label>
+        <input className="form-control" value={date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()} readOnly={true}/>     
         <br/><br/>
-        <label for="inputDistrict" class="form-label">Time :- </label>
-        <input class="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
-        {/* <br/><button onClick={generatepdf}>Download PDF</button>       */}
+        <label htmlFor="inputDistrict" className="form-label">Time :- </label>
+        <input className="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
+        <br/><button onClick={generatepdf}>Download PDF</button>       
       </div>
         <div className="tableData">
           <table>

@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 
 using System.Text;
-
+using DinkToPdf;
 
 var builder = WebApplication.CreateBuilder(args);
 var _authkey = builder.Configuration.GetValue<string>("JwtSettings:securitykey");
@@ -28,6 +28,8 @@ builder.Services.AddScoped<IPropertyTaxRepository,PropertyTaxService>();
 builder.Services.AddScoped<IBirthRegRepository,BirthRegService>();
 builder.Services.AddScoped<IAssasmenttaxRepository,AssasmenttaxService>();
 builder.Services.AddScoped<IMarriageRegRepository,MarriageRegService>();
+
+//builder.Services.AddSingleton(typeof(DinkToPdf.Contracts.IConverter), new SynchronizedConverter(new PdfTools()));
 
 builder.Services.AddAuthentication(item=>{
 item.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
