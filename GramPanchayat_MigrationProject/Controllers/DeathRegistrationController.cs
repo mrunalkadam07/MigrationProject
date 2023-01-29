@@ -57,71 +57,58 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         {
            return deathregRepository.Update(RegistrationNo, deathRegistration);
         }
+
          [HttpGet]
          [Route("Generate")]
         public IActionResult GeneratePdf()
         {
             IActionResult actionResult = GetAll();
-
-    //Assert
         var okResult = actionResult as OkObjectResult;
-        //Assert.IsNotNull(okResult);
 
         var listDeathData = okResult.Value as List<DeathRegistration>;
-    //Assert.IsNotNull(newBatch);
-          // List<DeathRegistration> listDeathData = (List<DeathRegistration>)GetAll();
-            //Font drawFont = new Font("Arial", 16);
+   
             var document = new PdfDocument();
-            // document.Info.Title = Microsoft.VisualBasic.Constants.EnvelopLabelTitle;
-            // document.Info.Subject = Constants.EnvelopLabelSubject;
-            // document.Info.Author = Constants.EnvelopLabelAuthor;
-
- 
-
-            // Create an empty page
+            
             var page = document.AddPage();
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
- 
-
-            // Get an XGraphics object for drawing
             var gfx = XGraphics.FromPdfPage(page);
 
  
             XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
 
-      // Create a font
-      
-           // Font font = new Font("Arial", 20);
-            // Create a font
-            //var font = new XFont(Constants.EnvelopLabelFontFamily, 14, XFontStyle.BoldItalic);
-
- 
-
-            // Draw the text
-            // gfx.DrawString(ReportTitle, font, XBrushes.Black, 120, 50, XStringFormats.Center);
-            // gfx.DrawString(Someotherfield, new XFont(FontFamily, 10, BoldItalic), XBrushes.Black, 120, 70, XStringFormats.Center);
+     
+            gfx.DrawString("Death Registration Report", new XFont("Arial", 20, XFontStyle.BoldItalic), XBrushes.Black, 320, 50, XStringFormats.Center);
+            //gfx.DrawString("Someotherfield", new XFont("Arial", 10, XFontStyle.BoldItalic), XBrushes.Black, 120, 70, XStringFormats.Center);
 
             XColor strokeColor = XColors.Gray;
             XPen pen = new XPen(strokeColor, 2);
-            gfx.DrawLine(pen, 100, 90, 150, 90);
-            gfx.DrawLine(pen, 200, 90, 250, 90);
-            gfx.DrawLine(pen, 300, 90, 350, 90);
-
  
 
-            var x = 100;
+            var x = 50;
             var y = 110;
+             gfx.DrawLine(pen, x, y, 600, y);
             foreach (var item in listDeathData)
             {
-                gfx.DrawString(item.Dist,  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 100;
-                gfx.DrawString(item.Taluko,  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 100;
+                gfx.DrawString((item.RegistrationNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 10;
+                gfx.DrawString((item.Year).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString(item.NameOfDeathPerson, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 80;
                 gfx.DrawString(item.CityVillege, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = 100;
-                y = y + 10;
-                // if y coordinate is >= 750 then add new page so that footer can be added on new page
+                x = x + 60;
+                gfx.DrawString((item.DateOfDeath).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 100;
+                gfx.DrawString((item.AgeAtDeath).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 20;
+                gfx.DrawString(item.MotherFatherHusbandName, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = 50;
+                
+
+                y = y + 20;
+                 gfx.DrawLine(pen, x, y, 600, y);
+              
                 if (y >= 750)
                 {
                     page = document.AddPage();
@@ -131,19 +118,17 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             }
             gfx.DrawLine(pen, x, y, 400, y);
             y = y + 40;
-           // gfx.DrawString(footer, new XFont(Constants.EnvelopLabelFontFamily, 8, XFontStyle.BoldItalic), XBrushes.Black, x, y, XStringFormats.TopLeft);
-            // var stream = new MemoryStream();
-            // document.Save(stream, false);
-            // return stream.ToArray();
             Byte[] res = null;
             using (MemoryStream ms = new MemoryStream())
             {
                 document.Save(ms);
                 res = ms.ToArray();
             }
-            string filename = "MyFile.pdf";
+            string filename = "MyDeathFile.pdf";
             return File(res, "application/pdf",filename);
         }
+    }
+}
 
 
 //         [HttpGet]
@@ -219,5 +204,4 @@ namespace GramPanchayat_MigrationProject.API.Controllers
 
         //     return File(res, "application/pdf");
         // }
-    }
-}
+    

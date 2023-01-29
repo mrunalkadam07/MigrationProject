@@ -346,16 +346,12 @@ export const BirthRegistrationForm = (props) => {
                 </div>
                 
                     <div className="mb-3 btns"><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="ADD" className="btn btn-outline-primary" onClick={addBirthRegistration}>ADD </button> &nbsp;&nbsp;
+                        <button type="ADD" className="btn btn-primary" onClick={addBirthRegistration}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
-                        <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
-                        <button type="CANCEL" className="btn btn-outline-warning">CANCEL </button> &nbsp;&nbsp;
-                        {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
-                        <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
-                        <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
-                        <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
-                        <button type="EXIT" className="btn btn-outline-dark">EXIT</button>
+                        <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                        <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
+                        <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
+                        <Link to="/login"><button type="EXIT" className="btn btn-dark">EXIT</button></Link>
                     </div>
 
                 </div>

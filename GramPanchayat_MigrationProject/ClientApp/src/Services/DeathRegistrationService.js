@@ -4,6 +4,10 @@ import DeathRegistrationAxiosService from "./DeathRegistrationAxiosService";
 const axios = new DeathRegistrationAxiosService();
 
 export default class DeathRegistrationService{
+    DeadBirthRegistration(data){
+        console.log("data : ",data,"Url : ",Configuration.DeadBirthReg)
+        return axios.post(Configuration.DeadBirthReg,data,false)
+    }
     BirthRegistrationForm(data){
         console.log("data : ",data,"Url : ",Configuration.BirthRegistration)
         return axios.post(Configuration.BirthRegistration,data,false)

@@ -232,157 +232,188 @@ import {Link} from "react-router-dom";
 
     return (
         <>
+            <div>
             <h1 align="center">Marriage Registration Form</h1>
-            <form className="form marriage">
+            </div>
+            <form className="form-marriage">
             <div className="leftdiv">
+            <div className="div1">
                 <div className="mb-3">
-                    <label htmlFor="inputRegistrationNo" className="form-label">Registration No </label>
-                    <input value = {registrationNo} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="htmlform-control" id="inputRegistrationNo"/>
+                    <label htmlFor="inputRegistrationNo" className="form-label">Registration No.  </label>
+                    <input value = {registrationNo} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="newStyle" id="inputRegistrationNo"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputMarriageDate" className="form-label">Marriage Date</label>
-                    <input value = {marriageDate} onChange={(e) => setMarriageDate(e.target.value)} type="Date" className="htmlform-control" id="inputMarriageDate" /> 
+                    <label htmlFor="inputGroomsFatherName" className="form-label">Groom's Father Name </label>
+                    <input value = {groomsFatherName} onChange={(e) => setGroomsFatherName(e.target.value)} type="text" className="newStyle" id="inputGroomsFatherrName"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputMarriageDate" className="form-label">Marriage Date </label>
+                    <input value = {marriageDate} onChange={(e) => setMarriageDate(e.target.value)} type="Date" className="newStyle" id="inputMarriageDate" /> 
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputMarriagePlace" className="form-label">Marriage Place</label>
-                    <input value = {marriagePlace} onChange={(e) => setMarriagePlace(e.target.value)} type="text" className="htmlform-control" id="inputMarriagePlace" />
+                    <label htmlFor="inputGroomsMotherName" className="form-label">Groom's Mother Name </label>
+                    <input value = {groomsMotherName} onChange={(e) => setGroomsMotherName(e.target.value)} type="text" className="newStyle" id="inputGroomsMotherName"/>
+                </div>
+            </div>
+
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputMarriagePlace" className="form-label">Marriage Place </label>
+                    <input value = {marriagePlace} onChange={(e) => setMarriagePlace(e.target.value)} type="text" className="newStyle" id="inputMarriagePlace" />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputFullNameOfGroom" className="form-label">Full Name Of Groom</label>
-                    <input value = {fullNameOfGroom} onChange={(e) => setFullNameOfGroom(e.target.value)} type="text" className="htmlform-control" id="inputFullNameOfGroom"/>
+                    <label htmlFor="inputAge" className="form-label">Age </label>
+                    <input value = {groomsFatherAge} onChange={(e) => setGroomsFatherAge(e.target.value)} type="text" className="newStyle" id="inputAge"/>
+                </div>
+            </div>
+
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputFullNameOfGroom" className="form-label">Full Name Of Groom </label>
+                    <input value = {fullNameOfGroom} onChange={(e) => setFullNameOfGroom(e.target.value)} type="text" className="newStyle" id="inputFullNameOfGroom"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputGroomsAge" className="form-label">Age</label>
-                    <input value = {groomsAge} onChange={(e) => setGroomsAge(e.target.value)} type="text" className="htmlform-control" id="inputAge"/>
+                    <label htmlFor="inputPlaceOfResidence" className="form-label">Place Of Residence </label>
+                    <input value = {groomsParentPlaceOfResidence} onChange={(e) => setGroomsParentPlaceOfResidence(e.target.value)} type="text" className="newStyle" id="inputPlaceOfResidence"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputGroomsAge" className="form-label">Age </label>
+                    <input value = {groomsAge} onChange={(e) => setGroomsAge(e.target.value)} type="text" className="newStyle" id="inputAge"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputReligion" className="form-label">Religion</label>
-                    <input value = {groomsReligion} onChange={(e) => setgroomsReligion(e.target.value)} type="text" className="htmlform-control" id="inputReligion"/>
+                    <label htmlFor="inputAddress" className="form-label">Address </label>
+                    <input value = {groomsParentAddress} onChange={(e) => setGroomsParentAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputReligion" className="form-label">Religion </label>
+                    <input value = {groomsReligion} onChange={(e) => setgroomsReligion(e.target.value)} type="text" className="newStyle" id="inputReligion"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputPlaceOfResidences" className="form-label">Place Of Residence</label>
-                    <input value = {groomsPlaceOfResidence} onChange={(e) => setGroomsPlaceOfResidence(e.target.value)} type="text" className="htmlform-control" id="inputPlaceOfResidences"/>
+                    <label htmlFor="inputBridesFatherName" className="form-label">Bride's Father Name </label>
+                    <input value = {bridesFatherName} onChange={(e) => setBridesFatherName(e.target.value)} type="text" className="newStyle" id="inputBridesFatherName"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputPlaceOfResidences" className="form-label">Place Of Residence </label>
+                    <input value = {groomsPlaceOfResidence} onChange={(e) => setGroomsPlaceOfResidence(e.target.value)} type="text" className="newStyle" id="inputPlaceOfResidences"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input value = {groomsAddress} onChange={(e) => setGroomsAddress(e.target.value)} type="text" className="htmlform-control" id="inputAddress"/>
+                    <label htmlFor="inputBridesMotherName" className="form-label">Bride's Mother Name </label>
+                    <input value = {bridesMotherName} onChange={(e) => setBridesMotherName(e.target.value)} type="text" className="newStyle" id="inputBridesMotherName"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputAddress" className="form-label">Address </label>
+                    <input value = {groomsAddress} onChange={(e) => setGroomsAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputGroomDesignation" className="form-label">Groom Designation</label>
-                    {/* <select id="inputGroomDesignation" classname="htmlform-select">
+                    <label htmlFor="inputAge" className="form-label">Age </label>
+                    <input value = {bridesFatherAge} onChange={(e) => setBridesFatherAge(e.target.value)} type="text" className="newStyle" id="inputAge"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputGroomDesignation" className="form-label">Groom Designation </label>
+                    {/* <select id="inputGroomDesignation" className="htmlform-select">
                     <option selected>Choose...</option>
                     <option>...</option>
                     </select> */}
-                    <input value = {groomDesignation} onChange={(e) => setGroomDesignation(e.target.value)} type="text" className="htmlform-control" id="inputGroomDesignation"/>
+                    <input value = {groomDesignation} onChange={(e) => setGroomDesignation(e.target.value)} type="text" className="newStyle" id="inputGroomDesignation"/>
                 </div>
+                <div className="mb-3">
+                    <label htmlFor="inputPlaceOfResidence" className="form-label">Place Of Residence </label>
+                    <input value = {bridesParentPlaceOfResidence} onChange={(e) => setBridesParentPlaceOfResidence(e.target.value)} type="text" className="newStyle" id="inputPlaceOfResidence"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputFullNameOfBride" className="form-label">Full Name Of Bride </label>
+                    <input value = {fullNameOfBride} onChange={(e) => setFullNameOfBride(e.target.value)} type="text" className="newStyle" id="inputFullNameOfGroom"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputAddress" className="form-label">Address </label>
+                    <input value = {bridesParentAddress} onChange={(e) => setBridesParentAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputAge" className="form-label">Age </label>
+                    <input value = {bridesAge} onChange={(e) => setBridesAge(e.target.value)} type="text" className="newStyle" id="inputAge"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputNameOfBrahman" className="form-label">Full Name Of Brahman </label>
+                    <input value = {nameOfBrahman} onChange={(e) => setNameOfBrahman(e.target.value)} type="text" className="newStyle" id="inputNameOfBrahman"/>
+                </div>
+            </div>
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputReligion" className="form-label">Religion </label>
+                    <input value = {bridesReligion} onChange={(e) => setBridesReligion(e.target.value)} type="text" className="newStyle" id="inputReligion"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputFirstFullNameOfWitness" className="form-label">First Full Name Of Witness </label>
+                    <input value = {firstFullNameOfWitness} onChange={(e) => setFirstFullNameOfWitness(e.target.value)} type="text" className="newStyle" id="inputFirstFullNameOfWitness"/>
+                </div>
+            </div>
 
+            <div className="div1">
                 <div className="mb-3">
-                    <label htmlFor="inputFullNameOfBride" className="form-label">Full Name Of Bride</label>
-                    <input value = {fullNameOfBride} onChange={(e) => setFullNameOfBride(e.target.value)} type="text" className="htmlform-control" id="inputFullNameOfGroom"/>
+                    <label htmlFor="inputPlaceOfResidences" className="form-label">Place Of Residence </label>
+                    <input value = {bridesPlaceOfResidence} onChange={(e) => setBridesPlaceOfResidence(e.target.value)} type="text" className="newStyle" id="inputPlaceOfResidences"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputAge" className="form-label">Age</label>
-                    <input value = {bridesAge} onChange={(e) => setBridesAge(e.target.value)} type="text" className="htmlform-control" id="inputAge"/>
+                    <label htmlFor="inputAddress" className="form-label">Address </label>
+                    <input value = {firstWitnessAddress} onChange={(e) => setFirstWitnessAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="inputReligion" className="form-label">Religion</label>
-                    <input value = {bridesReligion} onChange={(e) => setBridesReligion(e.target.value)} type="text" className="htmlform-control" id="inputReligion"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputPlaceOfResidences" className="form-label">Place Of Residence</label>
-                    <input value = {bridesPlaceOfResidence} onChange={(e) => setBridesPlaceOfResidence(e.target.value)} type="text" className="htmlform-control" id="inputPlaceOfResidences"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input value = {bridesAddress} onChange={(e) => setBridesAddress(e.target.value)} type="text" className="htmlform-control" id="inputAddress"/>
-                </div>
+            </div>
                 
+            <div className="div1">
                 <div className="mb-3">
-                    <label htmlFor="inputBrideDesignation" className="form-label">Bride Designation</label>
-                    {/* <select id="inputBrideDesignation" classname="htmlform-select">
+                    <label htmlFor="inputAddress" className="form-label">Address </label>
+                    <input value = {bridesAddress} onChange={(e) => setBridesAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputSeconFullNameOfWitness" className="form-label">Second Full Name Of Witness </label>
+                    <input value = {secondWitnessAddress} onChange={(e) => setSecondFullNameOfWitness(e.target.value)} type="text" className="newStyle" id="inputSecondFullNameOfWitness"/>
+                </div>
+            </div>
+            
+            <div className="div1">
+                <div className="mb-3">
+                    <label htmlFor="inputBrideDesignation" className="form-label">Bride Designation </label>
+                    {/* <select id="inputBrideDesignation" className="htmlform-select">
                     <option selected>Choose...</option>
                     <option>...</option>
                     </select> */}
-                    <input value = {bridesDesignation} onChange={(e) => setBridesDesignation(e.target.value)} type="text" className="htmlform-control" id="inputBrideDesignation"/>
+                    <input value = {bridesDesignation} onChange={(e) => setBridesDesignation(e.target.value)} type="text" className="newStyle" id="inputBrideDesignation"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="inputGroomsFatherName" className="form-label">Groom's Father Name</label>
-                    <input value = {groomsFatherName} onChange={(e) => setGroomsFatherName(e.target.value)} type="text" className="htmlform-control" id="inputGroomsFatherrName"/>
+                    <label htmlFor="inputAddress" className="form-label">Address </label>
+                    <input value = {secondWitnessAddress} onChange={(e) => setSecondWitnessAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="inputGroomsMotherName" className="form-label">Groom's Mother Name</label>
-                    <input value = {groomsMotherName} onChange={(e) => setGroomsMotherName(e.target.value)} type="text" className="htmlform-control" id="inputGroomsMotherName"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAge" className="form-label">Age</label>
-                    <input value = {groomsFatherAge} onChange={(e) => setGroomsFatherAge(e.target.value)} type="text" className="htmlform-control" id="inputAge"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputPlaceOfResidence" className="form-label">Place Of Residence</label>
-                    <input value = {groomsParentPlaceOfResidence} onChange={(e) => setGroomsParentPlaceOfResidence(e.target.value)} type="text" className="htmlform-control" id="inputPlaceOfResidence"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input value = {groomsParentAddress} onChange={(e) => setGroomsParentAddress(e.target.value)} type="text" className="htmlform-control" id="inputAddress"/>
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="inputBridesFatherName" className="form-label">Bride's Father Name</label>
-                    <input value = {bridesFatherName} onChange={(e) => setBridesFatherName(e.target.value)} type="text" className="htmlform-control" id="inputBridesFatherName"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputBridesMotherName" className="form-label">Bride's Mother Name</label>
-                    <input value = {bridesMotherName} onChange={(e) => setBridesMotherName(e.target.value)} type="text" className="htmlform-control" id="inputBridesMotherName"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAge" className="form-label">Age</label>
-                    <input value = {bridesFatherAge} onChange={(e) => setBridesFatherAge(e.target.value)} type="text" className="htmlform-control" id="inputAge"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputPlaceOfResidence" className="form-label">Place Of Residence</label>
-                    <input value = {bridesParentPlaceOfResidence} onChange={(e) => setBridesParentPlaceOfResidence(e.target.value)} type="text" className="htmlform-control" id="inputPlaceOfResidence"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input value = {bridesParentAddress} onChange={(e) => setBridesParentAddress(e.target.value)} type="text" className="htmlform-control" id="inputAddress"/>
-                </div>
+            </div>
                 
-                <div className="mb-3">
-                    <label htmlFor="inputNameOfBrahman" className="form-label">Full Name Of Brahman</label>
-                    <input value = {nameOfBrahman} onChange={(e) => setNameOfBrahman(e.target.value)} type="text" className="htmlform-control" id="inputNameOfBrahman"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputFirstFullNameOfWitness" className="form-label">First Full Name Of Witness</label>
-                    <input value = {firstFullNameOfWitness} onChange={(e) => setFirstFullNameOfWitness(e.target.value)} type="text" className="htmlform-control" id="inputFirstFullNameOfWitness"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input value = {firstWitnessAddress} onChange={(e) => setFirstWitnessAddress(e.target.value)} type="text" className="htmlform-control" id="inputAddress"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputSeconFullNameOfWitness" className="form-label">Second Full Name Of Witness</label>
-                    <input value = {secondWitnessAddress} onChange={(e) => setSecondFullNameOfWitness(e.target.value)} type="text" className="htmlform-control" id="inputSecondFullNameOfWitness"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input value = {secondWitnessAddress} onChange={(e) => setSecondWitnessAddress(e.target.value)} type="text" className="htmlform-control" id="inputAddress"/>
-                </div>
-                <div className="mb-3"><br />
-                    <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
-                        {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
-                        <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
-                        <Link to="/Navbar"><button type="CANCEL" className="btn btn-outline-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
-                        <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
-                        <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
-                        <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
-                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">EXIT</button></Link>
+
+                <div className="mb-3 btns"><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="ADD" className="btn btn-outline-primary" onClick={addMarriageRegistration}>ADD </button> &nbsp;&nbsp;
+                    {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
+                    <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                    <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
+                    <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
+                        <Link to="/login"><button type="EXIT" className="btn btn-dark">EXIT</button></Link>
                     </div>
-                    
-                </div>
+            </div>
 
-               
+             
+           
             </form>
             <div className="tableData">
           <table>

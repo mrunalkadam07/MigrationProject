@@ -5,5 +5,6 @@ module.exports = {
     UpdateDeathRegistration : "https://localhost:7277/api/DeathRegistration?id=",
     GetDeathRegistration : "https://localhost:7277/DeathRegistration",
     BirthRegistration : "https://localhost:7277/BirthRegistration",
-    MarriageRegistration : "https://localhost:7277/MarriageRegistration"
+    MarriageRegistration : "https://localhost:7277/MarriageRegistration",
+    DeadBirthReg : "https://localhost:7277/DeadBirthReg"
 }

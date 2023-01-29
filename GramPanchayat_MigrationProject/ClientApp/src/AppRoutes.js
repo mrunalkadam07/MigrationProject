@@ -14,20 +14,9 @@ import BirthRegistrationReport from "./components/Login/BirthRegistrationReport"
 import TaxPaidReport from "./components/Login/TaxPaidReport";
 import DeadBirthRegistrationReport from "./components/Login/DeadBirthRegistrationReport";
 import MarriageReport from "./components/Login/MarriageReport";
+import { DeadBirthRegistration } from "./components/Login/DeadBirthRegistration";
 
 const AppRoutes = [
-  {
-    index: true,
-    element: <Home />
-  },
-  {
-    path: '/login',
-    element: <Login />
-  },
-  {
-    path: '/menu',
-    element: <MenuPage />
-  },
   {
     path : '/propertyTaxPaid',
     element : <PropertyTaxPaidForm />
@@ -39,6 +28,10 @@ const AppRoutes = [
   {
     path : '/marriageRegistration',
     element : <MarriageRegistrationForm />
+  },
+  {
+    path : '/deadbirthRegistration',
+    element : <DeadBirthRegistration />
   },
   {
     path : '/breport',

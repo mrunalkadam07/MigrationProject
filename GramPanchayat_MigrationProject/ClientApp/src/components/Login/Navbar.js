@@ -28,7 +28,7 @@ export const Navbar=()=>{
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item dropdown">
-                                <button
+                                <a
                                     className="nav-link dropdown-toggle"
                                     href="/"
                                     role="button"
@@ -37,7 +37,7 @@ export const Navbar=()=>{
                                     aria-expanded="false"
                                 >
                                     REGISTRATION MASTER
-                                </button>
+                                </a>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
                                         <a className="dropdown-item" href="/birthRegistration">
@@ -45,7 +45,7 @@ export const Navbar=()=>{
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="">
+                                        <a className="dropdown-item" href="/deadbirthRegistration">
                                             DEAD BIRTH REG
                                         </a>
                                     </li>
@@ -62,14 +62,14 @@ export const Navbar=()=>{
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <button
+                                <a
                                     className="nav-link dropdown-toggle"
                                     role="button"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
                                     TAX MASTER
-                                </button>
+                                </a>
                                 <ul className="dropdown-menu">
                                     <li>
                                         <a className="dropdown-item" href="/propertyTaxPaid">
@@ -140,8 +140,8 @@ export const Navbar=()=>{
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="/login">
-                                    EXIT
+                                <a className="nav-link" aria-current="page" href="/">
+                                    LOGOUT
                                 </a>
                             </li>
                         </ul>

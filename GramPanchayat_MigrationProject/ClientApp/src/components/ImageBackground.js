@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { NavMenu } from './NavMenu';
 
-export class Home extends Component {
-  static displayName = Home.name;
+export class ImageBackground extends Component {
+  static displayName = ImageBackground.name;
   myStyle={
     backgroundImage: 
 
@@ -13,10 +12,23 @@ export class Home extends Component {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
 };
+constructor (props) {
+    super(props);
+
+    this.state = {
+      collapsed: true
+    };
+  }
+
+//   toggleNavbar () {
+//     this.setState({
+//       collapsed: !this.state.collapsed
+//     });
+//   }
+
   render() {
     return (
       <div>
-      <NavMenu />
       <div style={this.myStyle}>
       </div>
       </div>

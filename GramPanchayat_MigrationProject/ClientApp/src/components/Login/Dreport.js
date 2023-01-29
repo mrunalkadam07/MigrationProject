@@ -29,19 +29,6 @@ function Dreport(){
   }, []);
 
   const generatepdf =()=>{
-    // fetch(`https://localhost:7277/DeathRegistration/Generate`,{
-    //   method: "GET",
-    //   headers: {
-    //    "Accept": "application/octet-stream",
-    //    "Authorization": "Bearer " +localStorage.getItem("Token"),
-    //   }}
-    //   // responseType: 'arraybuffer' //#1 remove this,
-    //   .then((res) => res.arraybuffer())
-    //   .then((data) => {
-    //     var base64Str = Buffer.from(data).toString('base64');
-    //     Base64.base64Decode(base64Str, "file.pdf");
-    //   })
-    // );
     
     fetch(
       `https://localhost:7277/DeathRegistration/Generate`,{
@@ -51,29 +38,6 @@ function Dreport(){
        "Authorization": "Bearer " +localStorage.getItem("Token")
       },
       },
-  //   ).then(function(response) {
-  //     return response.arrayBuffer()
-  //   })
-  //   .then(function(data) {
-  //     // do stuff with `data`
-  //     console.log(data, data instanceof ArrayBuffer);
-  //     //var arrBuffer = bytes;
-  //     var newBlob = new Blob([data], { type: "application/pdf" });
-  //     // $("#pdfviewer").attr("src", URL.createObjectURL(new Blob([data], {
-  //     //     type: "application/pdf"
-  //     // })))
-  //     data = window.URL.createObjectURL(newBlob);
-
-  //           var link = document.createElement('a');
-  //           document.body.appendChild(link);
-  //           link.href = data;
-  //           link.download = "Myfile.pdf";
-  //           link.click();
-  //           window.URL.revokeObjectURL(data);
-  //   }, function(err) {
-  //       console.log(err);
-  //   });
-  // };
   ).then((res) => res.arrayBuffer())
         .then(data => {
           console.log(data);
@@ -101,11 +65,89 @@ function Dreport(){
             var link = document.createElement('a');
             document.body.appendChild(link);
             link.href = data;
-            link.download = "Myfile.pdf";
+            link.download = "MyDeathFile.pdf";
             link.click();
             window.URL.revokeObjectURL(data);
         })
       };
+  // const generatepdf =()=>{
+  //   // fetch(`https://localhost:7277/DeathRegistration/Generate`,{
+  //   //   method: "GET",
+  //   //   headers: {
+  //   //    "Accept": "application/octet-stream",
+  //   //    "Authorization": "Bearer " +localStorage.getItem("Token"),
+  //   //   }}
+  //   //   // responseType: 'arraybuffer' //#1 remove this,
+  //   //   .then((res) => res.arraybuffer())
+  //   //   .then((data) => {
+  //   //     var base64Str = Buffer.from(data).toString('base64');
+  //   //     Base64.base64Decode(base64Str, "file.pdf");
+  //   //   })
+  //   // );
+    
+  //   fetch(
+  //     `https://localhost:7277/DeathRegistration/Generate`,{
+  //     method: "GET",
+  //     headers: {
+  //      "Accept": "application/octet-stream",
+  //      "Authorization": "Bearer " +localStorage.getItem("Token")
+  //     },
+  //     },
+  // //   ).then(function(response) {
+  // //     return response.arrayBuffer()
+  // //   })
+  // //   .then(function(data) {
+  // //     // do stuff with `data`
+  // //     console.log(data, data instanceof ArrayBuffer);
+  // //     //var arrBuffer = bytes;
+  // //     var newBlob = new Blob([data], { type: "application/pdf" });
+  // //     // $("#pdfviewer").attr("src", URL.createObjectURL(new Blob([data], {
+  // //     //     type: "application/pdf"
+  // //     // })))
+  // //     data = window.URL.createObjectURL(newBlob);
+
+  // //           var link = document.createElement('a');
+  // //           document.body.appendChild(link);
+  // //           link.href = data;
+  // //           link.download = "Myfile.pdf";
+  // //           link.click();
+  // //           window.URL.revokeObjectURL(data);
+  // //   }, function(err) {
+  // //       console.log(err);
+  // //   });
+  // // };
+  // ).then((res) => res.arrayBuffer())
+  //       .then(data => {
+  //         console.log(data);
+          
+  //           var base64Str = Buffer.from(data).toString('base64');
+
+  //           var binaryString = window.atob(base64Str);
+  //           var binaryLen = binaryString.length;
+  //           var bytes = new Uint8Array(binaryLen);
+  //           for (var i = 0; i < binaryLen; i++) {
+  //               var ascii = binaryString.charCodeAt(i);
+  //               bytes[i] = ascii;
+  //           }
+  //           var arrBuffer = bytes;
+
+  //           var newBlob = new Blob([arrBuffer], { type: "application/pdf" });
+
+  //           if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+  //               window.navigator.msSaveOrOpenBlob(newBlob);
+  //               return;
+  //           }
+
+  //           data = window.URL.createObjectURL(newBlob);
+
+  //           var link = document.createElement('a');
+  //           document.body.appendChild(link);
+  //           link.href = data;
+  //           link.download = "Myfile.pdf";
+  //           link.click();
+  //           window.URL.revokeObjectURL(data);
+  //       })
+  //     };
   //   fetch(
   //     `https://localhost:7277/DeathRegistration/Generate`,{
   //     method: "GET",

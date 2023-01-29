@@ -9,14 +9,14 @@
   display: block;
   line-height: 6px;
 } */
-.Login {
+/* .Login {
     text-align: center;
     display: flex;
     min-height: 100vh;
     align-items: center;
     justify-content: center;
     background-color: rgb(33, 89, 118);
-    /* background-image: url("C:\Users\harshit_nema\Downloads\gram-panchayat.jpg"); */
+    /* background-image: url("C:\Users\harshit_nema\Downloads\gram-panchayat.jpg"); 
   }
   .auth-form-container, .login-form, .register-form{
     display: flex;
@@ -31,7 +31,7 @@
     margin: 0.5rem 0;
     padding: 0.5rem;
     /* border: none;
-    border-radius: 10px; */
+    border-radius: 10px; 
   }
   button{
     border: none;
@@ -45,6 +45,21 @@
     background: none;
     color: white;
     text-decoration: underline;
-  }
+  } */
   
-  
+
+  .divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}

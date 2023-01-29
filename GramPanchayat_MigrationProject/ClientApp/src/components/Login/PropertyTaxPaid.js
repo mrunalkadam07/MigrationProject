@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import PropertyTaxServices from "../../Services/PropertyTaxService";
 import "./Assessment.list.css";
+import "./tablestyle.css";
 import {Link} from "react-router-dom";
 
 const services = new PropertyTaxServices();
@@ -177,74 +178,87 @@ export const PropertyTaxPaidForm = (props) => {
 
     return(
         <>
-            <h1 align="center">Property Tax Paid Form</h1>
+           <h1 align="center">Property Tax Paid Form</h1>
             <form className="form-property">
                 <div className="leftdiv">
+                <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputBillDate" className="form-label">Bill Date</label>
-                        <input value = {billDate} onChange={(e) => setBillDate(e.target.value)} type="Date" className="form-control" id="inputBillDate" />
+                        <label htmlFor="inputBillDate" className="form-label">Bill Date  </label>
+                        <input value = {billDate} onChange={(e) => setBillDate(e.target.value)} type="Date" className="newStyle" id="inputBillDate" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputBillNo" className="form-label">Bill No</label>
-                        <input value = {billNo} onChange={(e) => setBillNo(e.target.value)} type="text" className="form-control" id="inputBillNo"/>
+                        <label htmlFor="inputYear" className="form-label">Year  </label>
+                        <input value = {year} onChange={(e) => setYear(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="newStyle" id="inputYear"/>
+                    </div>
+                </div>
+                <div className="div1">
+                    {/* <div className="mb-3">
+                        <label htmlFor="inputBillNo" className="form-label">Bill No.  </label>
+                        <input value = {billNo} onChange={(e) => setBillNo(e.target.value)} type="text" className="newStyle" id="inputBillNo"/>
+                    </div> */}
+                    <div className="mb-3">
+                        <label htmlFor="inputPropertNo" className="form-label">Property No.  </label>
+                        <input value = {propertyNo} onChange={(e) => setPropertyNo(e.target.value)}  type="text" className="newStyle" id="inputPropertNo"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputName" className="form-label"><br/>Name</label>
-                        <input value = {name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="inputName"/>
+                        <label htmlFor="inputName" className="form-label"><br/>Name  </label>
+                        <input value = {name} onChange={(e) => setName(e.target.value)} type="text" className="newStyle" id="inputName"/>
+                    </div>
+                </div>
+                <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputAddress" className="form-label">Address </label>
+                        <input value = {address} onChange={(e) => setAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputAddress" className="form-label">Address</label>
-                        <input value = {address} onChange={(e) => setAddress(e.target.value)} type="text" className="form-control" id="inputAddress"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputHomeTax" className="form-label">Home Tax</label>
+                        <label htmlFor="inputHomeTax" className="form-label">Home Tax  </label>
                         {/* <select id="inputHomeTax" className="form-selected">
                         <option defaultValue={"Select"}>Choose...</option>
                         </select> */}
-                        <input value = {homeTax} onChange={(e) => setHomeTax(e.target.value)} type="text" className="form-control" id="inputHomeTax"/>
+                        <input value = {homeTax} onChange={(e) => setHomeTax(e.target.value)} type="text" className="newStyle" id="inputHomeTax"/>
                     </div>
+                </div>
+                <div className="div1">
+                    
                     <div className="mb-3">
-                        <label htmlFor="inputElectricityTax" className="form-label">Electricity Tax</label>
+                        <label htmlFor="inputElectricityTax" className="form-label">Electricity Tax  </label>
                         {/* <select id="inputElectricityTax" className="form-selected">
                         <option defaultValue={"Select"}>Choose...</option>
                         </select> */}
-                        <input value = {electricityTax} onChange={(e) => setElectricityTax(e.target.value)} type="text" className="form-control" id="inputElectricityTax"/>
+                        <input value = {electricityTax} onChange={(e) => setElectricityTax(e.target.value)} type="text" className="newStyle" id="inputElectricityTax"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputSpecialWaterTax" className="form-label">Special Water Tax</label>
+                        <label htmlFor="inputSpecialWaterTax" className="form-label">Special Water Tax  </label>
                         {/* <select id="inputSpecialWaterTax" className="form-selected">
                         <option defaultValue={"Select"}>Choose...</option>
                         </select> */}
-                        <input value = {specialWaterTax} onChange={(e) => setSpecialWaterTax(e.target.value)}type="text" className="form-control" id="inputSpecialWaterTax"/>
+                        <input value = {specialWaterTax} onChange={(e) => setSpecialWaterTax(e.target.value)}type="text" className="newStyle" id="inputSpecialWaterTax"/>
                     </div>
+                </div>
+                <div className="div1">
+                    
                     <div className="mb-3">
-                        <label htmlFor="inputEducationalSess" className="form-label">Educational Sess</label>
+                        <label htmlFor="inputEducationalSess" className="form-label">Educational Sess  </label>
                         {/* <select id="inputEducationalSess" className="form-selected">
                         <option defaultValue={"Select"}>Choose...</option>
                         </select> */}
-                        <input value = {educationalsess} onChange={(e) => setEducationalsess(e.target.value)} type="text" className="form-control" id="inputEducationalSess"/>
+                        <input value = {educationalsess} onChange={(e) => setEducationalsess(e.target.value)} type="text" className="newStyle" id="inputEducationalSess"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputPenaltyCharge" className="form-label">Penalty Charge</label>
+                        <label htmlFor="inputPenaltyCharge" className="form-label">Penalty Charge  </label>
                         {/* <select id="inputPenaltyCharge" className="form-selected">
                         <option defaultValue={"Select"}>Choose...</option>
                         </select> */}
-                        <input value = {penaltyCharge} onChange={(e) => setPenaltyCharge(e.target.value)} type="text" className="form-control" id="inputPenaltyCharge"/>
+                        <input value = {penaltyCharge} onChange={(e) => setPenaltyCharge(e.target.value)} type="text" className="newStyle" id="inputPenaltyCharge"/>
                     </div> 
+                </div>
+                {/* <div className="div1"> */}
                     <div className="mb-3">
-                        <label htmlFor="inputTotal" className="form-label">Total</label>
-                        <input value = {total} onChange={(e) => setTotal(e.target.value)} type="text" className="form-control" id="inputTotal"/>
+                        <label htmlFor="inputTotal" className="form-label">Total  </label>
+                        <input value = {total} onChange={(e) => setTotal(e.target.value)} type="text" className="newStyle" id="inputTotal"/>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputYear" className="form-label">Year</label>
-                        <input value = {year} onChange={(e) => setYear(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="form-control" id="inputYear"/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputPropertNo" className="form-label">Property No</label>
-                        <input value = {propertyNo} onChange={(e) => setPropertyNo(e.target.value)}  type="text" className="form-control" id="inputPropertNo"/>
-                    </div>
-                    <div className="mb-3"><br/>
-                    <div className="mb-3"><br />
+                {/* //</div> */}
+                    <div className="mb-3 btns"><br/>
                     <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
@@ -255,8 +269,7 @@ export const PropertyTaxPaidForm = (props) => {
                         <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
                         <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
                         <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">EXIT</button></Link>
-                    </div>
-                    </div>
+                        </div>
                 </div>
                 
             </form>

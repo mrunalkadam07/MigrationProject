@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import LoginServices from "../../Services/LoginServices";
-import "./Login.css";
+import "./Assessment.list.css";
 import axios from "axios";
+import { ImageBackground } from "../ImageBackground";
+import "./Login.css";
 
 
 const services = new LoginServices();
@@ -12,7 +14,6 @@ export const Login = (props) => {
     const [message, setMessage] = useState("");
     const navigate = new useNavigate();
     
-    // const emailRegex = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,14 +42,7 @@ export const Login = (props) => {
             setEmail("");
             setPassword("");
             }
-        
         })
-        // services.LoginModel(data).then((res)=>{
-        //     console.log(res.data)
-        // }).then((res) =>{
-        //     // sessionStorage.setItem('jwtToken',res.data)
-        //     navigate("/Navbar")
-        // })
             
         .catch((error)=>{
             console.log(error)
@@ -57,15 +51,53 @@ export const Login = (props) => {
    
     return (
         <>
-        <div className="auth-form-container">
-            <h3>Login</h3>
-            <form className = " form login-form" onSubmit = {handleSubmit}>
-                <input value = {email} onChange={(e) => setEmail(e.target.value)} type = "text" placeholder="Enter User" id = "email" name = "email"></input>
-                <input value = {password} onChange={(e) => setPassword(e.target.value)}type = "password" placeholder="********" id = "password" name = "password"></input>
-                <button type="submit" className="btn btn-primary" href="">LOGIN </button> 
-            </form>
-            <br/>
-        </div>
-        </> 
+        <section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          className="img-fluid" alt="Sample image">
+        </img>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form className="login-form" onSubmit = {handleSubmit}>
+        <br/><br/><br/><br/>
+          <div class="form-outline mb-4">
+            <input value = {email} onChange={(e) => setEmail(e.target.value)} type="text" id="form3Example3" class="form-control form-control-lg"
+              placeholder="Enter a valid Username" />
+            {/* <label class="form-label" for="form3Example3">Username</label> */}<br/>
+          </div>
+
+          <div class="form-outline mb-3">
+            <input value = {password} onChange={(e) => setPassword(e.target.value)} type="password" id="form3Example4" class="form-control form-control-lg"
+              placeholder="Enter password" />
+            {/* <label class="form-label" for="form3Example4">Password</label> */}<br/>
+          </div>
+          <div>
+          <button  type="submit" className="btn btn-success" href="">LOGIN </button> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+        </>
+        // <>
+        // <div style={{ backgroundImage:`url("0001.jpg"})` }}>
+        // <div className="container py-5 h-100">
+        //     <form className = "login-form" onSubmit = {handleSubmit}>
+        //         <div class="row d-flex justify-content-center align-items-center h-100">
+        //             {/* <div class="col-12 col-md-8 col-lg-6 col-xl-5"> */}
+        //                     <h3>Login</h3>
+        //                          <input value = {email} onChange={(e) => setEmail(e.target.value)} type = "text" placeholder="Enter User" id = "email" name = "email"></input>
+        //                          <input value = {password} onChange={(e) => setPassword(e.target.value)}type = "password" placeholder="********" id = "password" name = "password"></input>
+        //                          <button type="submit" className="btn btn-primary" href="">LOGIN </button> 
+        //             {/* </div> */}
+        //         </div>
+        //     </form>
+        //     <br/>
+        // </div>
+        // </div>
+        // </> 
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './Assessment.list.css';
 //import AssessmentListServices from "../Service/AssessmentListService";
 
@@ -8,6 +8,7 @@ import './Assessment.list.css';
 //const services = new AssessmentListServices();
 
         export const AssessmentList = (props) => {
+            const navigate = useNavigate();
             // const [billNo, setBillNo] = useState('');
             const [formNo, setFormNo] = useState('');
             const [wardNo, setWardNo] = useState("");
@@ -170,7 +171,8 @@ import './Assessment.list.css';
                 }
 
                 const logout = () =>{
-                    localStorage.setItem("Token",null)
+                    localStorage.removeItem("Token")
+                    navigate("/login");
                 }
                 
                 const [data, setData] = useState([])
@@ -207,14 +209,18 @@ import './Assessment.list.css';
               }
             
               useEffect(() => {
+                if(!localStorage.getItem('token')){
+                    navigate('/login')
+                }
                 fetchData();
+                
               }, []);
 
             
     return(
         <>  
            <h1 align="center">Assessment List</h1>
-            <form className="form">
+            <form className="assess-form">
                 <div className="leftdiv">
                     <div className="div1">
                         <div className="mb-3">
@@ -324,12 +330,12 @@ import './Assessment.list.css';
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
-                        <button type="CANCEL" className="btn btn-outline-warning">CANCEL </button> &nbsp;&nbsp;
+                        <Link to="/Navbar"><button type="CANCEL" className="btn btn-outline-warning" >CANCEL </button></Link> &nbsp;&nbsp;
                         {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
                         <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
                         <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
                         <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
-                        <button type="EXIT" className="btn btn-outline-dark">EXIT</button>
+                        <button type="EXIT" className="btn btn-outline-dark" onClick={logout}>LOGOUT</button>
                     </div>
 
                 </div>

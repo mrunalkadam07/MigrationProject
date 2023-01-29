@@ -21,10 +21,6 @@ namespace GramPanchayat_MigrationProject.API.Repositories
             return merrageReg;
         }
 
-        public MerrageReg Add(MerrageReg merrageReg)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Delete(int RegistrationNo)
         {

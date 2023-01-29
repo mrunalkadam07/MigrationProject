@@ -187,42 +187,56 @@ export const DeathRegistrationForm = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+//   refreshList(){
+//     fetch("")
+//     .then(response=>response.json())
+//     .then(data=>{
+//         this.setState({data})
+//     });
+//   };
+//   componentDidMount(){
+//     this.refreshList();
+//   };
     return (
         <>
             <h1 align="center">Death Registration Form</h1>
-            <form className="form deathform">
+            <form className="form-death">
                 <div className="leftdiv">
-                <div className="mb-3">
+                <div className="div1">
+                    <div className="mb-3">
                         <label htmlFor="inputRegistrationNo" className="form-label">Registration No.  </label>
-                        <input value = {registration_no} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="form-control" id="inputRegistrationNo" />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputTaluka" className="form-label">Taluka </label>
-                        <input value = {taluka} onChange={(e) => setTaluka(e.target.value)} type="text" className="form-control" id="inputTaluka" />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="inputDistrict" className="form-label">District </label>
-                        <input value = {district} onChange={(e) => setDistrict(e.target.value)} type="text" className="form-control" id="inputDistrict" />
+                        <input value = {registration_no} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="newStyle" id="inputRegistrationNo" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="inputYear" className="form-label">Year </label>
-                        <input value = {year} onChange={(e) => setYear(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="form-control" id="inputYear" />
+                        <input value = {year} onChange={(e) => setYear(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="newStyle" id="inputYear" />
+                    </div>
+                </div>
+                <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputTaluka" className="form-label">Taluka </label>
+                        <input value = {taluka} onChange={(e) => setTaluka(e.target.value)} type="text" className="newStyle" id="inputTaluka" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputCityorVillage" className="form-label">City/Village </label>
-                        <input value = {city} onChange={(e) => setCity(e.target.value)} type="text" className="form-control" id="inputCityorVillage" />
+                        <label htmlFor="inputDistrict" className="form-label">District </label>
+                        <input value = {district} onChange={(e) => setDistrict(e.target.value)} type="text" className="newStyle" id="inputDistrict" />
                     </div>
+                </div>
+                <div className="div1">
                     <div className="mb-3">
                         <label htmlFor="inputRegistrationDtae" className="form-label">Registration Date </label>
-                        <input value = {registrationDate} onChange={(e) => setRegistrationDate(e.target.value)} type="date" className="form-control" id="inputRegistrationDate" />
+                        <input value = {registrationDate} onChange={(e) => setRegistrationDate(e.target.value)} type="date" className="newStyle" id="inputRegistrationDate" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="inputDeathDate" className="form-label">Date of Death </label>
-                        <input value = {deathDate} onChange={(e) => setDeathDate(e.target.value)} type="date" className="form-control" id="inputDeathDate" />
+                        <input value = {deathDate} onChange={(e) => setDeathDate(e.target.value)} type="date" className="newStyle" id="inputDeathDate" />
                     </div>
+                </div>
+                <div className="div1">
                     <div className="mb-3">
                         <label htmlFor="inputNameofDeadPerson" className="form-label">Name of Dead Person </label>
-                        <input value = {name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="inputNameofDeadPerson" />
+                        <input value = {name} onChange={(e) => setName(e.target.value)} type="text" className="newStyle" id="inputNameofDeadPerson" />
                     </div>
                     <div className="mb-3">
                             <label htmlFor="inputSex" className="form-label">Sex </label>
@@ -231,38 +245,50 @@ export const DeathRegistrationForm = (props) => {
                                 <option>Male</option>
                                 <option>Female</option>
                             </select>
-                            <input value = {sex} onChange={(e) => setSex(e.target.value)} type="text" className="form-control" id="inputSex" />
+                            <input value = {sex} onChange={(e) => setSex(e.target.value)} type="text" className="newStyle" id="inputSex" />
                         </div>
                     {/* </div> */}
+                </div>
+                <div className="div1">
                     <div className="mb-3">
                         <label htmlFor="inputAge" className="form-label">Age of Dead Person </label>
-                        <input value = {age} onChange={(e) => setAge(e.target.value)} type="number" className="form-control" id="inputAge" />
+                        <input value = {age} onChange={(e) => setAge(e.target.value)} type="number" className="newStyle" id="inputAge" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="inputPlace" className="form-label">Place of Death </label>
-                        <input value = {place} onChange={(e) => setPlace(e.target.value)} type="text" className="form-control" id="inputPlace" />
+                        <input value = {place} onChange={(e) => setPlace(e.target.value)} type="text" className="newStyle" id="inputPlace" />
                     </div>
+                </div>
+                <div className="div1">
                     <div className="mb-3">
                         <label htmlFor="inputRelative" className="form-label">Mother/Father/Husband Name </label>
-                        <input value = {relative} onChange={(e) => setRelative(e.target.value)} type="text" className="form-control" id="inputRelative" />
+                        <input value = {relative} onChange={(e) => setRelative(e.target.value)} type="text" className="newStyle" id="inputRelative" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="inputAddress" className="form-label">Permanent Address of Dead Person </label>
-                        <input value = {addressOfDeadPerson} onChange={(e) => setAddressOfDeadPerson(e.target.value)} type="text" className="form-control" id="inputAddress" />
+                        <input value = {addressOfDeadPerson} onChange={(e) => setAddressOfDeadPerson(e.target.value)} type="text" className="newStyle" id="inputAddress" />
                     </div>
+                </div>
+                <div className="div1">
                     <div className="mb-3">
                         <label htmlFor="inputNameOfSenderPerson" className="form-label">Name and Address of Sender Person</label>
-                        <input value = {addressOfSenderPerson} onChange={(e) => setAddressOfSenderPerson(e.target.value)} type="text" className="form-control" id="inputNameOfSenderPerson" />
+                        <input value = {addressOfSenderPerson} onChange={(e) => setAddressOfSenderPerson(e.target.value)} type="text" className="newStyle" id="inputNameOfSenderPerson" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="inputRegistrar" className="form-label">Name of Registrar </label>
-                        <input value = {registrar} onChange={(e) => setRegistrar(e.target.value)} type="text" className="form-control" id="inputRegistrar" />
+                        <input value = {registrar} onChange={(e) => setRegistrar(e.target.value)} type="text" className="newStyle" id="inputRegistrar" />
                     </div>
-                    
-                    <div className="mb-3"><br />
+                </div> 
+                <div className="div1">
+                    <div className="mb-3">
+                        <label htmlFor="inputCityorVillage" className="form-label">City/Village </label>
+                        <input value = {city} onChange={(e) => setCity(e.target.value)} type="text" className="newStyle" id="inputCityorVillage" />
+                    </div>
+                </div>
+                    <div className="mb-3 btns"><br />
                     <button type="ADD" className="btn btn-outline-primary" onClick={addData}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
-                        <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                        <button type="SAVE" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-outline-warning" >CANCEL </button></Link> &nbsp;&nbsp;
                         {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
