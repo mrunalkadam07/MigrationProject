@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useNavigate} from "react";
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import "./tablestyle.css";
 import {Link} from "react-router-dom";
@@ -6,6 +6,11 @@ import {Link} from "react-router-dom";
 const services = new DeathRegistrationService();
 
 export const BirthRegistrationForm = (props) => {
+    // const navigate = useNavigate();
+    // const logout = () =>{
+    //     localStorage.setItem("Token","");
+    //     navigate("/login");
+    // }
     // const [billNo, setBillNo] = useState('');
     const [registrationNo, setRegistrationNo] = useState('');
     const [registrationDate, setRegistrationDate] = useState("");
@@ -351,7 +356,7 @@ export const BirthRegistrationForm = (props) => {
                         <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        <Link to="/login"><button type="EXIT" className="btn btn-dark">EXIT</button></Link>
+                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
                     </div>
 
                 </div>
