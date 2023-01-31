@@ -2,22 +2,28 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Assessment.list.css";
 export const Navbar=()=>{
-
+    const navigate = new useNavigate();
     const logout = () =>{
         localStorage.setItem("Token","");
         navigate("/login");
     }
-    const navigate = new useNavigate();
     return (
-        <div className="styleofNav container">
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+       
+        <div className="container" style={{backgroundImage: 
+        
+            "url('0001.jpg')",
+            height:'100vh',
+            marginTop:'-70px',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'}}>
+            <nav className="navbar navbar-expand-lg nav-dark bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">
                         Gram Panchayat Management System
                     </a>
                 </div>
             </nav>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg nav-dark bg-body-tertiary">
                 <div className="container-fluid">
                     <button
                         className="navbar-toggler"

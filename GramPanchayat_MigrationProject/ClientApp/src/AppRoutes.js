@@ -62,10 +62,6 @@ const AppRoutes = [
     element : <AssessmentList />
   },
   {
-    path : '/Navbar',
-    element : <Navbar />
-  },
-  {
     path : '/birthRegistration',
     element : <BirthRegistrationForm />
   },

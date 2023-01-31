@@ -32,9 +32,10 @@ export const Login = (props) => {
         }
         const url = "https://localhost:7277/User/Authenticate";
         axios.post(url,data).then((result)=>{
-            localStorage.setItem("Token", result.data);
+        
             if(result.data!="Unautorized")
             {
+              localStorage.setItem("Token", result.data);
                 navigate('/Navbar')
             }
             else{

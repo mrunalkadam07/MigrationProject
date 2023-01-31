@@ -8,7 +8,7 @@ import './Assessment.list.css';
 
 const services = new DeathRegistrationService();
 
-        export const AssessmentList = (props) => {
+        export const AssessmentList = (e) => {
             const navigate = useNavigate();
 
             useEffect(() => {
