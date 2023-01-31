@@ -10,11 +10,19 @@ using System.IdentityModel.Tokens.Jwt;
 
 using System.Text;
 using DinkToPdf;
+using NLog.Extensions.Logging;
+using NLog.Web;
+using Serilog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var _authkey = builder.Configuration.GetValue<string>("JwtSettings:securitykey");
 
 // Add services to the container.
+
+//logs
+// builder.Logging.ClearProviders();
+// builder.Host.UseNLog();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
@@ -48,6 +56,25 @@ item.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
 var _jwtsettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.Configure<JwtSettings>(_jwtsettings);
+
+var _loggrer = new LoggerConfiguration()
+
+//.WriteTo.File("D:\\Logs\\ApiLog-.log",rollingInterval:RollingInterval.Day)
+
+.CreateLogger();
+
+builder.Logging.AddSerilog(_loggrer);
+
+var _logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).Enrich.FromLogContext().CreateLogger();
+
+    //.MinimumLevel.Information()
+
+    //.WriteTo.File("D:\\SalesAndInventory\\Logs\\SalesInventoryLog.log", rollingInterval: RollingInterval.Day)
+
+    
+
+builder.Logging.AddSerilog(_logger);
+
 
 var app = builder.Build();
 

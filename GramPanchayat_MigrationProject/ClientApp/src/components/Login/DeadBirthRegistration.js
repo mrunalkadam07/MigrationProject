@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useNavigate} from "react";
 import './Assessment.list.css';
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import { Link } from "react-router-dom";
@@ -6,8 +6,13 @@ import { Link } from "react-router-dom";
 const services = new DeathRegistrationService();
 
         export const DeadBirthRegistration = (props) => {
+            // const navigate = useNavigate();
+            // const logout = () =>{
+            //     localStorage.setItem("Token","");
+            //     navigate("/login");
+            // }
             // const [billNo, setBillNo] = useState('');
-            const [registrationNo, setRegistrationNo] = useState('');
+            const [registrationNo, setRegistrationNo] = useState("");
             const [registrationDate, setRegistrationDate] = useState("");
             const [fatherName, setFatherName] = useState("");
             const [motherName, setMotherName] = useState("");
@@ -24,7 +29,7 @@ const services = new DeathRegistrationService();
         
             const addDeadBirthRegistration = (e) =>{
                 e.preventDefault();
-                if(registrationNo==="" && registrationDate==="" && fatherName==="" && motherName==="" && year==="" && city==="" &&
+                if(registrationDate==="" && fatherName==="" && motherName==="" && year==="" && city==="" &&
                 taluka==="" && district==="" && deadBirthDate==="" && sex==="" && address==="" &&
                 birthPlace==="" && detailSender==="" && nameOfRegistar==="")
                 {
@@ -35,20 +40,18 @@ const services = new DeathRegistrationService();
                 console.log("Data : ",registrationNo,registrationDate,fatherName,motherName,year,city,taluka,district,
                 deadBirthDate,sex,address,birthPlace,detailSender,nameOfRegistar);
                 const data = {
-
-                    'registrationNo' : registrationNo,
-                    'registrationDate' : registrationDate,
-                    'fatherName' : fatherName,
-                    'motherName' : motherName,
                     'year' : year,
-                    'city' : city,
-                    'taluka' : taluka,
-                    'district' : district,
+                    'cityVillege' : city,
+                    'taluko' : taluka,
+                    'dist' : district,
+                    'registretionDate' : registrationDate,
                     'deadBirthDate' : deadBirthDate,
                     'sex' : sex,
+                    'fatherName' : fatherName,
+                    'motherName' : motherName,
                     'address' : address,
                     'birthPlace' : birthPlace,
-                    'detailSender' : detailSender,
+                    'nameAndAddressOfDetailSendesPerson' : detailSender,
                     'nameOfRegistar' : nameOfRegistar
 
                 }
@@ -58,41 +61,6 @@ const services = new DeathRegistrationService();
                     console.log(error)
                 })
             }
-            // const modifyAssessmentList = (e) =>{
-            //     e.preventDefault();
-            //     if(formNo === "")
-            //     {
-            //         alert("Enter the bill No to update the details.")
-            //         console.log("Input fields are Empty");
-            //         return
-            //     }
-            //     console.log("Data : ",formNo,wardNo,data,oldAssessmentNo,ownersName,holdersName,propertyAddress,occupiedBy,useOfPropertyType,
-            //     locationCode,yearOfBuildup,totalAreaOfBuildupSqMeter,openAreaWhereNoBuildupSqMeter,openAreaPlotSqMeter,assessedPropertyTax,
-            //     wardTotal);
-            //     const data = {
-                    
-            //         formNo : formNo,
-            //         wardNo : wardNo,
-            //         date : date,
-            //         oldAssessmentNo : oldAssessmentNo,
-            //         ownersName : ownersName,
-            //         holdersName : holdersName,
-            //         propertyAddress : propertyAddress,
-            //         occupiedBy : occupiedBy,
-            //         useOfPropertyType : useOfPropertyType,
-            //         locationCode : locationCode,
-            //         yearOfBuildup : yearOfBuildup,
-            //         totalAreaOfBuildupSqMeter : totalAreaOfBuildupSqMeter,
-            //         openAreaWhereNoBuildupSqMeter : openAreaWhereNoBuildupSqMeter,
-            //         openAreaPlotSqMeter : openAreaPlotSqMeter,
-            //         assessedPropertyTax : assessedPropertyTax,
-            //         wardTotal : wardTotal
-            //     }
-            //     services.AssessmentList(data).then((data)=>{
-            //         console.log(data)
-            //     }).catch((error)=>{
-            //         console.log(error)
-            //     })
 
                 const modifyData = (e) => {
                     e.preventDefault();
@@ -100,7 +68,7 @@ const services = new DeathRegistrationService();
                     console.log(url);
                     const data = {
 
-                        'registrationNo' : registrationNo,
+                        'registretionNo' : registrationNo,
                         'registrationDate' : registrationDate,
                         'fatherName' : fatherName,
                         'motherName' : motherName,
@@ -122,13 +90,13 @@ const services = new DeathRegistrationService();
                             'Content-Type' : 'application/json',
                             'Authorization':'Bearer'+" "+localStorage.getItem("Token")
                         },
-                        body: JSON.stringify({data})
+                        body: JSON.stringify(data)
                         
                         
                     }).then(response => response.json())
                     .then((result) => { 
                         console.log(result); 
-                         
+                         alert("Data Updated Successfully!")
                        // console.log(data); 
                       }) 
                       .catch((err) => { 
@@ -175,20 +143,20 @@ const services = new DeathRegistrationService();
               };
             
               function prePopulate(id){
-                    setRegistrationNo(data[id-1].formNo)
-                    setRegistrationDate(data[id-1].wardNo)
-                    setFatherName(data[id-1].date)
-                    setMotherName(data[id-1].oldAssessmentNo)
-                    setYear(data[id-1].ownersName)
-                    setCity(data[id-1].holdersName)
-                    setTaluka(data[id-1].propertyAddress)
-                    setDistrict(data[id-1].occupiedBy)
-                    setDeadBirthDate(data[id-1].useOfPropertyType)
-                    setSex(data[id-1].locationCode)
-                    setAddress(data[id-1].yearOfBuildup)
-                    setBirthPlace(data[id-1].totalAreaOfBuildupSqMeter)
-                    setDetailSender(data[id-1].openAreaWhereNoBuildupSqMeter)
-                    setNameOfRegistar(data[id-1].openAreaPlotSqMeter)
+                    setRegistrationNo(data[id-1].registretionNo)
+                    setRegistrationDate(data[id-1].registretionDate)
+                    setFatherName(data[id-1].fatherName)
+                    setMotherName(data[id-1].motherName)
+                    setYear(data[id-1].year)
+                    setCity(data[id-1].cityVillege)
+                    setTaluka(data[id-1].taluko)
+                    setDistrict(data[id-1].dist)
+                    setDeadBirthDate(data[id-1].deadBirthDate)
+                    setSex(data[id-1].sex)
+                    setAddress(data[id-1].address)
+                    setBirthPlace(data[id-1].birthPlace)
+                    setDetailSender(data[id-1].nameAndAddressOfDetailSendesPerson)
+                    setNameOfRegistar(data[id-1].nameOfRegistar)
               }
             
               useEffect(() => {
@@ -289,7 +257,7 @@ const services = new DeathRegistrationService();
                         <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        <Link to="/login"><button type="EXIT" className="btn btn-dark">EXIT</button></Link>
+                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
                     </div>
 
                 </div>
@@ -316,7 +284,7 @@ const services = new DeathRegistrationService();
                   <td>{val.fatherName}<br/>{val.motherName}</td>
                   <td>{val.address}<br/>{val.birthPlace}</td>
                   <td>
-                  <button onClick={()=>prePopulate(val.registrationNo)}>Update</button>
+                  <button onClick={()=>prePopulate(val.registretionNo)}>Update</button>
                   </td>
                 </tr>
               )

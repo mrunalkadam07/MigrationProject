@@ -1,14 +1,21 @@
 import React, {useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import './Assessment.list.css';
 //import AssessmentListServices from "../Service/AssessmentListService";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-//const services = new AssessmentListServices();
+const services = new DeathRegistrationService();
 
         export const AssessmentList = (props) => {
             const navigate = useNavigate();
+
+            useEffect(() => {
+                
+                fetchData();
+                
+              }, []);
             // const [billNo, setBillNo] = useState('');
             const [formNo, setFormNo] = useState('');
             const [wardNo, setWardNo] = useState("");
@@ -27,81 +34,44 @@ import './Assessment.list.css';
             const [assessedPropertyTax, setAssessedPropertyTax] = useState("");
             const [wardTotal, setWardTotal] = useState("");
         
-            // const addAssessmentList = (e) =>{
-            //     e.preventDefault();
-            //     if(formNo==="" && wardNo==="" && date==="" && oldAssessmentNo==="" && ownersName==="" && holdersName==="" &&
-            //     propertyAddress==="" && occupiedBy==="" && useOfPropertyType==="" && locationCode==="" && yearOfBuildup==="" &&
-            //     totalAreaOfBuildupSqMeter==="" && openAreaWhereNoBuildupSqMeter==="" && openAreaPlotSqMeter==="" && 
-            //     assessedPropertyTax==="" && wardTotal==="")
-            //     {
-            //         alert("Enter all the required input Fields")
-            //         console.log("Input fields are Empty");
-            //         return
-            //     }
-            //     console.log("Data : ",formNo,wardNo,data,oldAssessmentNo,ownersName,holdersName,propertyAddress,occupiedBy,useOfPropertyType,
-            //     locationCode,yearOfBuildup,totalAreaOfBuildupSqMeter,openAreaWhereNoBuildupSqMeter,openAreaPlotSqMeter,assessedPropertyTax,
-            //     wardTotal);
-            //     const data = {
+            const addAssessmentList = (e) =>{
+                e.preventDefault();
+                if(wardNo==="" && date==="" && oldAssessmentNo==="" && ownersName==="" && holdersName==="" &&
+                propertyAddress==="" && occupiedBy==="" && useOfPropertyType==="" && locationCode==="" && yearOfBuildup==="" &&
+                totalAreaOfBuildupSqMeter==="" && openAreaWhereNoBuildupSqMeter==="" && openAreaPlotSqMeter==="" && 
+                assessedPropertyTax==="" && wardTotal==="")
+                {
+                    alert("Enter all the required input Fields")
+                    console.log("Input fields are Empty");
+                    return
+                }
+                console.log("Data : ",formNo,wardNo,data,oldAssessmentNo,ownersName,holdersName,propertyAddress,occupiedBy,useOfPropertyType,
+                locationCode,yearOfBuildup,totalAreaOfBuildupSqMeter,openAreaWhereNoBuildupSqMeter,openAreaPlotSqMeter,assessedPropertyTax,
+                wardTotal);
+                const data = {
+                    'wardNo' : wardNo,
+                    'date' : date,
+                    'oldAssasmentNo' : oldAssessmentNo,
+                    'ownersName' : ownersName,
+                    'holdersName' : holdersName,
+                    'propertyAddress' : propertyAddress,
+                    'occupiedBy' : occupiedBy,
+                    'useOfPropertyType' : useOfPropertyType,
+                    'locationCode' : locationCode,
+                    'yearOfBuildup' : yearOfBuildup,
+                    'totalAreaOfBuildupSqMeter' : totalAreaOfBuildupSqMeter,
+                    'openAreaWhereNotBuildupSqMeter' : openAreaWhereNoBuildupSqMeter,
+                    'openAreasPlotSqMeter' : openAreaPlotSqMeter,
+                    'assasedPropertyTax' : assessedPropertyTax,
+                    'wardTotal' : wardTotal  
 
-            //         'formNo' : formNo,
-            //         'wardNo' : wardNo,
-            //         'date' : date,
-            //         'oldAssessmentNo' : oldAssessmentNo,
-            //         'ownersName' : ownersName,
-            //         'holdersName' : holdersName,
-            //         'propertyAddress' : propertyAddress,
-            //         'occupiedBy' : occupiedBy,
-            //         'useOfPropertyType' : useOfPropertyType,
-            //         'locationCode' : locationCode,
-            //         'yearOfBuildup' : yearOfBuildup,
-            //         'totalAreaOfBuildupSqMeter' : totalAreaOfBuildupSqMeter,
-            //         'openAreaWhereNoBuildupSqMeter' : openAreaWhereNoBuildupSqMeter,
-            //         'openAreaPlotSqMeter' : openAreaPlotSqMeter,
-            //         'assessedPropertyTax' : assessedPropertyTax,
-            //         'wardTotal' : wardTotal  
-
-            //     }
-            //     services.AssessmentList(data).then((data)=>{
-            //         console.log(data)
-            //     }).catch((error)=>{
-            //         console.log(error)
-            //     })
-            // }
-            // const modifyAssessmentList = (e) =>{
-            //     e.preventDefault();
-            //     if(formNo === "")
-            //     {
-            //         alert("Enter the bill No to update the details.")
-            //         console.log("Input fields are Empty");
-            //         return
-            //     }
-            //     console.log("Data : ",formNo,wardNo,data,oldAssessmentNo,ownersName,holdersName,propertyAddress,occupiedBy,useOfPropertyType,
-            //     locationCode,yearOfBuildup,totalAreaOfBuildupSqMeter,openAreaWhereNoBuildupSqMeter,openAreaPlotSqMeter,assessedPropertyTax,
-            //     wardTotal);
-            //     const data = {
-                    
-            //         formNo : formNo,
-            //         wardNo : wardNo,
-            //         date : date,
-            //         oldAssessmentNo : oldAssessmentNo,
-            //         ownersName : ownersName,
-            //         holdersName : holdersName,
-            //         propertyAddress : propertyAddress,
-            //         occupiedBy : occupiedBy,
-            //         useOfPropertyType : useOfPropertyType,
-            //         locationCode : locationCode,
-            //         yearOfBuildup : yearOfBuildup,
-            //         totalAreaOfBuildupSqMeter : totalAreaOfBuildupSqMeter,
-            //         openAreaWhereNoBuildupSqMeter : openAreaWhereNoBuildupSqMeter,
-            //         openAreaPlotSqMeter : openAreaPlotSqMeter,
-            //         assessedPropertyTax : assessedPropertyTax,
-            //         wardTotal : wardTotal
-            //     }
-            //     services.AssessmentList(data).then((data)=>{
-            //         console.log(data)
-            //     }).catch((error)=>{
-            //         console.log(error)
-            //     })
+                }
+                services.AssessmentList(data).then((data)=>{
+                    console.log(data)
+                }).catch((error)=>{
+                    console.log(error)
+                })
+            }
 
                 const modifyData = (e) => {
                     e.preventDefault();
@@ -112,7 +82,7 @@ import './Assessment.list.css';
                     'formNo' : formNo,
                     'wardNo' : wardNo,
                     'date' : date,
-                    'oldAssessmentNo' : oldAssessmentNo,
+                    'oldAssasmentNo' : oldAssessmentNo,
                     'ownersName' : ownersName,
                     'holdersName' : holdersName,
                     'propertyAddress' : propertyAddress,
@@ -121,9 +91,9 @@ import './Assessment.list.css';
                     'locationCode' : locationCode,
                     'yearOfBuildup' : yearOfBuildup,
                     'totalAreaOfBuildupSqMeter' : totalAreaOfBuildupSqMeter,
-                    'openAreaWhereNoBuildupSqMeter' : openAreaWhereNoBuildupSqMeter,
-                    'openAreaPlotSqMeter' : openAreaPlotSqMeter,
-                    'assessedPropertyTax' : assessedPropertyTax,
+                    'openAreaWhereNotBuildupSqMeter' : openAreaWhereNoBuildupSqMeter,
+                    'openAreasPlotSqMeter' : openAreaPlotSqMeter,
+                    'assasedPropertyTax' : assessedPropertyTax,
                     'wardTotal' : wardTotal }
                     fetch(url , {
                         method : 'PUT',
@@ -132,13 +102,13 @@ import './Assessment.list.css';
                             'Content-Type' : 'application/json',
                             'Authorization':'Bearer'+" "+localStorage.getItem("Token")
                         },
-                        body: JSON.stringify({data})
+                        body: JSON.stringify(data)
                         
                         
                     }).then(response => response.json())
                     .then((result) => { 
                         console.log(result); 
-                         
+                         alert("Data Updated SuccessFully")
                        // console.log(data); 
                       }) 
                       .catch((err) => { 
@@ -170,10 +140,6 @@ import './Assessment.list.css';
             
                 }
 
-                const logout = () =>{
-                    localStorage.removeItem("Token")
-                    navigate("/login");
-                }
                 
                 const [data, setData] = useState([])
               const fetchData = () => { 
@@ -193,7 +159,7 @@ import './Assessment.list.css';
                     setFormNo(data[id-1].formNo)
                     setWardNo(data[id-1].wardNo)
                     setDate(data[id-1].date)
-                    setOldAssessmentNo(data[id-1].oldAssessmentNo)
+                    setOldAssessmentNo(data[id-1].oldAssasmentNo)
                     setOwnersName(data[id-1].ownersName)
                     setHoldersName(data[id-1].holdersName)
                     setPropertyAddress(data[id-1].propertyAddress)
@@ -202,20 +168,18 @@ import './Assessment.list.css';
                     setLocationCode(data[id-1].locationCode)
                     setYearOfBuildup(data[id-1].yearOfBuildup)
                     setTotalAreaOfBuildupSqMeter(data[id-1].totalAreaOfBuildupSqMeter)
-                    setOpenAreaWhereNoBuildupSqMeter(data[id-1].openAreaWhereNoBuildupSqMeter)
-                    setOpenAreaPlotSqMeter(data[id-1].openAreaPlotSqMeter)
-                    setAssessedPropertyTax(data[id-1].assessedPropertyTax)
+                    setOpenAreaWhereNoBuildupSqMeter(data[id-1].openAreaWhereNotBuildupSqMeter)
+                    setOpenAreaPlotSqMeter(data[id-1].openAreasPlotSqMeter)
+                    setAssessedPropertyTax(data[id-1].assasedPropertyTax)
                     setWardTotal(data[id-1].wardTotal)
               }
             
-              useEffect(() => {
-                if(!localStorage.getItem('token')){
-                    navigate('/login')
-                }
-                fetchData();
-                
-              }, []);
-
+              
+              const logout = () =>{
+                localStorage.setItem("Token","");
+                navigate("/login");
+            }
+        
             
     return(
         <>  
@@ -326,15 +290,11 @@ import './Assessment.list.css';
                     </div>
 
                     <div className="mb-3 btns"><br/>
-                        <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
+                        <button type="ADD" className="btn btn-outline-primary" onClick={addAssessmentList}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-outline-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
-                        <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
-                        <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
-                        <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
                         <button type="EXIT" className="btn btn-outline-dark" onClick={logout}>LOGOUT</button>
                     </div>
 

@@ -4,11 +4,19 @@ import DeathRegistrationAxiosService from "./DeathRegistrationAxiosService";
 const axios = new DeathRegistrationAxiosService();
 
 export default class DeathRegistrationService{
+    PropertyTaxPaid(data){
+        console.log("data : ",data,"Url : ",Configuration.PropertyTaxPaid)
+        return axios.post(Configuration.PropertyTaxPaid,data,false)
+    }
+    AssessmentList(data){
+        console.log("data : ",data,"Url : ",Configuration.Assasmenttax)
+        return axios.post(Configuration.Assasmenttax,data,false)
+    }
     DeadBirthRegistration(data){
         console.log("data : ",data,"Url : ",Configuration.DeadBirthReg)
         return axios.post(Configuration.DeadBirthReg,data,false)
     }
-    BirthRegistrationForm(data){
+    BirthRegistration(data){
         console.log("data : ",data,"Url : ",Configuration.BirthRegistration)
         return axios.post(Configuration.BirthRegistration,data,false)
     }

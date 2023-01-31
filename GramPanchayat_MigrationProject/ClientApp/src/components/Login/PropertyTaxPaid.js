@@ -1,12 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useNavigate} from "react";
 import PropertyTaxServices from "../../Services/PropertyTaxService";
 import "./Assessment.list.css";
+import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import "./tablestyle.css";
 import {Link} from "react-router-dom";
 
-const services = new PropertyTaxServices();
+const services = new DeathRegistrationService();
 
 export const PropertyTaxPaidForm = (props) => {
+    // const navigate = useNavigate();
+    // const logout = () =>{
+    //     localStorage.setItem("Token","");
+    //     navigate("/login");
+    // }
     const [billNo, setBillNo] = useState('');
     const [billDate, setBillDate] = useState('');
     const [year, setYear] = useState("");
@@ -21,8 +27,10 @@ export const PropertyTaxPaidForm = (props) => {
     const [total, setTotal] = useState("");
 
     const addPropertyTax = (e) =>{
+
+       
         e.preventDefault();
-        if(billNo=== "" && billDate === "" && year==="" && name==="" && address==="" &&
+        if(billDate === "" && year==="" && name==="" && address==="" &&
          propertyNo==="" && homeTax==="" && electricityTax==="" && specialWaterTax==="" && 
          educationalsess==="" && penaltyCharge==="" && total==="")
         {
@@ -30,9 +38,8 @@ export const PropertyTaxPaidForm = (props) => {
             console.log("Input fields are Empty");
             return
         }
-        console.log("Data : ",billNo,billDate,year,name,address,propertyNo,homeTax,electricityTax,specialWaterTax,educationalsess,penaltyCharge,total);
+        console.log("Data : ",billDate,year,name,address,propertyNo,homeTax,electricityTax,specialWaterTax,educationalsess,penaltyCharge,total);
         const data = {
-            'billNo' : billNo,
             'billdate' : billDate,
             'year' : year,
             'name' : name,
@@ -105,13 +112,13 @@ export const PropertyTaxPaidForm = (props) => {
                 'Content-Type' : 'application/json',
                 'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             },
-            body: JSON.stringify({data})
+            body: JSON.stringify(data)
             
             
         }).then(response => response.json())
         .then((result) => { 
             console.log(result); 
-             
+             alert("Data Updated SuccessFully!")
            // console.log(data); 
           }) 
           .catch((err) => { 
@@ -259,7 +266,7 @@ export const PropertyTaxPaidForm = (props) => {
                     </div>
                 {/* //</div> */}
                     <div className="mb-3 btns"><br/>
-                    <button type="ADD" className="btn btn-outline-primary" >ADD </button> &nbsp;&nbsp;
+                    <button type="ADD" className="btn btn-outline-primary" onClick={addPropertyTax}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
@@ -268,7 +275,7 @@ export const PropertyTaxPaidForm = (props) => {
                         <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
                         <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
                         <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
-                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">EXIT</button></Link>
+                         <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
                         </div>
                 </div>
                 

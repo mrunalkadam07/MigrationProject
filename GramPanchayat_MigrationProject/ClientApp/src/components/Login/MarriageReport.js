@@ -69,7 +69,7 @@ function MarriageReport(){
       };
     return (
       <>
-      <div className="header">
+      <div>
       <h1 align="center">Marriage Registration Report</h1>
       </div>
       <div class='col-md-6'>

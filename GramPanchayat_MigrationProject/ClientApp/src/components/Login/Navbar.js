@@ -2,6 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Assessment.list.css";
 export const Navbar=()=>{
+
+    const logout = () =>{
+        localStorage.setItem("Token","");
+        navigate("/login");
+    }
     const navigate = new useNavigate();
     return (
         <div className="styleofNav container">
@@ -140,7 +145,7 @@ export const Navbar=()=>{
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="/">
+                                <a className="nav-link" aria-current="page" onClick={logout}>
                                     LOGOUT
                                 </a>
                             </li>

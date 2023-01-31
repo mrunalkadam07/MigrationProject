@@ -39,7 +39,7 @@ export const BirthRegistrationForm = (props) => {
 
     const addBirthRegistration = (e) =>{
         e.preventDefault();
-        if(registrationNo === "" && registrationDate==="" && dateOfBirth==="" && sex==="" &&
+        if(registrationDate==="" && dateOfBirth==="" && sex==="" &&
          childName==="" && fathersName==="" && mothersName==="" && address==="" && weightOfChild==="" && 
          birthPlace==="" && senderPerson==="" && motherResidence==="" && city==="" && districtName==="" && state==="" && 
          religion==="" && fatherEducationalQualification==="" && motherEducationalQualification==="" && 
@@ -50,37 +50,37 @@ export const BirthRegistrationForm = (props) => {
             console.log("Input fields are Empty");
             return
         }
-        console.log("Data : ",registrationNo,registrationDate,dateOfBirth,sex,childName,fathersName,mothersName,address,weightOfChild,
+        console.log("Data : ",registrationDate,dateOfBirth,sex,childName,fathersName,mothersName,address,weightOfChild,
         birthPlace,senderPerson,motherResidence,city,districtName,state,religion,fatherEducationalQualification,
         motherEducationalQualification,fatherOccupation,motherOccupation,motherAgeMarriageTime,motherAgeAtChildTime,
         totalLiveChildWithThisChild,deliveryTime);
         const data = {
-            'registrationNo' : registrationNo,
+            'registionDate' : registrationDate,
             'dateOfBirth' : dateOfBirth,
             'sex' : sex,
             'childName' : childName,
-            'fathersName' : fathersName,
-            'mothersName' : mothersName,
+            'fatherName' : fathersName,
+            'motherName' : mothersName,
             'address' : address,
             'weightOfChild' : weightOfChild,
             'birthPlace' : birthPlace,
-            'senderPerson' : senderPerson,
-            'motherResidence' : motherResidence,
-            'city' : city,
-            'districtName' : districtName,
+            'nameAndAddressOfDetailSenderPerson' : senderPerson,
+            'cityVillegName' : city,
+            'distName' : districtName,
             'state' : state,
             'religion' : religion,
             'fatherEducationalQualification' : fatherEducationalQualification,
             'motherEducationalQualification' : motherEducationalQualification,
             'fatherOccupation' : fatherOccupation,
             'motherOccupation' : motherOccupation,
-            'motherAgeMarriageTime' : motherAgeMarriageTime,
+            'motherAgeMerrageTime' : motherAgeMarriageTime,
             'motherAgeAtChildTime' : motherAgeAtChildTime,
-            'totalLiveChildWithThisChild' : totalLiveChildWithThisChild,
-            'deliveryTime' : deliveryTime
+            'deliveryType' : deliveryTime,
+            'motherResidence' : motherResidence,
+            'totalLiveChildWithThisChild' : totalLiveChildWithThisChild
 
         }
-        services.BirthRegistrationForm(data).then((data)=>{
+        services.BirthRegistration(data).then((data)=>{
             console.log(data)
         }).catch((error)=>{
             console.log(error)
@@ -93,28 +93,29 @@ export const BirthRegistrationForm = (props) => {
         console.log(url);
         const data = {
             'registrationNo' : registrationNo,
+            'registionDate' : registrationDate,
             'dateOfBirth' : dateOfBirth,
             'sex' : sex,
             'childName' : childName,
-            'fathersName' : fathersName,
-            'mothersName' : mothersName,
+            'fatherName' : fathersName,
+            'motherName' : mothersName,
             'address' : address,
             'weightOfChild' : weightOfChild,
             'birthPlace' : birthPlace,
-            'senderPerson' : senderPerson,
-            'motherResidence' : motherResidence,
-            'city' : city,
-            'districtName' : districtName,
+            'nameAndAddressOfDetailSenderPerson' : senderPerson,
+            'cityVillegName' : city,
+            'distName' : districtName,
             'state' : state,
             'religion' : religion,
             'fatherEducationalQualification' : fatherEducationalQualification,
             'motherEducationalQualification' : motherEducationalQualification,
             'fatherOccupation' : fatherOccupation,
             'motherOccupation' : motherOccupation,
-            'motherAgeMarriageTime' : motherAgeMarriageTime,
+            'motherAgeMerrageTime' : motherAgeMarriageTime,
             'motherAgeAtChildTime' : motherAgeAtChildTime,
-            'totalLiveChildWithThisChild' : totalLiveChildWithThisChild,
-            'deliveryTime' : deliveryTime
+            'deliveryType' : deliveryTime,
+            'motherResidence' : motherResidence,
+            'totalLiveChildWithThisChild' : totalLiveChildWithThisChild
         }
         fetch(url , {
             method : 'PUT',
@@ -123,14 +124,14 @@ export const BirthRegistrationForm = (props) => {
                 'Content-Type' : 'application/json',
                 'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             },
-            body: JSON.stringify({data})
-            
+            body: JSON.stringify(data)
+  
             
         }).then(response => response.json())
         .then((result) => { 
             console.log(result); 
-             
-           // console.log(data); 
+             alert("Data Updated SuccessFully!")
+           console.log("Data:"+data); 
           }) 
           .catch((err) => { 
             console.log(err.message); 
@@ -177,28 +178,29 @@ export const BirthRegistrationForm = (props) => {
 
   function prePopulate(id){
         setRegistrationNo(data[id-1].registrationNo)
+        setRegistrationDate(data[id-1].registionDate)
         setDateOfBirth(data[id-1].dateOfBirth)
         setSex(data[id-1].sex)
         setChildName(data[id-1].childName)
-        setFathersName(data[id-1].fathersName)
-        setMothersName(data[id-1].mothersName)
+        setFathersName(data[id-1].fatherName)
+        setMothersName(data[id-1].motherName)
         setAddress(data[id-1].address)
         setWeightOfChild(data[id-1].weightOfChild)
         setBirthPlace(data[id-1].birthPlace)
-        setSendorPerson(data[id-1].senderPerson)
-        setMotherResidence(data[id-1].motherResidence)
-        setCity(data[id-1].city)
-        setDistrictName(data[id-1].districtName)
+        setSendorPerson(data[id-1].nameAndAddressOfDetailSenderPerson)
+        setMotherResidence(data[id-1].motherRecidences)
+        setCity(data[id-1].cityVillegName)
+        setDistrictName(data[id-1].distName)
         setState(data[id-1].state)
         setReligion(data[id-1].religion)
         setFatherEducationalQualification(data[id-1].fatherEducationalQualification)
         setMotherEducationalQualification(data[id-1].motherEducationalQualification)
         setFatherOccupation(data[id-1].fatherOccupation)
         setMotherOccupation(data[id-1].motherOccupation)
-        setMotherAgeMarriageTime(data[id-1].motherAgeMarriageTime)
+        setMotherAgeMarriageTime(data[id-1].motherAgeMerrageTime)
         setMotherAgeAtChildTime(data[id-1].motherAgeAtChildTime)
         setTotalLiveChildWithThisChild(data[id-1].totalLiveChildWithThisChild)
-        setDeliveryTime(data[id-1].deliveryTime)
+        setDeliveryTime(data[id-1].deliveryType)
   }
 
   useEffect(() => {

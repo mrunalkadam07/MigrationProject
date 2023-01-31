@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using NLog; 
+using ILogger = NLog.ILogger;
 
 namespace GramPanchayat_MigrationProject.API.Controllers
 {
@@ -16,6 +18,9 @@ namespace GramPanchayat_MigrationProject.API.Controllers
     {
         private readonly ILoginRepository loginRepository;
         private readonly IConfiguration _configuration;
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
+
 
         public LoginsController(IConfiguration configuration,ILoginRepository loginRepository)
         {
@@ -33,9 +38,15 @@ namespace GramPanchayat_MigrationProject.API.Controllers
 
         [HttpGet]
         public IActionResult GetAllLogins(){
+            try{
             {
                 var logins = loginRepository.GetAll();
                 return Ok(logins);
+            }
+            }
+            catch(Exception ex){
+                logger.Error(ex.ToString()); 
+                return BadRequest(ex.ToString());
             }
         }
 

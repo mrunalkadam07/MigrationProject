@@ -215,7 +215,7 @@ function Dreport(){
     // }); 
     return (
       <>
-      <div className="header">
+      <div>
       <h1 align="center">Death Registration Report</h1>
       </div>
       <div className='col-md-6'>

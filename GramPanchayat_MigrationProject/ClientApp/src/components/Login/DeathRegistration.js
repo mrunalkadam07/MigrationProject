@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useNavigate } from 'react';
 import './Assessment.list.css';
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import {Link} from "react-router-dom";
@@ -6,6 +6,11 @@ import {Link} from "react-router-dom";
 const services = new DeathRegistrationService();
 
 export const DeathRegistrationForm = (props) => {
+    // const navigate = useNavigate();
+    // const logout = () =>{
+    //     localStorage.setItem("Token","");
+    //     navigate("/login");
+    // }
 
     const [registration_no, setRegistrationNo] = useState("");
     const [taluka, setTaluka] = useState("");
@@ -114,13 +119,13 @@ export const DeathRegistrationForm = (props) => {
                 'Content-Type' : 'application/json',
                 'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             },
-            body: JSON.stringify({data})
+            body: JSON.stringify(data)
             
             
         }).then(response => response.json())
         .then((result) => { 
             console.log(result); 
-             
+            alert("Data Updated Successfully");
            // console.log(data); 
           }) 
           .catch((err) => { 
@@ -295,7 +300,7 @@ export const DeathRegistrationForm = (props) => {
                         <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
                         <button type="NEXT" classNameName="btn btn-primary">NEXT </button> &nbsp;&nbsp;
                         <button type="PREVIOUS" classNameName="btn btn-primary">PREVIOUS </button> &nbsp;&nbsp; */}
-                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">EXIT</button></Link>
+                         <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
                     </div>
                     
                 </div>

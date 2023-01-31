@@ -67,7 +67,7 @@ function DeadBirthRegistrationReport(){
       };
     return (
       <>
-      <div className="header">
+      <div>
       <h1 align="center">Dead Birth Registration Report</h1>
       </div>
       <div class='col-md-6'>

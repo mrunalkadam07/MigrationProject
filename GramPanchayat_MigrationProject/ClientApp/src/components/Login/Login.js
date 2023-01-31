@@ -74,7 +74,7 @@ export const Login = (props) => {
             {/* <label class="form-label" for="form3Example4">Password</label> */}<br/>
           </div>
           <div>
-          <button  type="submit" className="btn btn-success" href="">LOGIN </button> 
+          <button  type="submit" className="btn btn-success">LOGIN </button> 
           </div>
         </form>
       </div>

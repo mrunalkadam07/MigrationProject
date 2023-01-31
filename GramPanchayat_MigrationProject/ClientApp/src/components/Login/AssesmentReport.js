@@ -74,7 +74,7 @@ function AssesmentReport(){
       };
     return (
       <>
-      <div className="header">
+      <div>
       <h1 align="center">Assesment Report</h1>
       </div>
       <div class='col-md-6'>

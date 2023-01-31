@@ -69,7 +69,7 @@ function TaxPaidReport(){
 
     return (
       <>
-      <div className="header">
+      <div>
       <h1 align="center">Tax Paid Report</h1>
       </div>
       <div class='col-md-6'>

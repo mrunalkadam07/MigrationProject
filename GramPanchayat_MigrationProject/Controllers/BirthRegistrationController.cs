@@ -21,41 +21,85 @@ namespace GramPanchayat_MigrationProject.API.Controllers
     public class BirthRegistrationController : Controller
     {
         private readonly IBirthRegRepository birthregRepository;
-        public BirthRegistrationController(IBirthRegRepository birthregRepository)
+        private readonly ILogger<Birth> _logger;
+
+        public BirthRegistrationController(IBirthRegRepository birthregRepository,ILogger<Birth> _logger)
         {
             this.birthregRepository = birthregRepository;
+            this._logger = _logger;
         }
         [HttpGet]
         public IActionResult GetAll(){
+            try{
             {
+                _logger.LogInformation("Birth Registration Data Trigger");
                 var registrations = birthregRepository.GetAll();
                 return Ok(registrations);
+            }
+            }
+             catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
             }
         }
         [HttpGet("{RegistrationNo}")]
         public IActionResult GetReg(int RegistrationNo)
         {
+            try{
+            _logger.LogInformation("Birth Registration Get By ID");
           var reg = birthregRepository.Get(RegistrationNo);
           if(reg == null)
           {
+            _logger.LogInformation("Id not found error");
             return NotFound();
           }
           return Ok(reg);
         }
+         catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
+        }
         [HttpPost]
         public IActionResult AddDeath(Birth birth){
+            try{
+                _logger.LogInformation("New Birth Registration data Added");
            birthregRepository.Add(birth);
            return Ok();
+            }
+             catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
         [HttpDelete("{RegistrationNo}")]
         public IActionResult DeleteDeath(int RegistrationNo){
+            try{
+                _logger.LogInformation("Deleted Birth Registration data");
            birthregRepository.Delete(RegistrationNo);
            return NoContent();
+            }
+             catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
         [HttpPut("{RegistrationNo}")]
         public Birth Update(int RegistrationNo,Birth birth)
         {
-           return birthregRepository.Update(RegistrationNo, birth);
+            try{
+                _logger.LogInformation("Updated Birth Registration Data");
+                return birthregRepository.Update(RegistrationNo, birth);
+            }
+             catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return birthregRepository.Update(RegistrationNo, birth);
+            }
         }
 
     //     

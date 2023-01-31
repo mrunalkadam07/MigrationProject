@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useNavigate} from "react";
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import './tablestyle.css';
 import {Link} from "react-router-dom";
@@ -7,6 +7,11 @@ import {Link} from "react-router-dom";
         const services = new DeathRegistrationService();
 
         export const MarriageRegistrationForm = (props) => {
+            // const navigate = useNavigate();
+            // const logout = () =>{
+            //     localStorage.setItem("Token","");
+            //     navigate("/login");
+            // }
             const [registrationNo, setRegistrationNo] = useState('');
             const [marriageDate, setMarriageDate] = useState("");
             const [marriagePlace, setMarriagePlace] = useState("");
@@ -41,7 +46,7 @@ import {Link} from "react-router-dom";
         
             const addMarriageRegistration = (e) =>{
                 e.preventDefault();
-                if(registrationNo === "" && marriageDate==="" && marriagePlace==="" && fullNameOfGroom==="" &&
+                if(marriageDate==="" && marriagePlace==="" && fullNameOfGroom==="" &&
                  groomsAge==="" && groomsReligion==="" && groomsPlaceOfResidence==="" && groomsAddress==="" && 
                  groomDesignation==="" && fullNameOfBride==="" && bridesAge==="" && bridesReligion==="" &&
                  bridesPlaceOfResidence==="" && bridesAddress==="" && bridesDesignation==="" && groomsFatherName==="" &&
@@ -59,32 +64,29 @@ import {Link} from "react-router-dom";
                 groomsFatherName,groomsMotherName,groomsFatherAge,groomsParentAddress,groomsParentPlaceOfResidence,bridesFatherName,bridesMotherName,bridesFatherAge,
                 bridesParentAddress,bridesParentPlaceOfResidence,nameOfBrahman,firstFullNameOfWitness,firstWitnessAddress,secondFullNameOfWitness,secondWitnessAddress);
                 const data = {
-                    'registrationNo' : registrationNo,
-                    'marriageDate' : marriageDate,
-                    'marriagePlace' : marriagePlace,
-                    'fullNameOfGroom' : fullNameOfGroom,
-                    'groomsAge' : groomsAge,
-                    'groomsReligion' : groomsReligion,
-                    'groomsPlaceOfResidence' : groomsPlaceOfResidence,
-                    'groomsAddress' : groomsAddress,
-                    'groomDesignation' : groomDesignation,
-                    'fullNameOfBride' : fullNameOfBride,
-                    'bridesAge' : bridesAge,
-                    'bridesReligion' : bridesReligion,
-                    'bridesPlaceOfResidence' : bridesPlaceOfResidence,
-                    'bridesAddress' : bridesAddress,
-                    'bridesDesignation' : bridesDesignation,
-                    'groomsFatherName' : groomsFatherName,
-                    'groomsMotherName' : groomsMotherName,
-                    'groomsFatherAge' : groomsFatherAge,
-                    'groomsParentAddress' : groomsParentAddress,
-                    'groomsParentPlaceOfResidence' : groomsParentPlaceOfResidence,
-                    'bridesFatherName' : bridesFatherName,
-                    'bridesMotherName' : bridesMotherName,
-                    'bridesFatherAge' : bridesFatherAge,
-                    'bridesParentAddress' : bridesParentAddress,
-                    'bridesParentPlaceOfResidence' : bridesParentPlaceOfResidence,
-                    'nameOfBrahman' : nameOfBrahman,
+                    'merrageDate' : marriageDate,
+                    'merragePlace' : marriagePlace,
+                    'fullNameOFGroom' : fullNameOfGroom,
+                    'groomAge' : groomsAge,
+                    'groomReligion' : groomsReligion,
+                    'groomPlaceOfResidences' : groomsPlaceOfResidence,
+                    'groomAddress' : groomsAddress,
+                    'merrageTimeGroomDesignation' : groomDesignation,
+                    'fullNameOFBride' : fullNameOfBride,
+                    'brideAge' : bridesAge,
+                    'brideReligion' : bridesReligion,
+                    'bridePlaceOfResidences' : bridesPlaceOfResidence,
+                    'brideAddress' : bridesAddress,
+                    'merrageTimeBrideDesignation' : bridesDesignation,
+                    'groomFatherAndMotherName' : groomsFatherName,
+                    'groomFatherMotherAge' : groomsFatherAge,
+                    'groomsFateherMotherPLaceOfResidentes' : groomsParentPlaceOfResidence,
+                    'groomsFatherMotherAddress' : groomsParentAddress,
+                    'brideFatherAndMotherName' : bridesFatherName,
+                    'brideFatherMotherAge' : bridesFatherAge,
+                    'brideFatherMotherPlaceOfResidences' : bridesParentPlaceOfResidence,
+                    'bridesFatherAndMotherAddress' : bridesParentAddress,
+                    'nameOfBrahMan' : nameOfBrahman,
                     'firstFullNameOfWitness' : firstFullNameOfWitness,
                     'firstWitnessAddress' : firstWitnessAddress,
                     'secondFullNameOfWitness' : secondFullNameOfWitness,
@@ -104,31 +106,29 @@ import {Link} from "react-router-dom";
                 console.log(url);
                 const data = {
                     'registrationNo' : registrationNo,
-                    'marriageDate' : marriageDate,
-                    'marriagePlace' : marriagePlace,
-                    'fullNameOfGroom' : fullNameOfGroom,
-                    'groomsAge' : groomsAge,
-                    'groomsReligion' : groomsReligion,
-                    'groomsPlaceOfResidence' : groomsPlaceOfResidence,
-                    'groomsAddress' : groomsAddress,
-                    'groomDesignation' : groomDesignation,
-                    'fullNameOfBride' : fullNameOfBride,
-                    'bridesAge' : bridesAge,
-                    'bridesReligion' : bridesReligion,
-                    'bridesPlaceOfResidence' : bridesPlaceOfResidence,
-                    'bridesAddress' : bridesAddress,
-                    'bridesDesignation' : bridesDesignation,
-                    'groomsFatherName' : groomsFatherName,
-                    'groomsMotherName' : groomsMotherName,
-                    'groomsFatherAge' : groomsFatherAge,
-                    'groomsParentAddress' : groomsParentAddress,
-                    'groomsParentPlaceOfResidence' : groomsParentPlaceOfResidence,
-                    'bridesFatherName' : bridesFatherName,
-                    'bridesMotherName' : bridesMotherName,
-                    'bridesFatherAge' : bridesFatherAge,
-                    'bridesParentAddress' : bridesParentAddress,
-                    'bridesParentPlaceOfResidence' : bridesParentPlaceOfResidence,
-                    'nameOfBrahman' : nameOfBrahman,
+                    'merrageDate' : marriageDate,
+                    'merragePlace' : marriagePlace,
+                    'fullNameOFGroom' : fullNameOfGroom,
+                    'groomAge' : groomsAge,
+                    'groomReligion' : groomsReligion,
+                    'groomPlaceOfResidences' : groomsPlaceOfResidence,
+                    'groomAddress' : groomsAddress,
+                    'merrageTimeGroomDesignation' : groomDesignation,
+                    'fullNameOFBride' : fullNameOfBride,
+                    'brideAge' : bridesAge,
+                    'brideReligion' : bridesReligion,
+                    'bridePlaceOfResidences' : bridesPlaceOfResidence,
+                    'brideAddress' : bridesAddress,
+                    'merrageTimeBrideDesignation' : bridesDesignation,
+                    'groomFatherAndMotherName' : groomsFatherName,
+                    'groomFatherMotherAge' : groomsFatherAge,
+                    'groomsFateherMotherPLaceOfResidentes' : groomsParentPlaceOfResidence,
+                    'groomsFatherMotherAddress' : groomsParentAddress,
+                    'brideFatherAndMotherName' : bridesFatherName,
+                    'brideFatherMotherAge' : bridesFatherAge,
+                    'brideFatherMotherPlaceOfResidences' : bridesParentPlaceOfResidence,
+                    'bridesFatherAndMotherAddress' : bridesParentAddress,
+                    'nameOfBrahMan' : nameOfBrahman,
                     'firstFullNameOfWitness' : firstFullNameOfWitness,
                     'firstWitnessAddress' : firstWitnessAddress,
                     'secondFullNameOfWitness' : secondFullNameOfWitness,
@@ -141,13 +141,13 @@ import {Link} from "react-router-dom";
                         'Content-Type' : 'application/json',
                         'Authorization':'Bearer'+" "+localStorage.getItem("Token")
                     },
-                    body: JSON.stringify({data})
+                    body: JSON.stringify(data)
                     
                     
                 }).then(response => response.json())
                 .then((result) => { 
                     console.log(result); 
-                     
+                     alert("Data Updated SuccessFully!")
                    // console.log(data); 
                   }) 
                   .catch((err) => { 
@@ -195,31 +195,29 @@ import {Link} from "react-router-dom";
         
           function prePopulate(id){
                 setRegistrationNo(data[id-1].registrationNo)
-                setMarriageDate(data[id-1].marriageDate)
-                setMarriagePlace(data[id-1].marriagePlace)
-                setFullNameOfGroom(data[id-1].fullNameOfGroom)
-                setGroomsAge(data[id-1].groomsAge)
-                setgroomsReligion(data[id-1].groomsReligion)
-                setGroomsPlaceOfResidence(data[id-1].groomsPlaceOfResidence)
-                setGroomsAddress(data[id-1].groomsAddress)
-                setGroomDesignation(data[id-1].groomDesignation)
-                setFullNameOfBride(data[id-1].fullNameOfBride)
-                setBridesAge(data[id-1].bridesAge)
-                setBridesReligion(data[id-1].bridesReligion)
-                setBridesPlaceOfResidence(data[id-1].bridesPlaceOfResidence)
-                setBridesAddress(data[id-1].bridesAddress)
-                setBridesDesignation(data[id-1].bridesDesignation)
-                setGroomsFatherName(data[id-1].groomsFatherName)
-                setGroomsMotherName(data[id-1].groomsMotherName)
-                setGroomsFatherAge(data[id-1].groomsFatherAge)
-                setGroomsParentAddress(data[id-1].groomsParentAddress)
-                setGroomsParentPlaceOfResidence(data[id-1].groomsParentPlaceOfResidence)
-                setBridesFatherName(data[id-1].bridesFatherName)
-                setBridesMotherName(data[id-1].bridesMotherName)
-                setBridesFatherAge(data[id-1].bridesFatherAge)
-                setBridesParentAddress(data[id-1].bridesParentAddress)
-                setBridesPlaceOfResidence(data[id-1].bridesPlaceOfResidence)
-                setNameOfBrahman(data[id-1].nameOfBrahman)
+                setMarriageDate(data[id-1].merrageDate)
+                setMarriagePlace(data[id-1].merragePlace)
+                setFullNameOfGroom(data[id-1].fullNameOFGroom)
+                setGroomsAge(data[id-1].groomAge)
+                setgroomsReligion(data[id-1].groomReligion)
+                setGroomsPlaceOfResidence(data[id-1].groomPlaceOfResidences)
+                setGroomsAddress(data[id-1].groomAddress)
+                setGroomDesignation(data[id-1].merrageTimeGroomDesignation)
+                setFullNameOfBride(data[id-1].fullNameOFBride)
+                setBridesAge(data[id-1].brideAge)
+                setBridesReligion(data[id-1].brideReligion)
+                setBridesPlaceOfResidence(data[id-1].bridePlaceOfResidences)
+                setBridesAddress(data[id-1].brideAddress)
+                setBridesDesignation(data[id-1].merrageTimeBrideDesignation)
+                setGroomsFatherName(data[id-1].groomFatherAndMotherName)
+                setGroomsFatherAge(data[id-1].groomFatherMotherAge)
+                setGroomsParentAddress(data[id-1].groomFatherMotherAddress)
+                setGroomsParentPlaceOfResidence(data[id-1].groomsFateherMotherPLaceOfResidentes)
+                setBridesFatherName(data[id-1].brideFatherAndMotherName)
+                setBridesFatherAge(data[id-1].brideFatherMotherAge)
+                setBridesParentAddress(data[id-1].brideFatherAndMotherAddress)
+                setBridesPlaceOfResidence(data[id-1].brideFatherMotherPlaceOfResidences)
+                setNameOfBrahman(data[id-1].nameOfBrahMan)
                 setFirstFullNameOfWitness(data[id-1].firstFullNameOfWitness)
                 setFirstWitnessAddress(data[id-1].firstWitnessAddress)
                 setSecondFullNameOfWitness(data[id-1].secondFullNameOfWitness)
@@ -408,7 +406,7 @@ import {Link} from "react-router-dom";
                     <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                     <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                     <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        <Link to="/login"><button type="EXIT" className="btn btn-dark">EXIT</button></Link>
+                    <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
                     </div>
             </div>
 

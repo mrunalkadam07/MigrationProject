@@ -2,10 +2,9 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({children}) =>{
-    const [jwt,setJwt] = localStorage.getItem("token");
-
+    // const [jwt,setJwt] = localStorage.getItem("token");
+    let jwt = localStorage.getItem("token");
     return jwt ? children : <Navigate to="/login"/>;
-
 };
 
 export default PrivateRoute;
