@@ -21,44 +21,84 @@ namespace GramPanchayat_MigrationProject.API.Controllers
     public class MarriageRegistrationController : Controller
     {
         private readonly IMarriageRegRepository marriageRegRepository;
+        private readonly ILogger<MarriageRegModel> _logger;
 
-        public MarriageRegistrationController(IMarriageRegRepository marriageRegRepository)
+        public MarriageRegistrationController(IMarriageRegRepository marriageRegRepository,ILogger<MarriageRegModel> _logger)
         {
             this.marriageRegRepository = marriageRegRepository;
+            this._logger = _logger;
         }
 
         [HttpGet]
         public IActionResult GetAllMarriageReg(){
+            try{
+
+            _logger.LogInformation("Marriage Registration data triggered");
             {
                 var result = marriageRegRepository.GetAll();
                 return Ok(result);
+            }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
             }
         }
         [HttpGet("{RegistrationNo}")]
         public IActionResult GetReg(int RegistrationNo)
         {
+            try{
+
+          _logger.LogInformation("Marriage Registration data get by Id"); 
           var reg = marriageRegRepository.Get(RegistrationNo);
           if(reg == null)
           {
+            _logger.LogInformation("Id not found error");
             return NotFound();
           }
           return Ok(reg);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpPost]
         public IActionResult AddMarriage(MarriageRegModel marriageRegModel){
+            try{
+
+            _logger.LogInformation(" Marriage Registration Data Added");
            marriageRegRepository.Add(marriageRegModel);
            return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpDelete("{RegistrationNo}")]
         public IActionResult DeleteMarriage(int RegistrationNo){
+            try{
+           _logger.LogInformation("Data Deleted");
            marriageRegRepository.Delete(RegistrationNo);
            return NoContent();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
         [HttpPut("{RegistrationNo}")]
         public IActionResult Update(int RegistrationNo,MarriageRegModel marriageRegModel)
         {
+            try{
+           _logger.LogInformation("Data Updated");
            var obj = marriageRegRepository.Update(RegistrationNo, marriageRegModel);
 
            if(obj == null){
@@ -66,6 +106,12 @@ namespace GramPanchayat_MigrationProject.API.Controllers
            }
 
            return Ok(obj);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
           

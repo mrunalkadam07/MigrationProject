@@ -25,6 +25,9 @@ var _authkey = builder.Configuration.GetValue<string>("JwtSettings:securitykey")
 // builder.Host.UseNLog();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
     options.UseSqlServer(builder.Configuration.GetConnectionString("constring"));
 });

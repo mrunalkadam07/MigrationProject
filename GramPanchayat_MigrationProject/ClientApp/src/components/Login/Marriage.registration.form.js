@@ -401,12 +401,12 @@ import {Link} from "react-router-dom";
                 
 
                 <div className="mb-3 btns"><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="ADD" className="btn btn-outline-primary" onClick={addMarriageRegistration}>ADD </button> &nbsp;&nbsp;
+                    <button type="ADD" className="btn btn-primary" onClick={addMarriageRegistration}>ADD </button> &nbsp;&nbsp;
                     {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
-                    <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
-                    <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
+                    <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                    <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                     <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                    <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
+                    <Link to="/login"><button type="EXIT" className="btn btn-dark">LOGOUT</button></Link>
                     </div>
             </div>
 

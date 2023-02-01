@@ -290,12 +290,12 @@ const services = new DeathRegistrationService();
                     </div>
 
                     <div className="mb-3 btns"><br/>
-                        <button type="ADD" className="btn btn-outline-primary" onClick={addAssessmentList}>ADD </button> &nbsp;&nbsp;
+                        <button type="ADD" className="btn btn-primary" onClick={addAssessmentList}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
-                        <button type="MODIFY" className="btn btn-outline-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-outline-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
-                        <Link to="/Navbar"><button type="CANCEL" className="btn btn-outline-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        <button type="EXIT" className="btn btn-outline-dark" onClick={logout}>LOGOUT</button>
+                        <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
+                        <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
+                        <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
+                        <button type="EXIT" className="btn btn-dark" onClick={logout}>LOGOUT</button>
                     </div>
 
                 </div>

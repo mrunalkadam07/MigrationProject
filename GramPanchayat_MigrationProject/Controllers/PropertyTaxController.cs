@@ -21,16 +21,27 @@ namespace GramPanchayat_MigrationProject.API.Controllers
     public class PropertyTaxController : Controller
     {
            private readonly IPropertyTaxRepository propertytaxRepository;
-            public PropertyTaxController(IPropertyTaxRepository propertytaxRepository)
+           private readonly ILogger<PropertyTaxPaid> _logger;
+            public PropertyTaxController(IPropertyTaxRepository propertytaxRepository,ILogger<PropertyTaxPaid> _logger)
              {
                 this.propertytaxRepository = propertytaxRepository;
+                this._logger = _logger;
             }
 
         [HttpGet]
         public IActionResult GetAll(){
-            {
+            try{
+
+            _logger.LogInformation("Property Tax data triggered");
+        
                 var registrations = propertytaxRepository.GetAll();
                 return Ok(registrations);
+            
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
             }
         }
 
@@ -38,30 +49,63 @@ namespace GramPanchayat_MigrationProject.API.Controllers
        
         public IActionResult GetReg(int billNo)
         {
+            try{
+          _logger.LogInformation("Property Tax data get by Id");
           var reg = propertytaxRepository.Get(billNo);
           if(reg == null)
           {
+            _logger.LogInformation("Id not found error");
             return NotFound();
           }
           return Ok(reg);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpPost]
         public IActionResult AddProperty(PropertyTaxPaid propertytax){
+            try{
+        _logger.LogInformation("Property Tax data Added");
            propertytaxRepository.Add(propertytax);
            return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpDelete("{BillNo}")]
         public IActionResult DeleteDeath(int billNo){
+            try{
+           _logger.LogInformation("Data deleted");
            propertytaxRepository.Delete(billNo);
            return NoContent();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpPut("{BillNo}")]
         public PropertyTaxPaid Update(int billNo,PropertyTaxPaid propertyTax)
         {
-           return propertytaxRepository.Update(billNo, propertyTax);
+            try{
+                _logger.LogInformation("Data Updated");
+                return propertytaxRepository.Update(billNo, propertyTax);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return propertytaxRepository.Update(billNo, propertyTax);
+            }
         }
 
         [HttpGet]

@@ -257,7 +257,7 @@ const services = new DeathRegistrationService();
                         <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
                         <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
-                        <Link to="/login"><button type="EXIT" className="btn btn-outline-dark">LOGOUT</button></Link>
+                        <Link to="/login"><button type="EXIT" className="btn btn-dark">LOGOUT</button></Link>
                     </div>
 
                 </div>

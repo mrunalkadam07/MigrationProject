@@ -20,16 +20,27 @@ namespace GramPanchayat_MigrationProject.API.Controllers
     public class DeadBirthRegController : Controller
     {
            private readonly IDeadBirthRepository deathBirthregRepository;
-            public DeadBirthRegController(IDeadBirthRepository deathBirthregRepository)
+           private readonly ILogger<DeadBirth> _logger;
+            public DeadBirthRegController(IDeadBirthRepository deathBirthregRepository,ILogger<DeadBirth> _logger)
              {
                 this.deathBirthregRepository = deathBirthregRepository;
+                this._logger = _logger;
             }
 
         [HttpGet]
         public IActionResult GetAll(){
+            try{
+
+            _logger.LogInformation("DeadBirth Registration data triggered");
             {
                 var registrations = deathBirthregRepository.GetAll();
                 return Ok(registrations);
+            }
+            }
+              catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
             }
         }
 
@@ -37,30 +48,67 @@ namespace GramPanchayat_MigrationProject.API.Controllers
        
         public IActionResult GetReg(int RegistrationNo)
         {
+            try{
+            
+           _logger.LogInformation("DeadBirth Registration data get by Id");
           var reg = deathBirthregRepository.Get(RegistrationNo);
           if(reg == null)
           {
+            _logger.LogInformation("Id not found error");
             return NotFound();
           }
           return Ok(reg);
+            }
+              catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpPost]
         public IActionResult AddDeath(DeadBirth deadBirthRegistration){
+            try{
+
+            _logger.LogInformation("DeadBirth Registration data Added");
            deathBirthregRepository.Add(deadBirthRegistration);
            return Ok();
+            }
+              catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
 
         [HttpDelete("{RegistrationNo}")]
         public IActionResult DeleteDeath(int RegistrationNo){
-           deathBirthregRepository.Delete(RegistrationNo);
-           return NoContent();
+            try{
+                _logger.LogInformation("Data deleted");
+                deathBirthregRepository.Delete(RegistrationNo);
+                return NoContent();
+            }
+              catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
+            
+           
         }
 
         [HttpPut("{RegistrationNo}")]
         public DeadBirth Update(int RegistrationNo,DeadBirth deadBirthRegistration)
         {
-           return deathBirthregRepository.Update(RegistrationNo, deadBirthRegistration);
+            try{
+                _logger.LogInformation("Data Updated");
+                return deathBirthregRepository.Update(RegistrationNo, deadBirthRegistration);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return deathBirthregRepository.Update(RegistrationNo, deadBirthRegistration);
+            }
         }
 
         [HttpGet]

@@ -32,7 +32,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             try
             {
                 {
-                _logger.LogInformation("Death Registration Data Trigger");
+                _logger.LogInformation("Death Registration Data Triggered");
                 var registrations = deathregRepository.GetAll();
                 return Ok(registrations);
             }
@@ -79,7 +79,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         [HttpDelete("{RegistrationNo}")]
         public IActionResult DeleteDeath(int RegistrationNo){
            try{
-             _logger.LogInformation("Deleted");
+             _logger.LogInformation(" Data Deleted");
            deathregRepository.Delete(RegistrationNo);
            return NoContent();
            }

@@ -32,7 +32,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         public IActionResult GetAll(){
             try{
             {
-                _logger.LogInformation("Birth Registration Data Trigger");
+                _logger.LogInformation("Birth Registration Data Triggered");
                 var registrations = birthregRepository.GetAll();
                 return Ok(registrations);
             }
@@ -47,7 +47,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         public IActionResult GetReg(int RegistrationNo)
         {
             try{
-            _logger.LogInformation("Birth Registration Get By ID");
+            _logger.LogInformation("Birth Registration data Get By ID");
           var reg = birthregRepository.Get(RegistrationNo);
           if(reg == null)
           {

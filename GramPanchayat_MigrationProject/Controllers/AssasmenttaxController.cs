@@ -19,41 +19,89 @@ namespace GramPanchayat_MigrationProject.API.Controllers
     public class AssasmenttaxController : Controller
     {
         private readonly IAssasmenttaxRepository assasmenttaxRepository;
-        public AssasmenttaxController(IAssasmenttaxRepository assasmenttaxRepository)
+        private readonly ILogger<Assasment> _logger;
+        public AssasmenttaxController(IAssasmenttaxRepository assasmenttaxRepository,ILogger<Assasment> _logger)
         {
             this.assasmenttaxRepository = assasmenttaxRepository;
+            this._logger = _logger;
         }
         [HttpGet]
         public IActionResult GetAll(){
+            try{
+            _logger.LogInformation("Assasment tax data triggered");
+            
             {
                 var res = assasmenttaxRepository.GetAll();
                 return Ok(res);
+            }
+            }
+             catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
             }
         }
         [HttpGet("{FormNo}")]
         public IActionResult GetReg(int FormNo)
         {
+            try{
+            
+           _logger.LogInformation("Assasment tax data by Id"); 
           var reg = assasmenttaxRepository.Get(FormNo);
           if(reg == null)
           {
+            _logger.LogInformation("ID not found error");
             return NotFound();
           }
           return Ok(reg);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
         [HttpPost]
         public IActionResult Add(Assasment assasment){
+            try{
+
+            _logger.LogInformation("Assasment tax data Added");
            assasmenttaxRepository.Add(assasment);
            return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
         [HttpDelete("{FormNo}")]
         public IActionResult Delete(int FormNo){
+            try{
+
+            _logger.LogInformation("Data deleted");
            assasmenttaxRepository.Delete(FormNo);
            return NoContent();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.ToString());
+            }
         }
         [HttpPut("{FormNo}")]
         public Assasment Update(int FormNo,Assasment assasment)
         {
+            try{
+
+           _logger.LogInformation("Data Updated");
            return assasmenttaxRepository.Update(FormNo, assasment);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return assasmenttaxRepository.Update(FormNo, assasment);
+            }
         }
 
         [HttpGet]

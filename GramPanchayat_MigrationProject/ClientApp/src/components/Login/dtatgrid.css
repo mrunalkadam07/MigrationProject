@@ -1,0 +1,26 @@
+body{
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #365d84, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #365d84, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    justify-content: center;
+}
+
+.tablebox{
+    justify-content: center;
+}
+  .form-control{
+    background-color: beige;
+  }
+  .form-label{
+    color: black;
+  }
+  .col-md-6{
+    float: right;
+    padding: 20px;
+  }
+  .btn{
+    /* background-color: beige; */
+    padding: 2px;
+    width: 160px;
+  }
+.btn:hover {background-color: #7caad8;}
