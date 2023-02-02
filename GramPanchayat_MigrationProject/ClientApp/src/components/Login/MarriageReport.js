@@ -120,6 +120,7 @@ import axios from "axios";
 //import './tablestyle.css';
 import { Buffer } from 'buffer';
 import { Pagination } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function MarriageReport() {
     const [pagesize, setPageSize] = useState(null)
@@ -206,6 +207,8 @@ return(
         <br/><br/>
         <label htmlFor="inputDistrict" className="form-label">Time :- </label>
         <input className="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
+        <button className="btn btn-dark" onClick={generatepdf}> Download as PDF</button><br/><br/>
+        <Link to="/Navbar"><button type="CANCEL" className="btn btn-dark" >CANCEL </button></Link>
       </div>
         <div className="tableData">
           <table >

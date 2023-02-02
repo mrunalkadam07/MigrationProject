@@ -4,11 +4,12 @@ import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import { Buffer } from 'buffer';
 //import './dtatgrid.css';
+import { Link } from "react-router-dom"; 
   
   const columns = [
     {
       field: "date",
-      headerName: <strong>Date</strong>,
+      headerName: 'Date',
       width: "190",
       headerAlign: "center",
       align: "center",
@@ -23,7 +24,7 @@ import { Buffer } from 'buffer';
     },
     {
       field: "oldAssassmentNo",
-      headerName: <strong>OldAssassmentNo</strong>,
+      headerName: 'OldAssassmentNo',
       width: "180",
       headerAlign: "center",
       align: "center",
@@ -37,7 +38,7 @@ import { Buffer } from 'buffer';
     },
     {
         field: "holdersName",
-        headerName: <strong>HoldersName</strong>,
+        headerName: 'HoldersName',
         width: "220",
         headerAlign: "center",
         align: "center",
@@ -51,7 +52,7 @@ import { Buffer } from 'buffer';
     },
     {
         field: "useOfPropertyType",
-        headerName: <strong>UseOfPropertyType</strong>,
+        headerName: 'UseOfPropertyType',
         width: "220",
         headerAlign: "center",
         align: "center",
@@ -65,7 +66,7 @@ import { Buffer } from 'buffer';
     },
     {
         field: "wardTotal",
-        headerName: <strong>WardTotal</strong>,
+        headerName: 'WardTotal',
         width: "190",
         headerAlign: "center",
         align: "center",
@@ -200,7 +201,8 @@ import { Buffer } from 'buffer';
         <label for="inputDistrict" class="form-label">Time :- </label>
         <input class="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
         <br/><br/>
-        <button onClick={generatepdf}> Download as PDF</button>
+        <button className="btn btn-dark" onClick={generatepdf}> Download as PDF</button><br/><br/>
+        <Link to="/Navbar"><button type="CANCEL" className="btn btn-dark" >CANCEL </button></Link>
       </div>
       
       {/* <table ref={tableRef}></table> */}
@@ -225,6 +227,7 @@ import { Buffer } from 'buffer';
           <DataGrid 
           sx={{ m:6,
             boxShadow: 20,
+            backgroundColor:'white',
             border: 3,
             borderColor: 'black',
             "& .MuiDataGrid-row:hover": {

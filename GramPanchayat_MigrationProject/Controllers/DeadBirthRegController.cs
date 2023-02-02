@@ -136,7 +136,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
 
             XColor strokeColor = XColors.Gray;
             XPen pen = new XPen(strokeColor, 2);
- 
+            
 
             var x = 50;
             var y = 110;

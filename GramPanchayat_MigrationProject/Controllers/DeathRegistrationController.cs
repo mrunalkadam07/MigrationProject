@@ -128,15 +128,35 @@ namespace GramPanchayat_MigrationProject.API.Controllers
 
             XColor strokeColor = XColors.Gray;
             XPen pen = new XPen(strokeColor, 2);
- 
 
             var x = 50;
-            var y = 110;
+            var y = 90;
+            gfx.DrawLine(pen, x, y, 600, y);
+
+
+            gfx.DrawString("RegistrationNo",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("Year",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("NameOfDeathPerson", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 80;
+                gfx.DrawString("CityVillage", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 60;
+                gfx.DrawString("DateOfDeath", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 100;
+                gfx.DrawString("AgeAtDeath", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 50;
+                gfx.DrawString("Mother/Father/HusbandName", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = 50;
+ 
+
+            x = 50;
+            y = 110;
              gfx.DrawLine(pen, x, y, 600, y);
             foreach (var item in listDeathData)
             {
                 gfx.DrawString((item.RegistrationNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 10;
+                x = x + 50;
                 gfx.DrawString((item.Year).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 40;
                 gfx.DrawString(item.NameOfDeathPerson, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
@@ -146,7 +166,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 gfx.DrawString((item.DateOfDeath).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 100;
                 gfx.DrawString((item.AgeAtDeath).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 20;
+                x = x + 50;
                 gfx.DrawString(item.MotherFatherHusbandName, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = 50;
                 

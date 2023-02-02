@@ -269,6 +269,7 @@ import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import { Buffer } from 'buffer';
 //import './dtatgrid.css'
+import { Link } from "react-router-dom";
   
   const columns = [
     {
@@ -469,7 +470,8 @@ import { Buffer } from 'buffer';
         <label for="inputDistrict" class="form-label">Time :- </label>
         <input class="form-control" value = {date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds()} readOnly={true} />
         <br/><br/>
-        <button onClick={generatepdf}> Download as PDF</button>
+        <button className="btn btn-dark" onClick={generatepdf}> Download as PDF</button><br/><br/>
+        <Link to="/Navbar"><button type="CANCEL" className="btn btn-dark" >CANCEL </button></Link>
       </div>
       
       <Box 
@@ -493,6 +495,7 @@ import { Buffer } from 'buffer';
           <DataGrid 
           sx={{ m:6,
             boxShadow: 20,
+            backgroundColor:'white',
             border: 3,
             borderColor: 'black',
             "& .MuiDataGrid-row:hover": {
