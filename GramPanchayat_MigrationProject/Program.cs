@@ -13,7 +13,7 @@ using DinkToPdf;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Serilog;
-
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var _authkey = builder.Configuration.GetValue<string>("JwtSettings:securitykey");
@@ -26,10 +26,29 @@ var _authkey = builder.Configuration.GetValue<string>("JwtSettings:securitykey")
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<GramPanchayatDBContext>(options =>{
     options.UseSqlServer(builder.Configuration.GetConnectionString("constring"));
+});
+
+
+builder.Services.AddSwaggerGen( options => {
+    var securityScheme = new OpenApiSecurityScheme(){
+        Name = "JWT Authntication",
+        Description = "Enter a valid Jwt Token",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Reference = new OpenApiReference(){
+            Id = JwtBearerDefaults.AuthenticationScheme,
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+    options.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement{
+        {securityScheme, new string[] {}}
+    });
 });
 
 builder.Services.AddScoped<ILoginRepository,LoginService>();
@@ -79,7 +98,18 @@ var _logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configura
 builder.Logging.AddSerilog(_logger);
 
 
+
+
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+
+    {
+
+        app.UseSwagger();
+
+        app.UseSwaggerUI();
+
+    }
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

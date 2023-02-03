@@ -113,23 +113,230 @@
       
 //     export default MarriageReport;
 
-
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
-//import './datatable.css'
-//import './tablestyle.css';
+import { DataGrid} from '@mui/x-data-grid';
+import { Typography } from "@mui/material";
+import Box from '@mui/material/Box';
 import { Buffer } from 'buffer';
-import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
+
+const columns = [
+  {
+    field: "registrationNo",
+    headerName: <strong>RegistrationNo</strong>,
+    width: "150",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+      <div>
+        <Typography>{params.row.registrationNo}</Typography>
+      </div>
+    )
+  },
+  {
+    field: "marriageDate",
+    headerName: <strong>MarriageDate</strong>,
+    width: "160",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+      <div>
+        <Typography>{params.row.merrageDate}</Typography>
+      </div>
+    )
+  },
+  {
+    field: "marriagePlace",
+    headerName: <strong>MarriagePlace</strong>,
+    width: "200",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+      <div>
+        <Typography>{params.row.merragePlace}</Typography>
+      </div>
+    )
+  },
+  {
+    field: "groomName",
+    headerName: <strong>GroomName</strong>,
+    width: "240",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+      <div>
+        <Typography>{params.row.fullNameOFGroom}</Typography>
+      </div>
+    )
+  },
+  {
+      field: "groomAge",
+      headerName: <strong>GroomAge</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.groomAge}</Typography>
+          </div>
+        )
+  },
+  {
+    field: "groomReligion",
+    headerName: <strong>GroomReligion</strong>,
+    width: "150",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+        <div>
+          <Typography>{params.row.groomReligion}</Typography>
+        </div>
+      )
+},
+  {
+      field: "groomAddress",
+      headerName: <strong>GroomAddress</strong>,
+      width: "220",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.groomAddress}</Typography>
+          </div>
+        )
+  },
+  {
+    field: "brideName",
+    headerName: <strong>BrideName</strong>,
+    width: "240",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+      <div>
+        <Typography>{params.row.fullNameOFBride}</Typography>
+      </div>
+    )
+  },
+  {
+      field: "brideAge",
+      headerName: <strong>BrideAge</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.brideAge}</Typography>
+          </div>
+        )
+  },
+  {
+    field: "brideReligion",
+    headerName: <strong>BrideReligion</strong>,
+    width: "150",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+        <div>
+          <Typography>{params.row.brideReligion}</Typography>
+        </div>
+      )
+},
+  {
+      field: "brideAddress",
+      headerName: <strong>BrideAddress</strong>,
+      width: "220",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.brideAddress}</Typography>
+          </div>
+        )
+  },
+  {
+    field: "nameOfBrahman",
+    headerName: <strong>NameOfBrahman</strong>,
+    width: "180",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+        <div>
+          <Typography>{params.row.nameOfBrahMan}</Typography>
+        </div>
+      )
+},
+  {
+      field: "firstWitness",
+      headerName: <strong>FirstWitness</strong>,
+      width: "190",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.firstFullNameOfWitness}</Typography>
+          </div>
+        )
+  },
+  {
+    field: "fWitnessAdd",
+    headerName: <strong>FirstWitnessAddress</strong>,
+    width: "240",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+        <div>
+          <Typography>{params.row.firstWitnessAddress}</Typography>
+        </div>
+      )
+},
+  {
+      field: "secondWitness",
+      headerName: <strong>SecondWitness</strong>,
+      width: "190",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.secondFullNameOfWitness}</Typography>
+          </div>
+        )
+  },
+  {
+    field: "sWitnessAdd",
+    headerName: <strong>SecondWitnessAddress</strong>,
+    width: "240",
+    headerAlign: "center",
+    align: "center",
+    headerClassName: 'super-app-theme--header-a',
+    renderCell: (params) => (
+        <div>
+          <Typography>{params.row.secondWitnessAddress}</Typography>
+        </div>
+      )
+},
+  
+];
+
+
 
 function MarriageReport() {
     const [pagesize, setPageSize] = useState(null)
     var date = new Date();
-
-    const [page, setPage] = React.useState(1);
-    const handleChange = (event, value) => {
-        setPage(value);
-    };
 
     const [data, setData] = useState([])
     const fetchData = () => { 
@@ -192,9 +399,6 @@ function MarriageReport() {
         })
       };
 
-      console.log("VALUE: *************"+ page);
-      console.log(data); 
-      console.log(data[0].registrationNo);
 
 return(
       <>
@@ -210,94 +414,48 @@ return(
         <button className="btn btn-dark" onClick={generatepdf}> Download as PDF</button><br/><br/>
         <Link to="/Navbar"><button type="CANCEL" className="btn btn-dark" >CANCEL </button></Link>
       </div>
-        <div className="tableData">
-          <table >
-            
-            <tbody >
-              <>
-              <tr>
-                <th>Registration no</th>
-                {/* <td>{data[page-1].registrationNo}</td> */}
-              </tr>
-              <tr >
-                  <th>Marriage Date</th>
-                  {/* <td>{data[page-1].merrageDate}</td> */}
-              </tr>
-              <tr>
-                <th>Marriage Place</th>
-                {/* <td>{data[page-1].merragePlace}</td> */}
-              </tr>
-              <tr >
-                <th>Full Name of Groom</th>
-                {/* <td>{data[page-1].fullNameOFGroom}</td> */}
-              </tr>
-              <tr> 
-                <th>Groom Age</th>
-                {/* <td>{data[page-1].groomAge}</td> */}
-              </tr>
-              <tr >
-                <th>Groom Religion</th>
-                {/* <td>{data[page-1].groomReligion}</td> */}
-              </tr>
-              <tr >
-                <th>Groom Address</th>
-                {/* <td>{data[page-1].groomAddress}</td> */}
-              </tr>
-              <tr > 
-                <th>Full Name of Bride</th>
-                {/* <td>{data[page-1].fullNameOFBride}</td> */}
-              </tr>
-              <tr>
-                <th>Bride Age</th>
-                {/* <td>{data[page-1].brideAge}</td> */}
-              </tr>
-              <tr >
-                <th>Bride Religion</th>
-                {/* <td>{data[page-1].brideReligion}</td> */}
-              </tr>
-              <tr >
-                <th>Bride Address</th>
-                {/* <td>{data[page-1].brideAddress}</td> */}
-              </tr>
-              <tr > 
-                <th>Groom Father and Mother Name</th>
-                {/* <td>{data[page-1].groomFatherAndMotherName}</td> */}
-              </tr>
-              <tr>
-                <th>Bride Father and Mother Name</th>
-                {/* <td>{data[page-1].brideFatherAndMotherName}</td> */}
-              </tr>
-              <tr >
-                <th>Name of Brahman</th>
-                {/* <td>{data[page-1].nameOfBrahMan}</td> */}
-              </tr>
-              <tr >
-                <th>Fullname of First Witness</th>
-                {/* <td>{data[page-1].firstFullNameOfWitness}</td> */}
-              </tr>
-              <tr > 
-                <th>Fullname of Second Witness</th>
-                {/* <td>{data[page-1].secondFullNameOfWitness}</td> */}
-              </tr>
-              <tr>
-                <th>Second Witness Address</th>
-                {/* <td>{data[page-1].secondWitnessAddress}</td> */}
-              </tr>
-              </>
-            </tbody>
-          </table>
-        </div>
-<div className='pagination' style={{display: 'flex'}}>
-          <Pagination 
-            count={data.length} 
-            page={page} 
-            onChange={handleChange}
-            variant="outlined"
-            shape="rounded" 
-            color="primary"
+      <Box 
+      container
+      justify={'center'}
+      sx={{
+        '& .super-app-theme--header-a': {
+          backgroundColor: '#9db7c8',
+          fontSize: 20,
+          fontFamily:'Roboto',
+          borderBottom: 2,
+        },
+      }}
+    >
+        <div style={ { width: '86%'}}>
+          <DataGrid 
+          sx={{ m:6,
+            boxShadow: 20,
+            backgroundColor:'white',
+            border: 3,
+            borderColor: 'black',
+            "& .MuiDataGrid-row:hover": {
+              backgroundColor: "#7caad8",
+            },
+          }}
+          initialState={{
+            pagination: {
+              pageSize: 5,
+            },
+          }}
+          onPageSizeChange={(newPage) => setPageSize(newPage)}
+          rowsPerPageOptions={[5, 10, 20]}
+          pagination
+          autoHeight
+          columns={columns}
+          rows={data}
+          rowHeight={90}
+          getRowId={(row) => row.registrationNo}
+          // experimentalFeatures={{ columnGrouping: true }}
+          // columnGroupingModel={columnGroupingModel}
           />
-    
         </div>
+
+        </Box>
 
         </>
 
@@ -307,4 +465,6 @@ return(
   };
 
   export default MarriageReport;
+
+
 

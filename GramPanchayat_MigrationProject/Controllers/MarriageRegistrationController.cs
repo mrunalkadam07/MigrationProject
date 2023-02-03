@@ -143,32 +143,49 @@ namespace GramPanchayat_MigrationProject.API.Controllers
  
 
             var x = 50;
-            var y = 110;
-             gfx.DrawLine(pen, x, y, 600, y);
+            var y = 90;
+            gfx.DrawLine(pen, 48, y, 600, y);
+
+
+            gfx.DrawString("RegNo",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("MarriageDate",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 100;
+                gfx.DrawString("MarriagePlace", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 60;
+                gfx.DrawString("NameOfGroom", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 100;
+                gfx.DrawString("NameOfBride", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 100;
+                gfx.DrawString("GroomAge", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("BrideAge", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = 50;
+ 
+
+            x = 50;
+            y = 110;
+             gfx.DrawLine(pen, 48, y, 600, y);
             foreach (var item in listMarriageData)
             {
                 gfx.DrawString((item.RegistrationNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 10;
+                x = x + 40;
                 gfx.DrawString((item.MerrageDate).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 100;
                 gfx.DrawString(item.MerragePlace, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 60;
                 gfx.DrawString(item.FullNameOFGroom, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 100;
-                gfx.DrawString((item.GroomAge).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 20;
-                gfx.DrawString(item.GroomReligion, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 60;
                 gfx.DrawString(item.FullNameOFBride, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 100;
+                gfx.DrawString((item.GroomAge).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
                 gfx.DrawString((item.BrideAge).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 20;
-                gfx.DrawString(item.BrideReligion, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                 x = 50;
+                x = 50;
                 
 
                 y = y + 20;
-                 gfx.DrawLine(pen, x, y, 600, y);
+                    gfx.DrawLine(pen, 48, y, 600, y);
                 if (y >= 750)
                 {
                     page = document.AddPage();
@@ -177,6 +194,8 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 }
             }
             gfx.DrawLine(pen, x, y, 400, y);
+            gfx.DrawLine(pen,48,90,48,y);
+            gfx.DrawLine(pen,600,90,600,y);
             y = y + 40;
         
             Byte[] res = null;

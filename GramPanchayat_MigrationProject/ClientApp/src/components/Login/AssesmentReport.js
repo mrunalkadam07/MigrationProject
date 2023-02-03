@@ -8,72 +8,131 @@ import { Link } from "react-router-dom";
   
   const columns = [
     {
-      field: "date",
-      headerName: 'Date',
-      width: "190",
+      field: "formNo",
+      headerName: <strong>FormNo</strong>,
+      width: "150",
       headerAlign: "center",
       align: "center",
-     // sortable: false,
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
           <Typography>{params.row.formNo}<br/></Typography>
+        </div>
+      )
+    },
+    {
+      field: "date",
+      headerName: <strong>Date</strong>,
+      width: "190",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
           <Typography>{params.row.date}</Typography>
         </div>
       )
     },
     {
-      field: "oldAssassmentNo",
-      headerName: 'OldAssassmentNo',
-      width: "180",
+      field: "wardNo",
+      headerName: <strong>WardNo</strong>,
+      width: "150",
       headerAlign: "center",
       align: "center",
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
           <Typography>{params.row.wardNo}<br/></Typography>
-          <Typography>{params.row.oldAssassmentNo}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "oldAssassmentNo",
+      headerName: <strong>OldAssassmentNo</strong>,
+      width: "180",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.oldAssasmentNo}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "ownersName",
+      headerName: <strong>OwnersName</strong>,
+      width: "220",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.ownersName}<br/></Typography>
         </div>
       )
     },
     {
         field: "holdersName",
-        headerName: 'HoldersName',
+        headerName: <strong>HoldersName</strong>,
         width: "220",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.ownersName}<br/></Typography>
               <Typography>{params.row.holdersName}</Typography>
             </div>
           )
     },
     {
+      field: "propertyAddress",
+      headerName: <strong>PropertyAddress</strong>,
+      width: "220",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.propertyAddress}<br/></Typography>
+          </div>
+        )
+  },
+    {
         field: "useOfPropertyType",
-        headerName: 'UseOfPropertyType',
+        headerName: <strong>UseOfPropertyType</strong>,
         width: "220",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.propertyAdress}<br/></Typography>
               <Typography>{params.row.useOfPropertyType}</Typography>
             </div>
           )
     },
     {
+      field: "assassedProperty",
+      headerName: <strong>AssassedProperty</strong>,
+      width: "190",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.assasedPropertyTax}<br/></Typography>
+          </div>
+        )
+  },
+    {
         field: "wardTotal",
-        headerName: 'WardTotal',
+        headerName: <strong>WardTotal</strong>,
         width: "190",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.assassedPropertyTax}<br/></Typography>
               <Typography>{params.row.wardTotal}</Typography>
             </div>
           )
@@ -81,45 +140,7 @@ import { Link } from "react-router-dom";
     
   ];
 
-  const columnGroupingModel = [
-    {
-      groupId: 'FormNo',
-      children: [{field: 'date'}],
-      headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
-  
-    },
-    {
-        groupId: 'WardNo',
-        children: [{field: 'oldAssassmentNo'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-        
-    },
-    {
-        groupId: 'OwnersName',
-        children: [{field: 'holdersName'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'PropertyAddress',
-        children: [{field: 'useOfPropertyType'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'AssassedProperty',
-        children: [{field: 'wardTotal'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-];
-  
+
  function AssasmentReport() {
     const [pagesize, setPageSize] = useState(null)
     var date = new Date();
@@ -181,7 +202,7 @@ import { Link } from "react-router-dom";
               var link = document.createElement('a');
               document.body.appendChild(link);
               link.href = data;
-              link.download = "MyBirthFile.pdf";
+              link.download = "AssessmentReportFile.pdf";
               link.click();
               window.URL.revokeObjectURL(data);
           })
@@ -192,7 +213,7 @@ import { Link } from "react-router-dom";
     return(
         <>
     <div className="header">
-      <h1 align="center">Assasment Report</h1>
+      <h1 align="center">Assessment Report</h1>
       </div>
       <div class='col-md-6'>
         <label class="form-label">Date :- </label>
@@ -210,20 +231,15 @@ import { Link } from "react-router-dom";
       container
       justify={'center'}
       sx={{
-        '& .super-app-theme--header': {
-          backgroundColor: '#93acbc',
-          fontSize: 18,
-          fontFamily:'Roboto',
-        },
-        '& .super-app-theme--header-a': {
+          '& .super-app-theme--header-a': {
           backgroundColor: '#9db7c8',
-          fontSize: 18,
+          fontSize: 20,
           fontFamily:'Roboto',
           borderBottom: 2,
         },
       }}
     >
-        <div style={ { width: '85%'}}>
+        <div style={ { width: '86%'}}>
           <DataGrid 
           sx={{ m:6,
             boxShadow: 20,
@@ -236,7 +252,7 @@ import { Link } from "react-router-dom";
           }}
           initialState={{
             pagination: {
-              pageSize: 10,
+              pageSize: 5,
             },
           }}
           onPageSizeChange={(newPage) => setPageSize(newPage)}
@@ -247,8 +263,8 @@ import { Link } from "react-router-dom";
           rows={data}
           rowHeight={90}
           getRowId={(row) => row.formNo}
-          experimentalFeatures={{ columnGrouping: true }}
-          columnGroupingModel={columnGroupingModel}
+          // experimentalFeatures={{ columnGrouping: true }}
+          // columnGroupingModel={columnGroupingModel}
           />
         </div>
 

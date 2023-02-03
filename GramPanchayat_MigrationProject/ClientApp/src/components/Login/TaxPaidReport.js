@@ -115,7 +115,6 @@
       
 // export default TaxPaidReport;
 
-
 import React, { useState , useEffect, useRef } from "react";
 import { DataGrid} from '@mui/x-data-grid';
 import { Typography } from "@mui/material";
@@ -127,140 +126,150 @@ import { Link } from "react-router-dom";
   const columns = [
     {
       field: "billNo",
-      headerName: "BillNo",
-      width: "160",
+      headerName: <strong>BillNo</strong>,
+      width: "150",
       headerAlign: "center",
       align: "center",
-     // sortable: false,
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
-          <Typography>{params.row.billDate}<br/></Typography>
           <Typography>{params.row.billNo}</Typography>
         </div>
       )
     },
     {
-      field: "name",
-      headerName: "Name",
-      width: "170",
+      field: "billDate",
+      headerName: <strong>BillDate</strong>,
+      width: "160",
       headerAlign: "center",
       align: "center",
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
-          <Typography>{params.row.year}<br/></Typography>
+          <Typography>{params.row.billdate}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "name",
+      headerName: <strong>Name</strong>,
+      width: "200",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
           <Typography>{params.row.name}</Typography>
         </div>
       )
     },
     {
+      field: "address",
+      headerName: <strong>Address</strong>,
+      width: "240",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.address}</Typography>
+        </div>
+      )
+    },
+    {
         field: "propertyNo",
-        headerName: "PropertyNo",
-        width: "180",
+        headerName: <strong>PropertyNo</strong>,
+        width: "160",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.address}<br/></Typography>
               <Typography>{params.row.propertyNo}</Typography>
             </div>
           )
     },
     {
+      field: "homeTax",
+      headerName: <strong>HomeTax</strong>,
+      width: "150",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.homeTax}</Typography>
+          </div>
+        )
+  },
+    {
         field: "electricityTax",
-        headerName: "ElectricityTax",
-        width: "180",
+        headerName: <strong>ElectricityTax</strong>,
+        width: "160",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.homeTax}<br/></Typography>
-              <Typography>{params.row.electricityTax}</Typography>
+              <Typography>{params.row.electrycityTax}</Typography>
             </div>
           )
     },
     {
+      field: "specialWaterTax",
+      headerName: <strong>SpecialWaterTax</strong>,
+      width: "180",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.specialWaterTax}</Typography>
+          </div>
+        )
+  },
+    {
         field: "educationalSess",
-        headerName: "EducationalSess",
+        headerName: <strong>EducationalSess</strong>,
         width: "180",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.specialWaterTax}<br/></Typography>
               <Typography>{params.row.educationalSess}</Typography>
             </div>
           )
     },
     {
+      field: "penalty",
+      headerName: <strong>PenaltyCharge</strong>,
+      width: "170",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.panaltyCharge}</Typography>
+          </div>
+        )
+  },
+    {
         field: "total",
-        headerName: "Total",
-        width: "180",
+        headerName: <strong>Total</strong>,
+        width: "170",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.panaltyCharge}<br/></Typography>
               <Typography>{params.row.total}</Typography>
             </div>
           )
     },
     
   ];
-
-  const columnGroupingModel = [
-    {
-      groupId: 'BillDate',
-      children: [{field: 'billNo'}],
-      headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
-  
-    },
-    {
-        groupId: 'Year',
-        children: [{field: 'name'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header', 
-        
-    },
-    {
-        groupId: 'Address',
-        children: [{field: 'propertyNo'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'HomeTax',
-        children: [{field: 'electricityTax'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'SpecialWaterTax',
-        children: [{field: 'educationalSess'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'PenaltyCharge',
-        children: [{field: 'total'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-]
-
-
-  
- function TaxPaidReport() {
+function TaxPaidReport() {
     const [pagesize, setPageSize] = useState(null)
     var date = new Date();
 
@@ -321,7 +330,7 @@ import { Link } from "react-router-dom";
             var link = document.createElement('a');
             document.body.appendChild(link);
             link.href = data;
-            link.download = "PropertyTaxFile.pdf";
+            link.download = "PropertyTaxReportFile.pdf";
             link.click();
             window.URL.revokeObjectURL(data);
         })
@@ -351,22 +360,15 @@ import { Link } from "react-router-dom";
       <Box 
       container
       justify={'center'}
-      sx={{
-        '& .super-app-theme--header': {
-          backgroundColor: '#93acbc',
-          fontSize: 18,
-          
-          fontFamily:'Roboto',
-        },
-        '& .super-app-theme--header-a': {
+      sx={{'& .super-app-theme--header-a': {
           backgroundColor: '#9db7c8',
-          fontSize: 18,
+          fontSize: 20,
           fontFamily:'Roboto',
           borderBottom: 2,
         },
       }}
     >
-        <div style={ { width: '89%'}}>
+        <div style={ { width: '86%'}}>
           <DataGrid 
           sx={{ m:6,
             boxShadow: 20,
@@ -379,7 +381,7 @@ import { Link } from "react-router-dom";
           }}
           initialState={{
             pagination: {
-              pageSize: 10,
+              pageSize: 5,
             },
           }}
           onPageSizeChange={(newPage) => setPageSize(newPage)}
@@ -390,8 +392,8 @@ import { Link } from "react-router-dom";
           rows={data}
           rowHeight={90}
           getRowId={(row) => row.billNo}
-          experimentalFeatures={{ columnGrouping: true }}
-          columnGroupingModel={columnGroupingModel}
+          // experimentalFeatures={{ columnGrouping: true }}
+          // columnGroupingModel={columnGroupingModel}
           />
         </div>
 

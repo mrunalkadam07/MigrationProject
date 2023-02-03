@@ -63,7 +63,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             }
         }
         [HttpPost]
-        public IActionResult AddDeath(Birth birth){
+        public IActionResult AddBirth(Birth birth){
             try{
                 _logger.LogInformation("New Birth Registration data Added");
            birthregRepository.Add(birth);
@@ -76,7 +76,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             }
         }
         [HttpDelete("{RegistrationNo}")]
-        public IActionResult DeleteDeath(int RegistrationNo){
+        public IActionResult DeleteBirth(int RegistrationNo){
             try{
                 _logger.LogInformation("Deleted Birth Registration data");
            birthregRepository.Delete(RegistrationNo);
@@ -132,40 +132,41 @@ namespace GramPanchayat_MigrationProject.API.Controllers
 
             var x = 50;
             var y = 90;
+            gfx.DrawLine(pen, 48, y, 600, y);
 
-            gfx.DrawString("RegistrationNo",  new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 10;
-                gfx.DrawString("ChildName", new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 80;
-                gfx.DrawString("Gender", new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+            gfx.DrawString("RegNo",  new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 40;
-                gfx.DrawString("DateOfBirth", new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 140;
-                gfx.DrawString("FatherName", new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 90;
-                gfx.DrawString("MotherName", new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                gfx.DrawString("ChildName", new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 80;
-                gfx.DrawString("Address", new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                gfx.DrawString("Gender", new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("DateOfBirth", new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 140;
+                gfx.DrawString("FatherName", new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 90;
+                gfx.DrawString("MotherName", new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 80;
+                gfx.DrawString("Address", new XFont("Arial", 10, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = 50;
 
             x = 50;
             y = 110;
-             gfx.DrawLine(pen, x, y, 600, y);
+             gfx.DrawLine(pen, 48, y, 600, y);
             foreach (var item in listBirthData)
             {
-                gfx.DrawString((item.RegistrationNo).ToString(),  new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 10;
-                gfx.DrawString(item.ChildName, new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 80;
-                gfx.DrawString(item.Sex, new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                gfx.DrawString((item.RegistrationNo).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 40;
-                gfx.DrawString((item.DateOfBirth).ToString(), new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 140;
-                gfx.DrawString(item.FatherName, new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 90;
-                gfx.DrawString(item.MotherName, new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                gfx.DrawString(item.ChildName, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 80;
-                gfx.DrawString(item.Address, new XFont("Arial", 16, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                gfx.DrawString(item.Sex, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString((item.DateOfBirth).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 140;
+                gfx.DrawString(item.FatherName, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 90;
+                gfx.DrawString(item.MotherName, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 80;
+                gfx.DrawString(item.Address, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = 50;
                 
 
@@ -180,6 +181,8 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 }
             }
             gfx.DrawLine(pen, x, y, 400, y);
+             gfx.DrawLine(pen,48,90,48,y);
+            gfx.DrawLine(pen,600,90,600,y);
             y = y + 40;
     
             Byte[] res = null;

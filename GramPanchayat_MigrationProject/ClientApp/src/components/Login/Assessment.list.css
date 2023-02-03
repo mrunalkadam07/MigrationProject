@@ -2,6 +2,10 @@
   font-size: 2.5rem;
   padding: 1em;
 }
+.required {
+  color: red;
+  font-size :large;
+  }
 
 label {
   display: inline-block;
@@ -48,6 +52,10 @@ label {
    font-family: "Georgia";
    font-weight: bold;
 
+ }
+ .bg-image{
+  -webkit-filter: blur(3px);
+  filter :blur(3px);
  }
  /* .center {
    position: relative;

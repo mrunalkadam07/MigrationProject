@@ -81,7 +81,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
         }
 
         [HttpDelete("{BillNo}")]
-        public IActionResult DeleteDeath(int billNo){
+        public IActionResult DeleteProperty(int billNo){
             try{
            _logger.LogInformation("Data deleted");
            propertytaxRepository.Delete(billNo);
@@ -135,13 +135,34 @@ namespace GramPanchayat_MigrationProject.API.Controllers
             XPen pen = new XPen(strokeColor, 2);
  
 
-            var x = 50;
-            var y = 110;
-             gfx.DrawLine(pen, x, y, 600, y);
+              var x = 50;
+            var y = 90;
+            gfx.DrawLine(pen, 48, y, 600, y);
+
+
+            gfx.DrawString("BillNo",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("BillDate",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 100;
+                gfx.DrawString("Name", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 90;
+                gfx.DrawString("Address", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 120;
+                gfx.DrawString("PropertyNo", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 60;
+                gfx.DrawString("HomeTax", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 50;
+                gfx.DrawString("Total", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = 50;
+ 
+
+            x = 50;
+            y = 110;
+             gfx.DrawLine(pen, 48, y, 600, y);
             foreach (var item in listPropertyData)
             {
                 gfx.DrawString((item.BillNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 10;
+                x = x + 40;
                 gfx.DrawString((item.Billdate).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 100;
                 gfx.DrawString(item.Name, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
@@ -149,7 +170,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 gfx.DrawString(item.Address, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 120;
                 gfx.DrawString(item.PropertyNo, new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 20;
+                x = x + 60;
                 gfx.DrawString((item.HomeTax).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 50;
                 gfx.DrawString((item.Total).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
@@ -157,7 +178,7 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 
 
                 y = y + 20;
-                 gfx.DrawLine(pen, x, y, 600, y);
+                 gfx.DrawLine(pen, 48, y, 600, y);
                 if (y >= 750)
                 {
                     page = document.AddPage();
@@ -166,6 +187,8 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 }
             }
             gfx.DrawLine(pen, x, y, 400, y);
+            gfx.DrawLine(pen,48,90,48,y);
+            gfx.DrawLine(pen,600,90,600,y);
             y = y + 40;
         
             Byte[] res = null;

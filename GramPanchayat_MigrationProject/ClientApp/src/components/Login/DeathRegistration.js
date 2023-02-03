@@ -2,6 +2,9 @@ import React, { useState, useEffect, useNavigate } from 'react';
 import './Assessment.list.css';
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import {Link} from "react-router-dom";
+import { DataGrid} from '@mui/x-data-grid';
+import { Typography } from "@mui/material";
+import Box from '@mui/material/Box';
 
 const services = new DeathRegistrationService();
 
@@ -11,7 +14,7 @@ export const DeathRegistrationForm = (props) => {
     //     localStorage.setItem("Token","");
     //     navigate("/login");
     // }
-
+    const [pagesize, setPageSize] = useState("")
     const [registration_no, setRegistrationNo] = useState("");
     const [taluka, setTaluka] = useState("");
     const [district, setDistrict] = useState("");
@@ -35,9 +38,8 @@ export const DeathRegistrationForm = (props) => {
 
     const addData = (e) =>{
         e.preventDefault();
-        if(year==="" && name==="" && addressOfDeadPerson==="" &&
-         addressOfSenderPerson==="" && relative==="" && registrationDate==="" && place==="" && age==="" &&
-         city==="" && taluka==="" && district===""&& registrar==="" && deathDate==="" && sex==="")
+        if(year==="" && name==="" && addressOfDeadPerson==="" && relative==="" && registrationDate==="" && place==="" && age==="" &&
+         city==="" && district===""&& registrar==="" && deathDate==="" && sex==="")
         {
             alert("Enter all the required input Fields")
             console.log("Input fields are Empty");
@@ -62,6 +64,7 @@ export const DeathRegistrationForm = (props) => {
         }
         services.DeathRegistration(data).then((data)=>{
             console.log(data)
+            refreshPage();
         }).catch((error)=>{
             console.log(error)
         })
@@ -126,6 +129,7 @@ export const DeathRegistrationForm = (props) => {
         .then((result) => { 
             console.log(result); 
             alert("Data Updated Successfully");
+            refreshPage();
            // console.log(data); 
           }) 
           .catch((err) => { 
@@ -134,8 +138,8 @@ export const DeathRegistrationForm = (props) => {
 
     }
 
-    const deleteData = (e) => {
-        e.preventDefault();
+    function deleteData(id){
+       // e.preventDefault();
         let url = "https://localhost:7277/DeathRegistration/" + registration_no;
         console.log(url);
         fetch(url , {
@@ -145,10 +149,11 @@ export const DeathRegistrationForm = (props) => {
                 'Content-Type' : 'application/json',
                 'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             }
-        }).then(response => response.json())
+        })
         .then((result) => { 
             console.log(result); 
-             
+            alert("Data Deleted Successfully!!");
+            refreshPage();
            // console.log(data); 
           }) 
           .catch((err) => { 
@@ -193,6 +198,147 @@ export const DeathRegistrationForm = (props) => {
     fetchData();
   }, []);
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  const columns = [
+    {
+      field: "registrationNo",
+      headerName: <strong>RegistrationNo</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.registrationNo}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "year",
+      headerName: <strong>Year</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.year}</Typography>
+        </div>
+      )
+    },
+    {
+        field: "registrationDate",
+        headerName: <strong>RegistrationDate</strong>,
+        width: "185",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.registrationDate}</Typography>
+            </div>
+          )
+    },
+    {
+      field: "city",
+      headerName: <strong>City/Villege</strong>,
+      width: "190",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.cityVillege}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "dateOfDeath",
+      headerName: <strong>DateOfDeath</strong>,
+      width: "200",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.dateOfDeath}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "nameOfDeathPerson",
+      headerName: <strong>NameOfDeadPerson</strong>,
+      width: "220",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.nameOfDeathPerson}</Typography>
+          </div>
+        )
+  },
+    {
+        field: "sex",
+        headerName: <strong>Gender</strong>,
+        width: "160",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.sex}</Typography>
+            </div>
+          )
+    },
+    {
+      field: "age",
+      headerName: <strong>AgeAtDeath</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.ageAtDeath}</Typography>
+          </div>
+        )
+  },
+    {
+        field: "placeOfDeath",
+        headerName: <strong>PlaceOfdeath</strong>,
+        width: "190",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.placeOfDeath}</Typography>
+            </div>
+          )
+    },
+    {
+        field: "actions",
+        headerName: <strong>Actions</strong>,
+        width: "190",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <button className="btn btn-success"onClick={()=>prePopulate(params.row.registrationNo)}>UPDATE</button>
+              <br/><br/>
+              <button type="DELETE" className="btn btn-danger"onClick={()=>deleteData(params.row.registrationNo)}>DELETE </button>
+            </div>
+          )
+    },
+    
+  ];
+
+
 //   refreshList(){
 //     fetch("")
 //     .then(response=>response.json())
@@ -214,7 +360,7 @@ export const DeathRegistrationForm = (props) => {
                         <input value = {registration_no} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="newStyle" id="inputRegistrationNo" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputYear" className="form-label">Year </label>
+                        <label htmlFor="inputYear" className="form-label">Year <span class="required">*</span> </label>
                         <input value = {year} onChange={(e) => setYear(e.target.value)} type="number" placeholder="yyyy" min="1947" max="2023" className="newStyle" id="inputYear" />
                     </div>
                 </div>
@@ -224,27 +370,27 @@ export const DeathRegistrationForm = (props) => {
                         <input value = {taluka} onChange={(e) => setTaluka(e.target.value)} type="text" className="newStyle" id="inputTaluka" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputDistrict" className="form-label">District </label>
+                        <label htmlFor="inputDistrict" className="form-label">District<span class="required">*</span>  </label>
                         <input value = {district} onChange={(e) => setDistrict(e.target.value)} type="text" className="newStyle" id="inputDistrict" />
                     </div>
                 </div>
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputRegistrationDtae" className="form-label">Registration Date </label>
+                        <label htmlFor="inputRegistrationDtae" className="form-label">Registration Date <span class="required">*</span> </label>
                         <input value = {registrationDate} onChange={(e) => setRegistrationDate(e.target.value)} type="date" className="newStyle" id="inputRegistrationDate" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputDeathDate" className="form-label">Date of Death </label>
+                        <label htmlFor="inputDeathDate" className="form-label">Date of Death <span class="required">*</span> </label>
                         <input value = {deathDate} onChange={(e) => setDeathDate(e.target.value)} type="date" className="newStyle" id="inputDeathDate" />
                     </div>
                 </div>
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputNameofDeadPerson" className="form-label">Name of Dead Person </label>
+                        <label htmlFor="inputNameofDeadPerson" className="form-label">Name of Dead Person <span class="required">*</span> </label>
                         <input value = {name} onChange={(e) => setName(e.target.value)} type="text" className="newStyle" id="inputNameofDeadPerson" />
                     </div>
                     <div className="mb-3">
-                            <label htmlFor="inputSex" className="form-label">Sex </label>
+                            <label htmlFor="inputSex" className="form-label">Sex <span class="required">*</span> </label>
                             <select id="inputSex" className="form-select">
                                 <option defaultValue="select">Choose...</option>
                                 <option>Male</option>
@@ -256,21 +402,21 @@ export const DeathRegistrationForm = (props) => {
                 </div>
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputAge" className="form-label">Age of Dead Person </label>
+                        <label htmlFor="inputAge" className="form-label">Age of Dead Person<span class="required">*</span>  </label>
                         <input value = {age} onChange={(e) => setAge(e.target.value)} type="number" className="newStyle" id="inputAge" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputPlace" className="form-label">Place of Death </label>
+                        <label htmlFor="inputPlace" className="form-label">Place of Death <span class="required">*</span> </label>
                         <input value = {place} onChange={(e) => setPlace(e.target.value)} type="text" className="newStyle" id="inputPlace" />
                     </div>
                 </div>
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputRelative" className="form-label">Mother/Father/Husband Name </label>
+                        <label htmlFor="inputRelative" className="form-label">Mother/Father/Husband Name <span class="required">*</span> </label>
                         <input value = {relative} onChange={(e) => setRelative(e.target.value)} type="text" className="newStyle" id="inputRelative" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputAddress" className="form-label">Permanent Address of Dead Person </label>
+                        <label htmlFor="inputAddress" className="form-label">Permanent Address of Dead Person <span class="required">*</span>  </label>
                         <input value = {addressOfDeadPerson} onChange={(e) => setAddressOfDeadPerson(e.target.value)} type="text" className="newStyle" id="inputAddress" />
                     </div>
                 </div>
@@ -280,13 +426,13 @@ export const DeathRegistrationForm = (props) => {
                         <input value = {addressOfSenderPerson} onChange={(e) => setAddressOfSenderPerson(e.target.value)} type="text" className="newStyle" id="inputNameOfSenderPerson" />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputRegistrar" className="form-label">Name of Registrar </label>
+                        <label htmlFor="inputRegistrar" className="form-label">Name of Registrar <span class="required">*</span> </label>
                         <input value = {registrar} onChange={(e) => setRegistrar(e.target.value)} type="text" className="newStyle" id="inputRegistrar" />
                     </div>
                 </div> 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputCityorVillage" className="form-label">City/Village </label>
+                        <label htmlFor="inputCityorVillage" className="form-label">City/Village <span class="required">*</span> </label>
                         <input value = {city} onChange={(e) => setCity(e.target.value)} type="text" className="newStyle" id="inputCityorVillage" />
                     </div>
                 </div>
@@ -294,7 +440,6 @@ export const DeathRegistrationForm = (props) => {
                     <button type="ADD" className="btn btn-primary" onClick={addData}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="SAVE" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
                         {/* <button type="FIRST" classNameName="btn btn-primary">FIRST </button> &nbsp;&nbsp;
                         <button type="LAST" classNameName="btn btn-primary">LAST </button> &nbsp;&nbsp;
@@ -307,7 +452,7 @@ export const DeathRegistrationForm = (props) => {
 
                
             </form>
-            <div className="tableData">
+            {/* <div className="tableData">
           <table>
             <thead>
             <tr>
@@ -336,7 +481,47 @@ export const DeathRegistrationForm = (props) => {
             })}
             </tbody>
           </table>
+        </div> */}
+        <Box 
+      container
+      justify={'center'}
+      sx={{
+        '& .super-app-theme--header-a': {
+          backgroundColor: '#9db7c8',
+          fontSize: 20,
+          fontFamily:'Roboto',
+          borderBottom: 2,
+        },
+      }}
+    >
+        <div style={ { width: '100%'}}>
+          <DataGrid 
+          sx={{ m:6,
+            boxShadow: 20,
+            backgroundColor:'white',
+            border: 3,
+            borderColor: 'black',
+            "& .MuiDataGrid-row:hover": {
+              backgroundColor: "#7caad8",
+            },
+          }}
+          initialState={{
+            pagination: {
+              pageSize: 5,
+            },
+          }}
+          onPageSizeChange={(newPage) => setPageSize(newPage)}
+          rowsPerPageOptions={[5, 10, 20]}
+          pagination
+          autoHeight
+          columns={columns}
+          rows={data}
+          rowHeight={90}
+          getRowId={(row) => row.registrationNo}
+          />
         </div>
+
+        </Box>
         </>
     )
 }

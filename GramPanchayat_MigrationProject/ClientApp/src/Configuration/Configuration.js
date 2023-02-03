@@ -6,5 +6,6 @@ module.exports = {
     GetDeathRegistration : "https://localhost:7277/DeathRegistration",
     BirthRegistration : "https://localhost:7277/BirthRegistration",
     MarriageRegistration : "https://localhost:7277/MarriageRegistration",
-    DeadBirthReg : "https://localhost:7277/DeadBirthReg"
+    DeadBirthReg : "https://localhost:7277/DeadBirthReg",
+    Assasmenttax : "https://localhost:7277/Assasmenttax"
 }

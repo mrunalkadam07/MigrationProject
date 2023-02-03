@@ -132,28 +132,47 @@ namespace GramPanchayat_MigrationProject.API.Controllers
  
 
             var x = 50;
-            var y = 110;
-             gfx.DrawLine(pen, x, y, 600, y);
+            var y = 90;
+             gfx.DrawLine(pen, 48, y, 600, y);
+
+
+
+             gfx.DrawString("FormNo",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 40;
+                gfx.DrawString("WardNo",  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 35;
+                gfx.DrawString("Date", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 90;
+                gfx.DrawString("OldAssessmentNo", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 70;
+                gfx.DrawString("OwnerName", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 90;
+                gfx.DrawString("PropertyAddress", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 120;
+                gfx.DrawString("TotalAreaOfBuildupSqMeter", new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = 50;
+
+            x = 50;
+            y = 110;
+            gfx.DrawLine(pen, 48, y, 600, y);
             foreach (var item in listAssessmentData)
             {
                 gfx.DrawString((item.FormNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 10;
+                x = x + 40;
                 gfx.DrawString((item.WardNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 20;
+                x = x + 35;
                 gfx.DrawString((item.Date).ToString(), new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 100;
-                 gfx.DrawString((item.OldAssasmentNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 30;
-                gfx.DrawString(item.OwnersName,  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 90;
-                gfx.DrawString(item.HoldersName,  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                 gfx.DrawString((item.OldAssasmentNo).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
+                x = x + 70;
+                gfx.DrawString(item.OwnersName,  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 90;
                 gfx.DrawString(item.PropertyAddress,  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
                 x = x + 120;
                 gfx.DrawString((item.TotalAreaOfBuildupSqMeter).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-                x = x + 30;
-                gfx.DrawString((item.OpenAreasPlotSqMeter).ToString(),  new XFont("Arial", 8, XFontStyle.Regular), XBrushes.Black, x, y, XStringFormats.TopLeft);
-               
+                
+
+
                 y = y + 20;
                 x=50;
                  gfx.DrawLine(pen, x, y, 600, y);
@@ -165,6 +184,8 @@ namespace GramPanchayat_MigrationProject.API.Controllers
                 }
             }
             gfx.DrawLine(pen, x, y, 400, y);
+            gfx.DrawLine(pen,48,90,48,y);
+            gfx.DrawLine(pen,600,90,600,y);
             y = y + 40;
         
             Byte[] res = null;

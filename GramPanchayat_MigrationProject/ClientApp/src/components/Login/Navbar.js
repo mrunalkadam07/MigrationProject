@@ -8,18 +8,12 @@ export const Navbar=()=>{
         navigate("/login");
     }
     return (
-       
-        <div className="container" style={{backgroundImage: 
-        
-            "url('0001.jpg')",
-            height:'100vh',
-            marginTop:'-70px',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat'}}>
-            <nav className="navbar navbar-expand-lg nav-dark bg-body-tertiary">
+       <>
+        <div className="">
+            <nav className="justify-content-center navbar navbar-expand-lg nav-dark bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">
-                        Gram Panchayat Management System
+                        <strong style={{fontSize : 35}}>Gram Panchayat Management System</strong>
                     </a>
                 </div>
             </nav>
@@ -160,6 +154,15 @@ export const Navbar=()=>{
                 </div>
             </nav>
         </div>
+        <div className="bg-image" style={{
+            backgroundImage: "url('menupage.png')",
+            height:'90vh',
+            marginTop:'0px',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'}}>
+            
+        </div>
+        </>
     );
    
 }

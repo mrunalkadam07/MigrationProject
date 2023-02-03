@@ -2,6 +2,9 @@ import React, {useState, useEffect, useNavigate} from "react";
 import DeathRegistrationService from "../../Services/DeathRegistrationService";
 import "./tablestyle.css";
 import {Link} from "react-router-dom";
+import { DataGrid} from '@mui/x-data-grid';
+import { Typography } from "@mui/material";
+import Box from '@mui/material/Box';
 
 const services = new DeathRegistrationService();
 
@@ -12,6 +15,7 @@ export const BirthRegistrationForm = (props) => {
     //     navigate("/login");
     // }
     // const [billNo, setBillNo] = useState('');
+    const [pagesize, setPageSize] = useState("")
     const [registrationNo, setRegistrationNo] = useState('');
     const [registrationDate, setRegistrationDate] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
@@ -40,11 +44,10 @@ export const BirthRegistrationForm = (props) => {
     const addBirthRegistration = (e) =>{
         e.preventDefault();
         if(registrationDate==="" && dateOfBirth==="" && sex==="" &&
-         childName==="" && fathersName==="" && mothersName==="" && address==="" && weightOfChild==="" && 
-         birthPlace==="" && senderPerson==="" && motherResidence==="" && city==="" && districtName==="" && state==="" && 
-         religion==="" && fatherEducationalQualification==="" && motherEducationalQualification==="" && 
-         fatherOccupation==="" &&  motherOccupation==="" && motherAgeMarriageTime==="" && motherAgeAtChildTime==="" && 
-         totalLiveChildWithThisChild==="" && deliveryTime==="")
+        childName==="" && fathersName==="" && mothersName==="" && address==="" && weightOfChild==="" && 
+        birthPlace==="" && city==="" && districtName==="" && state==="" && 
+        religion==="" && totalLiveChildWithThisChild==="" && deliveryTime==="")
+
         {
             alert("Enter all the required input Fields")
             console.log("Input fields are Empty");
@@ -82,6 +85,7 @@ export const BirthRegistrationForm = (props) => {
         }
         services.BirthRegistration(data).then((data)=>{
             console.log(data)
+            refreshPage();
         }).catch((error)=>{
             console.log(error)
         })
@@ -131,6 +135,7 @@ export const BirthRegistrationForm = (props) => {
         .then((result) => { 
             console.log(result); 
              alert("Data Updated SuccessFully!")
+             refreshPage();
            console.log("Data:"+data); 
           }) 
           .catch((err) => { 
@@ -139,9 +144,9 @@ export const BirthRegistrationForm = (props) => {
 
     }
 
-    const deleteData = (e) => {
-        e.preventDefault();
-        let url = "https://localhost:7277/BirthRegistration/" + registrationNo;
+    function deleteData(id){
+        // e.preventDefault();
+        let url = "https://localhost:7277/BirthRegistration/" + id;
         console.log(url);
         fetch(url , {
             method : 'DELETE',
@@ -150,10 +155,11 @@ export const BirthRegistrationForm = (props) => {
                 'Content-Type' : 'application/json',
                 'Authorization':'Bearer'+" "+localStorage.getItem("Token")
             }
-        }).then(response => response.json())
+        })
         .then((result) => { 
             console.log(result); 
-             
+             alert("Data Deleted Successfully!!");
+             refreshPage();
            // console.log(data); 
           }) 
           .catch((err) => { 
@@ -206,12 +212,155 @@ export const BirthRegistrationForm = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
-        
+      
+  function refreshPage() {
+
+    window.location.reload(false);
+
+  }
+  const columns = [
+    {
+      field: "registrationNo",
+      headerName: <strong>RegistrationNo</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.registrationNo}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "dateOfBirth",
+      headerName: <strong>DateOfBirth</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.dateOfBirth}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "childName",
+      headerName: <strong>ChildName</strong>,
+      width: "180",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.childName}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "sex",
+      headerName: <strong>Gender</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.sex}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "fatherName",
+      headerName: <strong>FatherName</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.fatherName}</Typography>
+        </div>
+      )
+    },
+    {
+        field: "motherName",
+        headerName: <strong>MotherName</strong>,
+        width: "180",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.motherName}</Typography>
+            </div>
+          )
+    },
+    {
+        field: "birthPlace",
+        headerName: <strong>BirthPlace</strong>,
+        width: "180",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.birthPlace}</Typography>
+            </div>
+          )
+    },
+    {
+      field: "deliveryType",
+      headerName: <strong>DeliveryType</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.deliveryType}<br/></Typography>
+        </div>
+      )
+    },
+    {
+        field: "totalLiveChildWithThisChild",
+        headerName: <strong>TotalLiveChildWithThisChild</strong>,
+        width: "250",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.totalLiveChildWithThisChild}</Typography>
+            </div>
+          )
+    },
+    {
+        field: "actions",
+        headerName: <strong>Actions</strong>,
+        width: "190",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <button className="btn btn-success"onClick={()=>prePopulate(params.row.registrationNo)}>UPDATE</button>
+              <br/><br/>
+              <button type="DELETE" className="btn btn-danger"onClick={()=>deleteData(params.row.registrationNo)}>DELETE </button>
+            </div>
+          )
+    },
+
+
+    
+  ];
+
+
 
     return(
-        <>
-           
-                <h1 align="center">Birth Registration Form</h1>
+        <> 
+        <h1 align="center">Birth Registration Form</h1>
             <form className="form-birth">
                 <div className="leftdiv">
                 <div className="div1">
@@ -220,36 +369,36 @@ export const BirthRegistrationForm = (props) => {
                         <input value = {registrationNo} onChange={(e) => setRegistrationNo(e.target.value)} type="text" className="newStyle" id="inputRegistrationNo"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputCity" className="form-label">City/Village  </label>
+                        <label htmlFor="inputCity" className="form-label">City/Village<span class="required">*</span>  </label>
                         <input value = {city} onChange={(e) => setCity(e.target.value)} type="text" className="newStyle" id="inputCity"/>
                     </div>
                 </div>
 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputRegistrationDate" className="form-label">Registration Date  </label>
+                        <label htmlFor="inputRegistrationDate" className="form-label">Registration Date <span class="required">*</span> </label>
                         <input value = {registrationDate} onChange={(e) => setRegistrationDate(e.target.value)} type="Date" className="newStyle" id="inputRegistrationDate"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputDistrict" className="form-label">District Name  </label>
+                        <label htmlFor="inputDistrict" className="form-label">District Name <span class="required">*</span>  </label>
                         <input value = {districtName} onChange={(e) => setDistrictName(e.target.value)} type="text" className="newStyle" id="inputDistrict"/>
                     </div>
                 </div>
 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputDateOfBirth" className="form-label">Date Of Birth  </label>
-                        <input value = {dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} type="text" className="newStyle" id="inputDateOfBirth"/>
+                        <label htmlFor="inputDateOfBirth" className="form-label">Date Of Birth <span class="required">*</span>  </label>
+                        <input value = {dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} type="Date" className="newStyle" id="inputDateOfBirth"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputState" className="form-label">State  </label>
+                        <label htmlFor="inputState" className="form-label">State <span class="required">*</span> </label>
                         <input value = {state} onChange={(e) => setState(e.target.value)} type="text" className="newStyle" id="inputState"/>
                     </div>
                 </div>
 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputSex" className="form-label">Sex  </label>
+                        <label htmlFor="inputSex" className="form-label">Sex <span class="required">*</span>  </label>
                         {/* <select id="inputSex" className="form-select">
                         <option selected>Choose...</option>
                         <option>Male</option>
@@ -259,14 +408,14 @@ export const BirthRegistrationForm = (props) => {
                         <input value = {sex} onChange={(e) => setSex(e.target.value)} type="text" className="newStyle" id="inputSex"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputReligion" className="form-label">Religion  </label>
+                        <label htmlFor="inputReligion" className="form-label">Religion <span class="required">*</span>  </label>
                         <input value = {religion} onChange={(e) => setReligion(e.target.value)} type="text" className="newStyle" id="inputReligion"/>
                     </div>
                 </div>
                 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputChildName" className="form-label">Child Name  </label>
+                        <label htmlFor="inputChildName" className="form-label">Child Name <span class="required">*</span>  </label>
                         <input value = {childName} onChange={(e) => setChildName(e.target.value)} type="text" className="newStyle" id="inputChildName"/>
                     </div>
                     <div className="mb-3">
@@ -277,7 +426,7 @@ export const BirthRegistrationForm = (props) => {
                 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputFathersName" className="form-label">Father's Name  </label>
+                        <label htmlFor="inputFathersName" className="form-label">Father's Name <span class="required">*</span>  </label>
                         <input value = {fathersName} onChange={(e) => setFathersName(e.target.value)} type="text" className="newStyle" id="inputFathersName"/>
                     </div>
                     <div className="mb-3">
@@ -288,7 +437,7 @@ export const BirthRegistrationForm = (props) => {
                 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputMothersName" className="form-label">Mother's Name  </label>
+                        <label htmlFor="inputMothersName" className="form-label">Mother's Name <span class="required">*</span>  </label>
                         <input value = {mothersName} onChange={(e) => setMothersName(e.target.value)} type="text" className="newStyle" id="inputMothersName"/>
                     </div>
                     <div className="mb-3">
@@ -299,7 +448,7 @@ export const BirthRegistrationForm = (props) => {
 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputAddress" className="form-label">Address  </label>
+                        <label htmlFor="inputAddress" className="form-label">Address<span class="required">*</span> </label>
                         <input value = {address} onChange={(e) => setAddress(e.target.value)} type="text" className="newStyle" id="inputAddress"/>
                     </div>
                     <div className="mb-3">
@@ -310,7 +459,7 @@ export const BirthRegistrationForm = (props) => {
 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputWeightOfChild" className="form-label">Weight Of Child(Kg)  </label>
+                        <label htmlFor="inputWeightOfChild" className="form-label">Weight Of Child(Kg)  <span class="required">*</span> </label>
                         <input value = {weightOfChild} onChange={(e) => setWeightOfChild(e.target.value)} type="text" className="newStyle" id="inputWeightOfChild"/>
                     </div>
                     <div className="mb-3">
@@ -321,7 +470,7 @@ export const BirthRegistrationForm = (props) => {
 
                 <div className="div1">
                     <div className="mb-3">
-                        <label htmlFor="inputBirthPlace" className="form-label">Birth Place  </label>
+                        <label htmlFor="inputBirthPlace" className="form-label">Birth Place <span class="required">*</span>  </label>
                         <input value = {birthPlace} onChange={(e) => setBirthPlace(e.target.value)} type="text" className="newStyle" id="inputBirthPlace"/>
                     </div>
                     <div className="mb-3">
@@ -336,7 +485,7 @@ export const BirthRegistrationForm = (props) => {
                         <input value = {senderPerson} onChange={(e) => setSendorPerson(e.target.value)} type="text" className="newStyle" id="inputSenderPerson"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputTotalLiveChildWithThisChild" className="form-label">Total Live Child with this Child  </label>
+                        <label htmlFor="inputTotalLiveChildWithThisChild" className="form-label">Total Live Child with this Child <span class="required">*</span>  </label>
                         <input value = {totalLiveChildWithThisChild} onChange={(e) => setTotalLiveChildWithThisChild(e.target.value)} type="text" className="newStyle" id="inputTotalLiveChildWithThisChild"/>
                     </div>
                 </div>
@@ -347,7 +496,7 @@ export const BirthRegistrationForm = (props) => {
                         <input value = {motherResidence} onChange={(e) => setMotherResidence(e.target.value)} type="text" className="newStyle" id="inputMothersResidence"/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="inputDeliveryType" className="form-label">Delivery Type  </label>
+                        <label htmlFor="inputDeliveryType" className="form-label">Delivery Type <span class="required">*</span> </label>
                         <input value = {deliveryTime} onChange={(e) => setDeliveryTime(e.target.value)} type="text" className="newStyle" id="inputDeliveryType"/>
                     </div>
                 </div>
@@ -356,7 +505,6 @@ export const BirthRegistrationForm = (props) => {
                         <button type="ADD" className="btn btn-primary" onClick={addBirthRegistration}>ADD </button> &nbsp;&nbsp;
                         {/* <button type="SAVE" classNameName="btn btn-primary">SAVE </button> &nbsp;&nbsp; */}
                         <button type="MODIFY" className="btn btn-success" onClick={modifyData}>MODIFY </button> &nbsp;&nbsp;
-                        <button type="DELETE" className="btn btn-danger"onClick={deleteData}>DELETE </button> &nbsp;&nbsp;
                         <Link to="/Navbar"><button type="CANCEL" className="btn btn-warning" >CANCEL </button></Link> &nbsp;&nbsp;
                         <Link to="/login"><button type="EXIT" className="btn btn-dark">LOGOUT</button></Link>
                     </div>
@@ -364,7 +512,7 @@ export const BirthRegistrationForm = (props) => {
                 </div>
             </form>
             
-            <div className="tableData">
+            {/* <div className="tableData">
           <table>
             <thead>
             <tr>
@@ -392,12 +540,54 @@ export const BirthRegistrationForm = (props) => {
                   <td>
                   <button onClick={()=>prePopulate(val.registrationNo)}>Update</button>
                   </td>
+                
                 </tr>
               )
             })}
             </tbody>
           </table>
+        </div> */}
+        <Box 
+      container
+      justify={'center'}
+      sx={{
+        '& .super-app-theme--header-a': {
+          backgroundColor: '#9db7c8',
+          fontSize: 20,
+          fontFamily:'Roboto',
+          borderBottom: 2,
+        },
+      }}
+    >
+        <div style={ { width: '100%'}}>
+          <DataGrid 
+          sx={{ m:6,
+            boxShadow: 20,
+            backgroundColor:'white',
+            border: 3,
+            borderColor: 'black',
+            "& .MuiDataGrid-row:hover": {
+              backgroundColor: "#7caad8",
+            },
+          }}
+          initialState={{
+            pagination: {
+              pageSize: 5,
+            },
+          }}
+          onPageSizeChange={(newPage) => setPageSize(newPage)}
+          rowsPerPageOptions={[5, 10, 20]}
+          pagination
+          autoHeight
+          columns={columns}
+          rows={data}
+          rowHeight={90}
+          getRowId={(row) => row.registrationNo}
+          />
         </div>
+
+        </Box>
+     
         </>
     )
 }

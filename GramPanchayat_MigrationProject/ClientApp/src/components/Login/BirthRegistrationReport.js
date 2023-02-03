@@ -126,72 +126,118 @@ import { Link } from "react-router-dom";
   
   const columns = [
     {
-      field: "dateOfBirth",
-      headerName: "DateOfBirth",
+      field: "registrationNo",
+      headerName: <strong>RegistrationNo</strong>,
       width: "160",
       headerAlign: "center",
       align: "center",
-     // sortable: false,
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
-          <Typography>{params.row.registrationNo}<br/></Typography>
+          <Typography>{params.row.registrationNo}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "dateOfBirth",
+      headerName: <strong>DateOfBirth</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
           <Typography>{params.row.dateOfBirth}</Typography>
         </div>
       )
     },
     {
       field: "childName",
-      headerName: "ChildName",
+      headerName: <strong>ChildName</strong>,
       width: "180",
       headerAlign: "center",
       align: "center",
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
-          <Typography>{params.row.sex}<br/></Typography>
           <Typography>{params.row.childName}</Typography>
         </div>
       )
     },
     {
+      field: "sex",
+      headerName: <strong>Gender</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.sex}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "fatherName",
+      headerName: <strong>FatherName</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.fatherName}</Typography>
+        </div>
+      )
+    },
+    {
         field: "motherName",
-        headerName: "MotherName",
+        headerName: <strong>MotherName</strong>,
         width: "180",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.fatherName}<br/></Typography>
               <Typography>{params.row.motherName}</Typography>
             </div>
           )
     },
     {
         field: "birthPlace",
-        headerName: "BirthPlace",
+        headerName: <strong>BirthPlace</strong>,
         width: "180",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.address}<br/></Typography>
               <Typography>{params.row.birthPlace}</Typography>
             </div>
           )
     },
     {
+      field: "deliveryType",
+      headerName: <strong>DeliveryType</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.deliveryType}<br/></Typography>
+        </div>
+      )
+    },
+    {
         field: "totalLiveChildWithThisChild",
-        headerName: "TotalLiveChildWithThisChild",
+        headerName: <strong>TotalLiveChildWithThisChild</strong>,
         width: "250",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.deliveryType}<br/></Typography>
               <Typography>{params.row.totalLiveChildWithThisChild}</Typography>
             </div>
           )
@@ -199,48 +245,7 @@ import { Link } from "react-router-dom";
     
   ];
 
-  const columnGroupingModel = [
-    {
-        groupId: 'RegistrationNo',
-        children: [{field: 'dateOfBirth'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-    
-      },
-      {
-          groupId: 'Sex',
-          children: [{field: 'childName'}],
-          headerAlign: "center",
-          headerClassName: 'super-app-theme--header',
-          
-          
-      },
-      {
-          groupId: 'FatherName',
-          children: [{field: 'motherName'}],
-          headerAlign: "center",
-          headerClassName: 'super-app-theme--header',
-          
-      },
-      {
-          groupId: 'Address',
-          children: [{field: 'birthPlace'}],
-          headerAlign: "center",
-          headerClassName: 'super-app-theme--header',
-          
-      },
-      {
-          groupId: 'DeliveryType',
-          children: [{field: 'totalLiveChildWithThisChild'}],
-          headerAlign: "center",
-          headerClassName: 'super-app-theme--header',
-          
-      },
-
-  ]
-
-  
- function BirthRegistrationReport() {
+function BirthRegistrationReport() {
     const [pagesize, setPageSize] = useState(null)
     var date = new Date();
 
@@ -303,7 +308,7 @@ const generatepdf =()=>{
             var link = document.createElement('a');
             document.body.appendChild(link);
             link.href = data;
-            link.download = "MyBirthFile.pdf";
+            link.download = "BirthReportFile.pdf";
             link.click();
             window.URL.revokeObjectURL(data);
         })
@@ -333,20 +338,15 @@ const generatepdf =()=>{
       container
       justify={'center'}
       sx={{
-        '& .super-app-theme--header': {
-          backgroundColor: '#93acbc',
-          fontSize: 18,
-          fontFamily:'Roboto',
-        },
-        '& .super-app-theme--header-a': {
+          '& .super-app-theme--header-a': {
           backgroundColor: '#9db7c8',
-          fontSize: 18,
+          fontSize: 20,
           fontFamily:'Roboto',
           borderBottom: 2,
         },
       }}
     >
-        <div style={ { width: '81.2%'}}>
+        <div style={ { width: '86%'}}>
           <DataGrid 
           sx={{ m:6,
             boxShadow: 20,
@@ -359,7 +359,7 @@ const generatepdf =()=>{
           }}
           initialState={{
             pagination: {
-              pageSize: 10,
+              pageSize: 5,
             },
           }}
           onPageSizeChange={(newPage) => setPageSize(newPage)}
@@ -370,8 +370,8 @@ const generatepdf =()=>{
           rows={data}
           rowHeight={90}
           getRowId={(row) => row.registrationNo}
-          experimentalFeatures={{ columnGrouping: true }}
-          columnGroupingModel={columnGroupingModel}
+          // experimentalFeatures={{ columnGrouping: true }}
+          // columnGroupingModel={columnGroupingModel}
           />
         </div>
 
@@ -384,3 +384,4 @@ const generatepdf =()=>{
   }
 
   export default BirthRegistrationReport;
+

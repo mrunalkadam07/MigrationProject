@@ -262,7 +262,6 @@
 //     }
       
 //     export default Dreport;
-
 import React, { useState , useEffect, useRef } from "react";
 import { DataGrid} from '@mui/x-data-grid';
 import { Typography } from "@mui/material";
@@ -273,72 +272,118 @@ import { Link } from "react-router-dom";
   
   const columns = [
     {
-      field: "year",
-      headerName: "Year",
-      width: "180",
+      field: "registrationNo",
+      headerName: <strong>RegistrationNo</strong>,
+      width: "160",
       headerAlign: "center",
       align: "center",
-     // sortable: false,
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
-          <Typography>{params.row.registrationNo}<br/></Typography>
+          <Typography>{params.row.registrationNo}</Typography>
+        </div>
+      )
+    },
+    {
+      field: "year",
+      headerName: <strong>Year</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
           <Typography>{params.row.year}</Typography>
         </div>
       )
     },
     {
-      field: "taluko",
-      headerName: "Taluka",
+        field: "registrationDate",
+        headerName: <strong>RegistrationDate</strong>,
+        width: "185",
+        headerAlign: "center",
+        align: "center",
+        headerClassName: 'super-app-theme--header-a',
+        renderCell: (params) => (
+            <div>
+              <Typography>{params.row.registrationDate}</Typography>
+            </div>
+          )
+    },
+    {
+      field: "city",
+      headerName: <strong>City/Villege</strong>,
       width: "190",
       headerAlign: "center",
       align: "center",
       headerClassName: 'super-app-theme--header-a',
       renderCell: (params) => (
         <div>
-          <Typography>{params.row.cityVillege}<br/></Typography>
-          <Typography>{params.row.taluko}</Typography>
+          <Typography>{params.row.cityVillege}</Typography>
         </div>
       )
     },
     {
-        field: "registrationDate",
-        headerName: "RegistrationDate",
-        width: "180",
-        headerAlign: "center",
-        align: "center",
-        headerClassName: 'super-app-theme--header-a',
-        renderCell: (params) => (
-            <div>
-              <Typography>{params.row.dateOfDeath}<br/></Typography>
-              <Typography>{params.row.registrationDate}</Typography>
-            </div>
-          )
+      field: "dateOfDeath",
+      headerName: <strong>DateOfDeath</strong>,
+      width: "200",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+        <div>
+          <Typography>{params.row.dateOfDeath}</Typography>
+        </div>
+      )
     },
     {
+      field: "nameOfDeathPerson",
+      headerName: <strong>NameOfDeadPerson</strong>,
+      width: "220",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.nameOfDeathPerson}</Typography>
+          </div>
+        )
+  },
+    {
         field: "sex",
-        headerName: "Sex",
+        headerName: <strong>Gender</strong>,
         width: "160",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.ageAtDeath}<br/></Typography>
               <Typography>{params.row.sex}</Typography>
             </div>
           )
     },
     {
+      field: "age",
+      headerName: <strong>AgeAtDeath</strong>,
+      width: "160",
+      headerAlign: "center",
+      align: "center",
+      headerClassName: 'super-app-theme--header-a',
+      renderCell: (params) => (
+          <div>
+            <Typography>{params.row.ageAtDeath}</Typography>
+          </div>
+        )
+  },
+    {
         field: "placeOfDeath",
-        headerName: "PlaceOfdeath",
+        headerName: <strong>PlaceOfdeath</strong>,
         width: "190",
         headerAlign: "center",
         align: "center",
         headerClassName: 'super-app-theme--header-a',
         renderCell: (params) => (
             <div>
-              <Typography>{params.row.nameOfDeathPerson}<br/></Typography>
               <Typography>{params.row.placeOfDeath}</Typography>
             </div>
           )
@@ -346,47 +391,7 @@ import { Link } from "react-router-dom";
     
   ];
 
-  const columnGroupingModel = [
-    {
-      groupId: 'RegistrationNo',
-      children: [{field: 'year'}],
-      headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
-  
-    },
-    {
-        groupId: 'City/Villege',
-        children: [{field: 'taluko'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-        
-    },
-    {
-        groupId: 'DateOfDeath',
-        children: [{field: 'registrationDate'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'AgeAtDeath',
-        children: [{field: 'sex'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-    {
-        groupId: 'NameOfDeadPerson',
-        children: [{field: 'placeOfDeath'}],
-        headerAlign: "center",
-        headerClassName: 'super-app-theme--header',
-        
-    },
-];
-
-  
- function Dreport() {
+function Dreport() {
     const [pagesize, setPageSize] = useState(null)
     var date = new Date();
 
@@ -447,7 +452,7 @@ import { Link } from "react-router-dom";
             var link = document.createElement('a');
             document.body.appendChild(link);
             link.href = data;
-            link.download = "MyBirthFile.pdf";
+            link.download = "DeathReportFile.pdf";
             link.click();
             window.URL.revokeObjectURL(data);
         })
@@ -477,21 +482,15 @@ import { Link } from "react-router-dom";
       <Box 
       container
       justify={'center'}
-      sx={{
-        '& .super-app-theme--header': {
-          backgroundColor: '#93acbc',
-          fontSize: 18,
-          fontFamily:'Roboto',
-        },
-        '& .super-app-theme--header-a': {
+      sx={{'& .super-app-theme--header-a': {
           backgroundColor: '#9db7c8',
-          fontSize: 18,
+          fontSize: 20,
           fontFamily:'Roboto',
           borderBottom: 2,
         },
       }}
     >
-        <div style={ { width: '77.5%'}}>
+        <div style={ { width: '86%'}}>
           <DataGrid 
           sx={{ m:6,
             boxShadow: 20,
@@ -504,7 +503,7 @@ import { Link } from "react-router-dom";
           }}
           initialState={{
             pagination: {
-              pageSize: 10,
+              pageSize: 5,
             },
           }}
           onPageSizeChange={(newPage) => setPageSize(newPage)}
@@ -515,8 +514,8 @@ import { Link } from "react-router-dom";
           rows={data}
           rowHeight={90}
           getRowId={(row) => row.registrationNo}
-          experimentalFeatures={{ columnGrouping: true }}
-          columnGroupingModel={columnGroupingModel}
+          // experimentalFeatures={{ columnGrouping: true }}
+          // columnGroupingModel={columnGroupingModel}
           />
         </div>
 

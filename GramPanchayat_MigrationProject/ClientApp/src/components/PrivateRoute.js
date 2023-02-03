@@ -1,5 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import history from "./Login/history";
+import * as jwt_decode from 'jwt-decode';
 
 const PrivateRoute = ({children}) =>{
     // const [jwt,setJwt] = localStorage.getItem("token");
